@@ -7,7 +7,7 @@
 genDictListFromRawFreq(topfreqdictraw)
 }
 \arguments{
-\item{topfreqdictraw}{}
+\item{topfreqdictraw}{list with terms from a dictionary sorted by frequency}
 }
 \value{
 a sorted list of terms

@@ -26,6 +26,7 @@ loadMeSH <- function () {
 loadDrugBank <- function () {
   load("inst/DrugBank.rda")
   adrugbank <- genDictListFromRawFreq(drugbank)
+  adrugbank
 }
 
 #' Loads epso object from harddrive into the R environment
@@ -40,6 +41,7 @@ loadDrugBank <- function () {
 loadEpSO <- function () {
   load("inst/EpSO.rda")
   aepso <- genDictListFromRawFreq(epso)
+  aepso
 }
 
 #' Loads esso object from harddrive into the R environment
@@ -54,6 +56,7 @@ loadEpSO <- function () {
 loadESSO <- function () {
   load("inst/ESSO.rda")
   aesso <- genDictListFromRawFreq(esso)
+  aesso
 }
 
 #' Loads epilont object from harddrive into the R environment
@@ -68,11 +71,12 @@ loadESSO <- function () {
 loadEPILONT <- function () {
   load("inst/EPILONT.rda")
   aepi <- genDictListFromRawFreq(epi)
+  aepi
 }
 
 #' Clears object that was loaded from harddrive into a list of terms sorted by frequency
 #'
-#' @param topfreqdictraw 
+#' @param topfreqdictraw list with terms from a dictionary sorted by frequency
 #'
 #' @return a sorted list of terms
 #' @export
