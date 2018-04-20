@@ -34,12 +34,13 @@ calcJaccard <- function (a, b) {
   la = length(a)
   lb = length(b)
 
-  lo = 0
-  if (la > lb) {
-    lo = la
-  } else {
-    lo = lb
-  }
+  # lo = 0
+  # if (la > lb) {
+  #   lo = la
+  # } else {
+  #   lo = lb
+  # }
+  lo = lb
   
   for (i in 1:lo) {
     cinter <- length(intersect(a[1:i], b[1:i]))
@@ -86,12 +87,13 @@ jaccard <- function (ainterb, aunionb) {
 calcDice <- function (a, b) {
   la = length(a)
   lb = length(b)
-  lo = 0
-  if (la > lb) {
-    lo = la
-  } else {
-    lo = lb
-  }
+  # lo = 0
+  # if (la > lb) {
+  #   lo = la
+  # } else {
+  #   lo = lb
+  # }
+  lo = lb
   
   for (i in 1:lo) {
     cinter <- length(intersect(a[1:i], b[1:i]))
@@ -148,12 +150,13 @@ dice <- function (ainterb, lengtha, lengthb) {
 calcCosine <- function (a, b) {
   la = length(a)
   lb = length(b)
-  lo = 0
-  if (la > lb) {
-    lo = la
-  } else {
-    lo = lb
-  }
+  # lo = 0
+  # if (la > lb) {
+  #   lo = la
+  # } else {
+  #   lo = lb
+  # }
+  lo = lb
   
   for (i in 1:lo) {
     cinter <- length(intersect(a[1:i], b[1:i]))

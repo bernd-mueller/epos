@@ -4,10 +4,15 @@
 #'
 #' @examples
 #' \dontrun{
-#' createDiceFrameDrugBank()
+#' createDiceFrameDrugBank(mesh, drugbank, epso, esso, epi)
 #' }
-createDiceFrameDrugBank <- function (dmeshdrugbank, depsodrugbank, dessodrugbank, depidrugbank) {
-  ddicedrugbank <- data.frame (Elements = 1:length(dmeshdrugbank), DrugBank = dmeshdrugbank, EpSO = depsodrugbank, ESSO = dessodrugbank, EPILONT = depidrugbank)
+createDiceFrameDrugBank <- function (mesh, drugbank, epso, esso, epi) {
+  dmeshdrugbank <- calcDice (mesh, drugbank)
+  depsodrugbank <- calcDice (epso, drugbank)
+  dessodrugbank <- calcDice (esso, drugbank)
+  depidrugbank <- calcDice (epi, drugbank)
+  
+  ddicedrugbank <- data.frame (Elements = 1:length(dmeshdrugbank), MeSH = dmeshdrugbank, EpSO = depsodrugbank, ESSO = dessodrugbank, EPILONT = depidrugbank)
   return (ddicedrugbank)
 }
 
@@ -17,10 +22,14 @@ createDiceFrameDrugBank <- function (dmeshdrugbank, depsodrugbank, dessodrugbank
 #'
 #' @examples
 #' \dontrun{
-#' createCosineFrameDrugBank()
+#' createCosineFrameDrugBank(mesh, drugbank, epso, esso, epi)
 #' }
-createCosineFrameDrugBank <- function (ddrugbankmesh, depsomesh, dessomesh, depimesh) {
-  dcosinedrugbank <- data.frame (Elements = 1:length(cdrugbankmesh), DrugBank = cmeshdrugbank, EpSO = cepsodrugbank, ESSO = cessodrugbank, EPILONT = cepidrugbank)
+createCosineFrameDrugBank <- function (mesh, drugbank, epso, esso, epi) {
+  cmeshdrugbank <- calcCosine (mesh, drugbank)
+  cepsodrugbank <- calcCosine (epso, drugbank)
+  cessodrugbank <- calcCosine (esso, drugbank)
+  cepidrugbank <- calcCosine (epi, drugbank)
+  dcosinedrugbank <- data.frame (Elements = 1:length(cmeshdrugbank), MeSH = cmeshdrugbank, EpSO = cepsodrugbank, ESSO = cessodrugbank, EPILONT = cepidrugbank)
   return (dcosinedrugbank)
 }
 
@@ -30,213 +39,13 @@ createCosineFrameDrugBank <- function (ddrugbankmesh, depsomesh, dessomesh, depi
 #'
 #' @examples
 #' \dontrun{
-#' createJaccardFrameDrugBank()
+#' createJaccardFrameDrugBank(mesh, drugbank, epso, esso, epi)
 #' }
-createJaccardFrameDrugBank <- function (dmeshdrugbank, depsodrugbank, dessodrugbank, depidrugbank) {
+createJaccardFrameDrugBank <- function (mesh, drugbank, epso, esso, epi) {
+  jmeshdrugbank <- calcJaccard (mesh, drugbank)
+  jepsodrugbank <- calcJaccard (epso, drugbank)
+  jessodrugbank <- calcJaccard (esso, drugbank)
+  jepidrugbank <- calcJaccard (epi, drugbank)
   djaccarddrugbank <- data.frame (Elements = 1:length(jmeshdrugbank), MeSH = jmeshdrugbank, EpSO = jepsodrugbank, ESSO = jessodrugbank, EPILONT = jepidrugbank)
   return (djaccarddrugbank)
-}
-
-#' Calculate jaccard coefficient of mesh against drugbank
-#'
-#' @param mesh list with drugbank terms sorted by frequency
-#' @param drugbank list with mesh terms sorted by frequency
-#'
-#' @return jmeshdrugbank list with jaccard coefficients
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' calcJaccardMeSHDrugBank(mesh, drugbank) 
-#' }
-calcJaccardMeSHDrugBank <- function (mesh, drugbank) {
-  jmeshdrugbank <- calcJaccard(mesh, drugbank)
-  return (jmeshdrugbank)
-}
-
-#' Calculate jaccard coefficient of epso against drugbank
-#'
-#' @param epso list with epso terms sorted by frequency
-#' @param drugbank list with drugbank terms sorted by frequency
-#'
-#' @return jepsodrugbank list with jaccard coefficients
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' calcJaccardEpSODrugBank(epso, drugbank)
-#' }
-calcJaccardEpSODrugBank <- function (epso, drugbank) {
-  jepsodrugbank <- calcJaccard(epso, drugbank)
-  return (jepsodrugbank)
-}
-
-#' Calculate jaccard coefficient of esso against drugbank
-#'
-#' @param esso list with esso terms sorted by frequency
-#' @param drugbank list with drugbank terms sorted by frequency
-#'
-#' @return jepsdrugbank list with jaccard coefficients
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' calcJaccardESSODrugBank(esso, drugbank)
-#' }
-calcJaccardESSODrugBank <- function (esso, drugbank) {
-  jepsdrugbank <- calcJaccard(esso, drugbank)
-  return (jepsdrugbank)
-}
-
-#' Calculate jaccard coefficient of epi against drugbank
-#'
-#' @param epi list with epi terms sorted by frequency
-#' @param drugbank list with drugbank terms sorted by frequency
-#'
-#' @return jepidrugbank list with jaccard coefficients
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' calcJaccardEPIDrugBank(epi, drugbank)
-#' }
-calcJaccardEPIDrugBank <- function (epi, drugbank) {
-  jepidrugbank <- calcJaccard(epi, drugbank)
-  return (jepidrugbank)
-}
-
-#' Calculate dice coefficient of mesh against drugbank
-#'
-#' @param mesh list with mesh terms sorted by frequency
-#' @param drugbank list with drugbank terms sorted by frequency
-#'
-#' @return dmeshdrugbank list with dice coefficients
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' calcDicekMeSHDrugBank(mesh, drugbank)
-#' }
-calcDicekMeSHDrugBank <- function (mesh, drugbank) {
-  dmeshdrugbank <- calcDice(mesh, drugbank)
-  return (dmeshdrugbank)
-}
-
-#' Calculate dice coefficient of epso against drugbank
-#'
-#' @param epso list with epso terms sorted by frequency
-#' @param drugbank list with drugbank terms sorted by frequency
-#'
-#' @return depsodrugbank list with dice coefficients
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' calcDiceEpSODrugBank(epso, drugbank)
-#' }
-calcDiceEpSODrugBank <- function (epso, drugbank) {
-  depsodrugbank <- calcDice(epso, drugbank)
-  return (depsodrugbank)
-}
-
-#' Calculate dice coefficient of esso against drugbank
-#'
-#' @param esso list with esso terms sorted by frequency
-#' @param drugbank list with drugbank terms sorted by frequency
-#'
-#' @return depsodrugbank list with dice coefficients
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' calcDiceESSODrugBank(esso, drugbank)
-#' }
-calcDiceESSODrugBank <- function (esso, drugbank) {
-  depsodrugbank <- calcDice(esso, drugbank)
-  return (depsodrugbank)
-}
-
-#' Calculate dice coefficient of epi against drugbank
-#'
-#' @param epi list with epi terms sorted by frequency
-#' @param drugbank list with drugbank terms sorted by frequency
-#'
-#' @return depidrugbank list with dice coefficients
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' calcDiceEPIDrugBank(epi, drugbank)
-#' }
-calcDiceEPIDrugBank <- function (epi, drugbank) {
-  depidrugbank <- calcDice(epi, drugbank)
-  return (depidrugbank)
-}
-
-#' Calculate cosine coefficient of mesh against drugbank
-#'
-#' @param mesh list with mesh terms sorted by frequency
-#' @param drugbank list with drugbank terms sorted by frequency
-#'
-#' @return cmeshdrugbank list with cosine coefficients
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' calcCosineMeSHDrugBank(mesh, drugbank)
-#' }
-calcCosineMeSHDrugBank <- function (mesh, drugbank) {
-  cmeshdrugbank <- calcCosine(mesh, drugbank)
-  return (cmeshdrugbank)
-}
-
-#' Calculate cosine coefficient of epso against drugbank
-#'
-#' @param epso list with epso terms sorted by frequency
-#' @param drugbank list with drugbank terms sorted by frequency
-#'
-#' @return cepsodrugbank list with cosine coefficients
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' calcCosineEpSODrugBank(epso, drugbank)
-#' }
-calcCosineEpSODrugBank <- function (epso, drugbank) {
-  cepsodrugbank <- calcCosine(epso, drugbank)
-  return (cepsodrugbank)
-}
-
-#' Calculate cosine coefficient of esso against drugbank
-#'
-#' @param esso list with esso terms sorted by frequency
-#' @param drugbank list with drugbank terms sorted by frequency
-#'
-#' @return cepsodrugbank list with cosine coefficients
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' calcCosineESSODrugBank(esso, drugbank)
-#' }
-calcCosineESSODrugBank <- function (esso, drugbank) {
-  cepsodrugbank <- calcCosine(esso, drugbank)
-  return (cepsodrugbank)
-}
-
-#' Calculate cosine coefficient of epi against drugbank
-#'
-#' @param epi list with epi terms sorted by frequency
-#' @param drugbank list with drugbank terms sorted by frequency
-#'
-#' @return cepimesh list with cosine coefficients
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' calcCosineEPIMeSH(epi, drugbank)
-#' }
-calcCosineEPIMeSH <- function (epi, drugbank) {
-  cepimesh <- calcCosine(epi, drugbank)
-  return (cepimesh)
 }
