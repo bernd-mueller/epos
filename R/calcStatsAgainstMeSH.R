@@ -8,7 +8,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' calcJaccardDrugBankMeSH(drugbank, mesh)
+#' calcJaccardDrugBankMeSH(drugbank, mesh) 
 #' }
 calcJaccardDrugBankMeSH <- function (drugbank, mesh) {
   jdrugbankmesh <- calcJaccard(drugbank, mesh)
