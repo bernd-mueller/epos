@@ -1,5 +1,5 @@
 ---
-title: "Package used for Calculations of Similarities amongst Epilepsy Ontologies"
+title: "R Package used for Calculations of Similarities amongst Epilepsy Ontologies"
 author: "Bernd Müller"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
