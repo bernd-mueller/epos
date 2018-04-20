@@ -20,13 +20,13 @@
 #' createJaccardPlotMeSH(createJaccardFrameMeSH())
 #' }
 createJaccardPlotMeSH <- function (djaccardmesh) {
-  cols <- c("DrugBank" = "#f04546", "EpSO"="#3591d1","ESSO"="#62c76b","EPILONT"="#666666")
+  cols <- c("ATC" = "#f04546", "EpSO"="#3591d1","ESSO"="#62c76b","EPILONT"="#800080")
   
   #drugbanklabel <- djaccardmesh %>% filter(DrugBank == max(DrugBank)) %>% mutate(point_label = "DrugBank")
   #geom_text(data = drugbanklabel, aes(label=point_label), show.legend = FALSE, hjust=+0.3, vjust=-1) +
   #Elements <- djaccardmesh$Elements
   #DrugBank <- djaccardmesh$DrugBank
-  jaccardplotmesh <- ggplot2::ggplot(data = djaccardmesh, aes(x=Elements, y=DrugBank, colour = "DrugBank"), log10="x") + 
+  jaccardplotmesh <- ggplot2::ggplot(data = djaccardmesh, aes(x=Elements, y=DrugBank, colour = "ATC"), log10="x") + 
     ggplot2::theme_classic ()+
     ggplot2::theme(panel.grid.major = element_line(colour = "gray"), panel.grid.minor.y = element_line(colour = "gray")) +
     ggplot2::labs (y="Jaccard", title = "Jaccard Similarity Coefficient against MeSH") +
@@ -34,9 +34,9 @@ createJaccardPlotMeSH <- function (djaccardmesh) {
     ggplot2::geom_step(data = djaccardmesh, aes(x=Elements, y=EpSO, colour = "EpSO"), size=1) + 
     ggplot2::geom_step(data = djaccardmesh, aes(x=Elements, y=ESSO, colour = "ESSO"), size=1) + 
     ggplot2::geom_step(data = djaccardmesh, aes(x=Elements, y=EPILONT, colour = "EPILONT"), size=1) + 
-    ggplot2::coord_trans(x = "log10", limx = c(10, 10000), limy = c(-0.001,0.125)) +
-    ggplot2::scale_x_continuous(breaks = c(1, 10, 100, 1000,10000)) +
-    ggplot2::scale_y_continuous(breaks = c(0, 0.025, 0.05, 0.075, 0.1)) +
+    ggplot2::coord_trans(x = "log10", limx = c(10, 28107), limy = c(-0.001,0.15)) +
+    ggplot2::scale_x_continuous(breaks = c(1, 10, 100, 1000,10000,28107)) +
+    ggplot2::scale_y_continuous(breaks = c(0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15)) +
     ggplot2::scale_colour_manual(name="Dictionary",values=cols)+
     ggplot2::scale_size_manual() 
   return (jaccardplotmesh)
@@ -64,12 +64,12 @@ createJaccardPlotMeSH <- function (djaccardmesh) {
 #' createDicePlotMeSH(createDiceFrameMeSH())
 #' }
 createDicePlotMeSH <- function (ddicemesh) {
-  cols <- c("DrugBank" = "#f04546", "EpSO"="#3591d1","ESSO"="#62c76b","EPILONT"="#666666")
+  cols <- c("ATC" = "#f04546", "EpSO"="#3591d1","ESSO"="#62c76b","EPILONT"="#800080")
   
   #drugbanklabel <- djaccard %>% filter(DrugBank == max(DrugBank)) %>% mutate(point_label = "DrugBank")
   #geom_text(data = drugbanklabel, aes(label=point_label), show.legend = FALSE, hjust=+0.3, vjust=-1) +
   
-  diceplotmesh <- ggplot2::ggplot(data = ddicemesh, aes(x=Elements, y=DrugBank, colour = "DrugBank"), log10="x") + 
+  diceplotmesh <- ggplot2::ggplot(data = ddicemesh, aes(x=Elements, y=DrugBank, colour = "ATC"), log10="x") + 
     ggplot2::theme_classic ()+
     ggplot2::theme(panel.grid.major = element_line(colour = "gray"), panel.grid.minor.y = element_line(colour = "gray")) +
     ggplot2::labs (y="Dice", title = "Dice Similarity Coefficient against MeSH") +
@@ -77,9 +77,9 @@ createDicePlotMeSH <- function (ddicemesh) {
     ggplot2::geom_step(data = ddicemesh, aes(x=Elements, y=EpSO, colour = "EpSO"), size=1) + 
     ggplot2::geom_step(data = ddicemesh, aes(x=Elements, y=ESSO, colour = "ESSO"), size=1) + 
     ggplot2::geom_step(data = ddicemesh, aes(x=Elements, y=EPILONT, colour = "EPILONT"), size=1) + 
-    ggplot2::coord_trans(x = "log10", limx = c(10, 10000), limy = c(-0.001,0.125)) +
-    ggplot2::scale_x_continuous(breaks = c(1, 10, 100, 1000,10000)) +
-    ggplot2::scale_y_continuous(breaks = c(0, 0.025, 0.05, 0.075, 0.1)) +
+    ggplot2::coord_trans(x = "log10", limx = c(10, 28107), limy = c(-0.001,0.15)) +
+    ggplot2::scale_x_continuous(breaks = c(1, 10, 100, 1000,10000,28107)) +
+    ggplot2::scale_y_continuous(breaks = c(0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15)) +
     ggplot2::scale_colour_manual(name="Dictionary",values=cols)+
     ggplot2::scale_size_manual()   
   return (diceplotmesh)
@@ -107,12 +107,12 @@ createDicePlotMeSH <- function (ddicemesh) {
 #' createCosinePlotMeSH(createCosineFrameMeSH())
 #' }
 createCosinePlotMeSH <- function (dcosinemesh) {
-  cols <- c("DrugBank" = "#f04546", "EpSO"="#3591d1","ESSO"="#62c76b","EPILONT"="#666666")
+  cols <- c("ATC" = "#f04546", "EpSO"="#3591d1","ESSO"="#62c76b","EPILONT"="#800080")
   
   #drugbanklabel <- djaccard %>% filter(DrugBank == max(DrugBank)) %>% mutate(point_label = "DrugBank")
   #geom_text(data = drugbanklabel, aes(label=point_label), show.legend = FALSE, hjust=+0.3, vjust=-1) +
   
-  cosineplot <- ggplot2::ggplot(data = dcosinemesh, aes(x=Elements, y=DrugBank, colour = "DrugBank"), log10="x") + 
+  dcosineplotmesh <- ggplot2::ggplot(data = dcosinemesh, aes(x=Elements, y=DrugBank, colour = "ATC"), log10="x") + 
     ggplot2::theme_classic ()+
     ggplot2::theme(panel.grid.major = element_line(colour = "gray"), panel.grid.minor.y = element_line(colour = "gray")) +
     ggplot2::labs (y="Cosine", title = "Cosine Similarity Coefficient against MeSH") +
@@ -120,12 +120,12 @@ createCosinePlotMeSH <- function (dcosinemesh) {
     ggplot2::geom_step(data = dcosinemesh, aes(x=Elements, y=EpSO, colour = "EpSO"), size=1) + 
     ggplot2::geom_step(data = dcosinemesh, aes(x=Elements, y=ESSO, colour = "ESSO"), size=1) + 
     ggplot2::geom_step(data = dcosinemesh, aes(x=Elements, y=EPILONT, colour = "EPILONT"), size=1) + 
-    ggplot2::coord_trans(x = "log10", limx = c(10, 10000), limy = c(-0.001,0.125)) +
-    ggplot2::scale_x_continuous(breaks = c(1, 10, 100, 1000,10000)) +
-    ggplot2::scale_y_continuous(breaks = c(0, 0.025, 0.05, 0.075, 0.1)) +
+    ggplot2::coord_trans(x = "log10", limx = c(10, 28107), limy = c(-0.001,0.15)) +
+    ggplot2::scale_x_continuous(breaks = c(1, 10, 100, 1000,10000,28107)) +
+    ggplot2::scale_y_continuous(breaks = c(0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15)) +
     ggplot2::scale_colour_manual(name="Dictionary",values=cols)+
     ggplot2::scale_size_manual()   
-  return (cosineplot)
+  return (dcosineplotmesh)
 }
 
   #coord_cartesian(xlim = c(0, 10000)) 
