@@ -10,9 +10,9 @@
 #' loadMeSH()
 #' }
 loadMeSH <- function () {
-  load(file = "inst/mesh.rda")
+  load(file = "inst/similaritydata/dictfreq/mesh.rda")
   amesh <- genDictListFromRawFreq(mesh)
-  amesh
+  return (amesh)
 }
 #' Loads drugbank object from harddrive into the R environment
 #'
@@ -24,9 +24,9 @@ loadMeSH <- function () {
 #' loadDrugBank()
 #' }
 loadDrugBank <- function () {
-  load("inst/DrugBank.rda")
+  load("inst/similaritydata/dictfreq/DrugBank.rda")
   adrugbank <- genDictListFromRawFreq(drugbank)
-  adrugbank
+  return (adrugbank)
 }
 
 #' Loads epso object from harddrive into the R environment
@@ -39,9 +39,9 @@ loadDrugBank <- function () {
 #' loadEpSO()
 #' }
 loadEpSO <- function () {
-  load("inst/EpSO.rda")
+  load("inst/similaritydata/dictfreq/EpSO.rda")
   aepso <- genDictListFromRawFreq(epso)
-  aepso
+  return (aepso)
 }
 
 #' Loads esso object from harddrive into the R environment
@@ -54,9 +54,9 @@ loadEpSO <- function () {
 #' loadESSO()
 #' }
 loadESSO <- function () {
-  load("inst/ESSO.rda")
+  load("inst/similaritydata/dictfreq/ESSO.rda")
   aesso <- genDictListFromRawFreq(esso)
-  aesso
+  return (aesso)
 }
 
 #' Loads epilont object from harddrive into the R environment
@@ -69,9 +69,9 @@ loadESSO <- function () {
 #' loadEPILONT()
 #' }
 loadEPILONT <- function () {
-  load("inst/EPILONT.rda")
+  load("inst/similaritydata/dictfreq/EPILONT.rda")
   aepi <- genDictListFromRawFreq(epi)
-  aepi
+  return (aepi)
 }
 
 #' Clears object that was loaded from harddrive into a list of terms sorted by frequency
