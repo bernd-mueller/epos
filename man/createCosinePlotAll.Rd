@@ -7,7 +7,9 @@
 createCosinePlotAll(dcosineepso, dcosineesso)
 }
 \arguments{
-\item{dcosinedrugbank}{the data frame containing the columns with the cosine coefficients}
+\item{dcosineepso}{the data frame containing the columns with the cosine coefficients of epi and esso against epso}
+
+\item{dcosineesso}{the data frame containing the columns with the cosine coefficients of epi and epso against esso}
 }
 \value{
 cosineplotdrugbank the ggplot object

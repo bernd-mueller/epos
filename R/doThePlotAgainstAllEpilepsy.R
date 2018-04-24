@@ -88,7 +88,9 @@ createDicePlotAll <- function (ddiceepso, ddiceesso) {
 
 #' Creates the plot for all cosine coefficients against drugbank
 #'
-#' @param dcosinedrugbank the data frame containing the columns with the cosine coefficients
+#' @param dcosineepso the data frame containing the columns with the cosine coefficients of epi and esso against epso
+#' @param dcosineesso the data frame containing the columns with the cosine coefficients of epi and epso against esso
+#'
 #'
 #' @return cosineplotdrugbank the ggplot object
 #' 
