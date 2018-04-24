@@ -6,6 +6,17 @@
 \usage{
 createCosineFrameMeSH(mesh, drugbank, epso, esso, epi)
 }
+\arguments{
+\item{mesh}{list with mesh terms sorted by frequency}
+
+\item{drugbank}{list with drugbank terms sorted by frequency}
+
+\item{epso}{list with epso terms sorted by frequency}
+
+\item{esso}{list with esso terms sorted by frequency}
+
+\item{epi}{list with epi terms sorted by frequency}
+}
 \value{
 dcosinemesh the data frame for the cosine coefficient against MeSH that can be used by createCosinePlotMeSH
 }
@@ -14,6 +25,6 @@ Creates data frame for plotting the cosine coefficients against MeSH
 }
 \examples{
 \dontrun{
-createCosineFrameMeSH()
+dcosinemesh <- createCosineFrameMeSH(mesh, drugbank, epso, esso, epi)
 }
 }

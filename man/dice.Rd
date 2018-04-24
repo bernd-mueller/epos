@@ -21,6 +21,6 @@ Calculate dice similarity coefficient
 }
 \examples{
 \dontrun{
-dice(1,3)
+dice(1,3, 4)
 }
 }

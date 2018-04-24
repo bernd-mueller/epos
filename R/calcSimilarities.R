@@ -1,29 +1,9 @@
-
-
-# generateSimilarities <- function (mesh, drugbank, epso, esso, epi) {
-#   jdrugbankmesh <<- calcJaccard(drugbank, mesh)
-#   ddrugbankmesh <<- calcDice(drugbank, mesh)
-#   cdrugbankmesh <<- calcCosine(drugbank, mesh)
-#   
-#   jepsomesh <<- calcJaccard(epso, mesh)
-#   depsomesh <<- calcDice(epso, mesh)
-#   cepsomesh <<- calcCosine(epso, mesh)
-#   
-#   jessomesh <<- calcJaccard(esso, mesh)
-#   dessomesh <<- calcDice(esso, mesh)
-#   cessomesh <<- calcCosine(esso, mesh)
-#   
-#   jepimesh <<- calcJaccard(epi, mesh)
-#   depimesh <<- calcDice(epi, mesh)
-#   cepimesh <<- calcCosine(epi, mesh)
-# }
-
-#' Calculate the jaccard coefficient for two sets a and b
+#' Calculate the jaccard coefficient for two lists a and b
 #'
 #' @param a list with elements that should be of same type as in list b
 #' @param b list with elements
 #'
-#' @return ja list with length of longer set a or b containing the jaccard similarity coefficient at each position
+#' @return ja list with length of set b containing the jaccard similarity coefficient for each list element
 #' @export
 #'
 #' @examples
@@ -33,29 +13,24 @@
 calcJaccard <- function (a, b) {
   la = length(a)
   lb = length(b)
-
-  # lo = 0
-  # if (la > lb) {
-  #   lo = la
-  # } else {
-  #   lo = lb
-  # }
   lo = lb
   
   for (i in 1:lo) {
     cinter <- length(intersect(a[1:i], b[1:i]))
     cunion <- length(union(x = a[1:i], y = b[1:i]))
     cjac <- jaccard (cinter, cunion)
+    
+    
     if (i == 1) {
       ja = cjac
     } else {
       ja <- c(ja, cjac)
     }
   }
-  ja
+  return (ja)
 }
 
-#' Calculate jaccard similarity coefficient
+#' Calculate jaccard similarity coefficient or two sets a and b
 #'
 #' @param ainterb integer value with number of intersecting elements between set a and b
 #' @param aunionb integer value with number of union elements between set a and b
@@ -69,15 +44,15 @@ calcJaccard <- function (a, b) {
 #' }
 jaccard <- function (ainterb, aunionb) {
   jac <- (ainterb) / (aunionb-ainterb)
-  jac
+  return (jac)
 }
 
-#' Calculate the dice for two sets a and b
+#' Calculate the dice coefficient for two lists a and b
 #'
 #' @param a list with elements that should be of same type as in list b
 #' @param b list with elements
 #'
-#' @return di list with length of longer set a or b containing the dice similarity coefficient at each position
+#' @return di list with length of set b containing the dice similarity coefficient at each list element
 #' @export
 #'
 #' @examples
@@ -87,17 +62,10 @@ jaccard <- function (ainterb, aunionb) {
 calcDice <- function (a, b) {
   la = length(a)
   lb = length(b)
-  # lo = 0
-  # if (la > lb) {
-  #   lo = la
-  # } else {
-  #   lo = lb
-  # }
   lo = lb
   
   for (i in 1:lo) {
     cinter <- length(intersect(a[1:i], b[1:i]))
-    #cunion <- length(union(x = a[1:i], y = b[1:i]))
     curalength <- i
     if (la<i) {
       curalength <- la  
@@ -112,7 +80,6 @@ calcDice <- function (a, b) {
     } else {
       di <- c(di, cdice)
     }
-    #print(cjac)
   }
   di
 }
@@ -128,19 +95,19 @@ calcDice <- function (a, b) {
 #'
 #' @examples
 #' \dontrun{
-#' dice(1,3)
+#' dice(1,3, 4)
 #' }
 dice <- function (ainterb, lengtha, lengthb) {
   dice <- 2*(ainterb/(lengtha+lengthb))
   dice
 }
 
-#' Calculate the cosine coefficient for two sets a and b
+#' Calculate the cosine coefficient for two lists a and b
 #'
 #' @param a list with elements that should be of same type as in list b
 #' @param b list with elements
 #'
-#' @return co list with length of longer set a or b containing the cosine similarity coefficient at each position
+#' @return co list with length of set b containing the cosine similarity coefficient at each position
 #' @export
 #'
 #' @examples
@@ -150,18 +117,10 @@ dice <- function (ainterb, lengtha, lengthb) {
 calcCosine <- function (a, b) {
   la = length(a)
   lb = length(b)
-  # lo = 0
-  # if (la > lb) {
-  #   lo = la
-  # } else {
-  #   lo = lb
-  # }
   lo = lb
   
   for (i in 1:lo) {
     cinter <- length(intersect(a[1:i], b[1:i]))
-    #cunion <- length(union(x = a[1:i], y = b[1:i]))
-    
     curalength <- i
     if (la<i) {
       curalength <- la  

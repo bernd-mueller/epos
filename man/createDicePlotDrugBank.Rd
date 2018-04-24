@@ -17,6 +17,6 @@ Creates the plot for all dice coefficients against drugbank
 }
 \examples{
 \dontrun{
-createDicePlotDrugBank(createDiceFrameDrugBank())
+dicedrugbankplot <- createDicePlotDrugBank(ddicedrugbank)
 }
 }

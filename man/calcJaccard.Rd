@@ -2,7 +2,7 @@
 % Please edit documentation in R/calcSimilarities.R
 \name{calcJaccard}
 \alias{calcJaccard}
-\title{Calculate the jaccard coefficient for two sets a and b}
+\title{Calculate the jaccard coefficient for two lists a and b}
 \usage{
 calcJaccard(a, b)
 }
@@ -12,10 +12,10 @@ calcJaccard(a, b)
 \item{b}{list with elements}
 }
 \value{
-ja list with length of longer set a or b containing the jaccard similarity coefficient at each position
+ja list with length of set b containing the jaccard similarity coefficient for each list element
 }
 \description{
-Calculate the jaccard coefficient for two sets a and b
+Calculate the jaccard coefficient for two lists a and b
 }
 \examples{
 \dontrun{
