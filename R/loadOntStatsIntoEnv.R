@@ -10,7 +10,7 @@
 #' loadMeSH()
 #' }
 loadMeSH <- function () {
-  load(file = "inst/similaritydata/dictfreq/mesh.rda")
+  mesh <- load(file = "inst/similaritydata/dictfreq/mesh.rda")
   amesh <- genDictListFromRawFreq(mesh)
   return (amesh)
 }
@@ -24,7 +24,7 @@ loadMeSH <- function () {
 #' loadDrugBank()
 #' }
 loadDrugBank <- function () {
-  load("inst/similaritydata/dictfreq/DrugBank.rda")
+  drugbank <- load("inst/similaritydata/dictfreq/DrugBank.rda")
   adrugbank <- genDictListFromRawFreq(drugbank)
   return (adrugbank)
 }
@@ -39,7 +39,7 @@ loadDrugBank <- function () {
 #' loadEpSO()
 #' }
 loadEpSO <- function () {
-  load("inst/similaritydata/dictfreq/EpSO.rda")
+  epso <- load("inst/similaritydata/dictfreq/EpSO.rda")
   aepso <- genDictListFromRawFreq(epso)
   return (aepso)
 }
@@ -54,7 +54,7 @@ loadEpSO <- function () {
 #' loadESSO()
 #' }
 loadESSO <- function () {
-  load("inst/similaritydata/dictfreq/ESSO.rda")
+  esso <- load("inst/similaritydata/dictfreq/ESSO.rda")
   aesso <- genDictListFromRawFreq(esso)
   return (aesso)
 }
@@ -69,7 +69,7 @@ loadESSO <- function () {
 #' loadEPILONT()
 #' }
 loadEPILONT <- function () {
-  load("inst/similaritydata/dictfreq/EPILONT.rda")
+  epi <- load("inst/similaritydata/dictfreq/EPILONT.rda")
   aepi <- genDictListFromRawFreq(epi)
   return (aepi)
 }
