@@ -1,5 +1,11 @@
 #' Creates data frame for plotting the dice coefficients against DrugBank
 #'
+#' @param mesh list with mesh terms sorted by frequency
+#' @param drugbank list with drugbank terms sorted by frequency 
+#' @param epso list with epso terms sorted by frequency
+#' @param esso list with esso terms sorted by frequency
+#' @param epi list with epi terms sorted by frequency
+#'
 #' @return ddicedrugbank the data frame for the dice coefficient against DrugBank that can be used by createDicePlotDrugBank
 #'
 #' @examples
@@ -17,7 +23,12 @@ createDiceFrameDrugBank <- function (mesh, drugbank, epso, esso, epi) {
 }
 
 #' Creates data frame for plotting the cosine coefficients against DrugBank
-#'
+#' 
+#' @param mesh list with mesh terms sorted by frequency
+#' @param drugbank list with drugbank terms sorted by frequency 
+#' @param epso list with epso terms sorted by frequency
+#' @param esso list with esso terms sorted by frequency
+#' @param epi list with epi terms sorted by frequency
 #' @return dcosinedrugbank the data frame for the cosine coefficient against DrugBank that can be used by createCosinePlotDrugBank
 #'
 #' @examples
@@ -34,7 +45,13 @@ createCosineFrameDrugBank <- function (mesh, drugbank, epso, esso, epi) {
 }
 
 #' Creates data frame for plotting the jaccard coefficients against DrugBank
-#'
+#' 
+#' @param mesh list with mesh terms sorted by frequency
+#' @param drugbank list with drugbank terms sorted by frequency 
+#' @param epso list with epso terms sorted by frequency
+#' @param esso list with esso terms sorted by frequency
+#' @param epi list with epi terms sorted by frequency
+#' 
 #' @return djaccarddrugbank the data frame for the jaccard coefficient against DrugBank that can be used by createJaccardPlotDrugBank
 #'
 #' @examples

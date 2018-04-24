@@ -17,6 +17,6 @@ Creates the plot for all jaccard coefficients against drugbank
 }
 \examples{
 \dontrun{
-createJaccardPlotDrugBank(createJaccardFrameDrugBank())
+jaccarddrugbankplot <- createJaccardPlotDrugBank(djaccarddrugbank)
 }
 }

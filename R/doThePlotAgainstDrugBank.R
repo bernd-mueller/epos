@@ -14,32 +14,30 @@
 #' @importFrom ggplot2 scale_y_continuous
 #' @importFrom ggplot2 scale_colour_manual
 #' @importFrom ggplot2 scale_size_manual
+#' @importFrom ggplot2 aes_string
+#' @importFrom ggplot2 element_line
 #'
 #' @examples
 #' \dontrun{
-#' createJaccardPlotDrugBank(createJaccardFrameDrugBank())
+#' jaccarddrugbankplot <- createJaccardPlotDrugBank(djaccarddrugbank)
 #' }
 createJaccardPlotDrugBank <- function (djaccarddrugbank) {
-  cols <- c("MeSH" = "#40e0d0", "EpSO"="#3591d1","ESSO"="#62c76b","EPILONT"="#800080")
+  cols <- c("MeSH" = "#40e0d0", "EpSO"="#3591d1","ESSO"="#62c76b","EPI"="#800080")
   
-  #drugbanklabel <- djaccarddrugbank %>% filter(DrugBank == max(DrugBank)) %>% mutate(point_label = "DrugBank")
-  #geom_text(data = drugbanklabel, aes(label=point_label), show.legend = FALSE, hjust=+0.3, vjust=-1) +
-  #Elements <- djaccarddrugbank$Elements
-  #DrugBank <- djaccarddrugbank$DrugBank
-  jaccardplotdrugbank <- ggplot2::ggplot(data = djaccarddrugbank, aes(x=Elements, y=MeSH, colour = "MeSH"), log10="x") + 
+  jaccarddrugbankplot <- ggplot2::ggplot(data = djaccarddrugbank, ggplot2::aes_string(x="Elements", y="MeSH", colour = "MeSH"), log10="x") + 
     ggplot2::theme_classic ()+
-    ggplot2::theme(panel.grid.major = element_line(colour = "gray"), panel.grid.minor.y = element_line(colour = "gray")) +
-    ggplot2::labs (y="Jaccard", title = "Jaccard Similarity Coefficient against ATC") +
+    ggplot2::theme(panel.grid.major = ggplot2::element_line(colour = "gray"), panel.grid.minor.y = ggplot2::element_line(colour = "gray")) +
+    ggplot2::labs (y="JaccardTopK", x="TopK", title = "JaccardTopK against ATC") +
     ggplot2::geom_step(size=1) + 
-    ggplot2::geom_step(data = djaccarddrugbank, aes(x=Elements, y=EpSO, colour = "EpSO"), size=1) + 
-    ggplot2::geom_step(data = djaccarddrugbank, aes(x=Elements, y=ESSO, colour = "ESSO"), size=1) + 
-    ggplot2::geom_step(data = djaccarddrugbank, aes(x=Elements, y=EPILONT, colour = "EPILONT"), size=1) + 
+    ggplot2::geom_step(data = djaccarddrugbank, ggplot2::aes_string(x="Elements", y="EpSO", colour = "EpSO"), size=1) + 
+    ggplot2::geom_step(data = djaccarddrugbank, ggplot2::aes_string(x="Elements", y="ESSO", colour = "ESSO"), size=1) + 
+    ggplot2::geom_step(data = djaccarddrugbank, ggplot2::aes_string(x="Elements", y="EPILONT", colour = "EPI"), size=1) + 
     ggplot2::coord_trans(x = "log10", limx = c(10, 2603), limy = c(-0.001,0.06125)) +
     ggplot2::scale_x_continuous(breaks = c(1, 10, 100, 1000,2603)) +
     ggplot2::scale_y_continuous(breaks = c(0, 0.0125, 0.025, 0.0375, 0.05, 0.06125, 0.1)) +
     ggplot2::scale_colour_manual(name="Dictionary",values=cols)+
     ggplot2::scale_size_manual() 
-  return (jaccardplotdrugbank)
+  return (jaccarddrugbankplot)
 }
 
 #' Creates the plot for all dice coefficients against drugbank
@@ -58,38 +56,37 @@ createJaccardPlotDrugBank <- function (djaccarddrugbank) {
 #' @importFrom ggplot2 scale_y_continuous
 #' @importFrom ggplot2 scale_colour_manual
 #' @importFrom ggplot2 scale_size_manual
+#' @importFrom ggplot2 aes_string
+#' @importFrom ggplot2 element_line
 #'
 #' @examples
 #' \dontrun{
-#' createDicePlotDrugBank(createDiceFrameDrugBank())
+#' dicedrugbankplot <- createDicePlotDrugBank(ddicedrugbank)
 #' }
 createDicePlotDrugBank <- function (ddicedrugbank) {
-  cols <- c("MeSH" = "#40e0d0", "EpSO"="#3591d1","ESSO"="#62c76b","EPILONT"="#800080")
+  cols <- c("MeSH" = "#40e0d0", "EpSO"="#3591d1","ESSO"="#62c76b","EPI"="#800080")
   
-  #drugbanklabel <- djaccard %>% filter(DrugBank == max(DrugBank)) %>% mutate(point_label = "DrugBank")
-  #geom_text(data = drugbanklabel, aes(label=point_label), show.legend = FALSE, hjust=+0.3, vjust=-1) +
-  
-  diceplotdrugbank <- ggplot2::ggplot(data = ddicedrugbank, aes(x=Elements, y=MeSH, colour = "MeSH"), log10="x") + 
+  dicedrugbankplot <- ggplot2::ggplot(data = ddicedrugbank, ggplot2::aes_string(x="Elements", y="MeSH", colour = "MeSH"), log10="x") + 
     ggplot2::theme_classic ()+
-    ggplot2::theme(panel.grid.major = element_line(colour = "gray"), panel.grid.minor.y = element_line(colour = "gray")) +
-    ggplot2::labs (y="Dice", title = "Dice Similarity Coefficient against ATC") +
+    ggplot2::theme(panel.grid.major = ggplot2::element_line(colour = "gray"), panel.grid.minor.y = ggplot2::element_line(colour = "gray")) +
+    ggplot2::labs (y="DiceTopK", x="TopK", title = "DiceTopK against ATC") +
     ggplot2::geom_step(size=1) + 
-    ggplot2::geom_step(data = ddicedrugbank, aes(x=Elements, y=EpSO, colour = "EpSO"), size=1) + 
-    ggplot2::geom_step(data = ddicedrugbank, aes(x=Elements, y=ESSO, colour = "ESSO"), size=1) + 
-    ggplot2::geom_step(data = ddicedrugbank, aes(x=Elements, y=EPILONT, colour = "EPILONT"), size=1) + 
+    ggplot2::geom_step(data = ddicedrugbank, ggplot2::aes_string(x="Elements", y="EpSO", colour = "EpSO"), size=1) + 
+    ggplot2::geom_step(data = ddicedrugbank, ggplot2::aes_string(x="Elements", y="ESSO", colour = "ESSO"), size=1) + 
+    ggplot2::geom_step(data = ddicedrugbank, ggplot2::aes_string(x="Elements", y="EPILONT", colour = "EPI"), size=1) + 
     ggplot2::coord_trans(x = "log10", limx = c(10, 2603), limy = c(-0.001,0.06125)) +
     ggplot2::scale_x_continuous(breaks = c(1, 10, 100, 1000,2603)) +
     ggplot2::scale_y_continuous(breaks = c(0, 0.0125, 0.025, 0.0375, 0.05, 0.06125, 0.1)) +
     ggplot2::scale_colour_manual(name="Dictionary",values=cols)+
     ggplot2::scale_size_manual()   
-  return (diceplotdrugbank)
+  return (dicedrugbankplot)
 }
 
 #' Creates the plot for all cosine coefficients against drugbank
 #'
 #' @param dcosinedrugbank the data frame containing the columns with the cosine coefficients
 #'
-#' @return dcosineplotdrugbank the ggplot object
+#' @return cosineplotdrugbank the ggplot object
 #' 
 #' @importFrom ggplot2 ggplot
 #' @importFrom ggplot2 theme_classic
@@ -101,37 +98,28 @@ createDicePlotDrugBank <- function (ddicedrugbank) {
 #' @importFrom ggplot2 scale_y_continuous
 #' @importFrom ggplot2 scale_colour_manual
 #' @importFrom ggplot2 scale_size_manual
-#'
+#' @importFrom ggplot2 aes_string
+#' @importFrom ggplot2 element_line
+#' 
 #' @examples
 #' \dontrun{
-#' createCosinePlotDrugBank(createCosineFrameDrugBank())
+#' cosinedrugbankplot <- createCosinePlotDrugBank(dcosinedrugbank)
 #' }
 createCosinePlotDrugBank <- function (dcosinedrugbank) {
-  cols <- c("MeSH" = "#40e0d0", "EpSO"="#3591d1","ESSO"="#62c76b","EPILONT"="#800080")
+  cols <- c("MeSH" = "#40e0d0", "EpSO"="#3591d1","ESSO"="#62c76b","EPI"="#800080")
   
-  #drugbanklabel <- djaccard %>% filter(DrugBank == max(DrugBank)) %>% mutate(point_label = "DrugBank")
-  #geom_text(data = drugbanklabel, aes(label=point_label), show.legend = FALSE, hjust=+0.3, vjust=-1) +
-  
-  dcosineplotdrugbank <- ggplot2::ggplot(data = dcosinedrugbank, aes(x=Elements, y=MeSH, colour = "MeSH"), log10="x") + 
+  cosinedrugbankplot <- ggplot2::ggplot(data = dcosinedrugbank, ggplot2::aes_string(x="Elements", y="MeSH", colour = "MeSH"), log10="x") + 
     ggplot2::theme_classic ()+
-    ggplot2::theme(panel.grid.major = element_line(colour = "gray"), panel.grid.minor.y = element_line(colour = "gray")) +
-    ggplot2::labs (y="Cosine", title = "Cosine Similarity Coefficient against ATC") +
+    ggplot2::theme(panel.grid.major = ggplot2::element_line(colour = "gray"), panel.grid.minor.y = ggplot2::element_line(colour = "gray")) +
+    ggplot2::labs (y="CosineTopK", x="TopK", title = "CosineTopK against ATC") +
     ggplot2::geom_step(size=1) + 
-    ggplot2::geom_step(data = dcosinedrugbank, aes(x=Elements, y=EpSO, colour = "EpSO"), size=1) + 
-    ggplot2::geom_step(data = dcosinedrugbank, aes(x=Elements, y=ESSO, colour = "ESSO"), size=1) + 
-    ggplot2::geom_step(data = dcosinedrugbank, aes(x=Elements, y=EPILONT, colour = "EPILONT"), size=1) + 
+    ggplot2::geom_step(data = dcosinedrugbank, ggplot2::aes_string(x="Elements", y="EpSO", colour = "EpSO"), size=1) + 
+    ggplot2::geom_step(data = dcosinedrugbank, ggplot2::aes_string(x="Elements", y="ESSO", colour = "ESSO"), size=1) + 
+    ggplot2::geom_step(data = dcosinedrugbank, ggplot2::aes_string(x="Elements", y="EPILONT", colour = "EPI"), size=1) + 
     ggplot2::coord_trans(x = "log10", limx = c(10, 2603), limy = c(-0.001,0.06125)) +
     ggplot2::scale_x_continuous(breaks = c(1, 10, 100, 1000,2603)) +
     ggplot2::scale_y_continuous(breaks = c(0, 0.0125, 0.025, 0.0375, 0.05, 0.06125, 0.1)) +
     ggplot2::scale_colour_manual(name="Dictionary",values=cols)+
     ggplot2::scale_size_manual()   
-  return (dcosineplotdrugbank)
+  return (cosinedrugbankplot)
 }
-
-#coord_cartesian(xlim = c(0, 10000)) 
-#scale_colour_manual(name="Dictionary",values=cols) +
-
-
-#geom_text(data = epsolabel, aes(label=point_label), show.legend = FALSE, hjust=+0.3, vjust=-1)
-
-# drugbanklabel <- djaccard %>% filter(Elements == max(Elements)) %>% mutate(point_label = "DrugBank")

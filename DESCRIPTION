@@ -14,9 +14,9 @@ Imports: mongolite,
     hashmap,
     ggplot2,
     tidyr,
-    dplyr
+    dplyr,
+    testthat
 Suggests: 
     knitr,
-    rmarkdown,
-    testthat
+    rmarkdown
 VignetteBuilder: knitr

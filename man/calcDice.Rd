@@ -2,7 +2,7 @@
 % Please edit documentation in R/calcSimilarities.R
 \name{calcDice}
 \alias{calcDice}
-\title{Calculate the dice for two sets a and b}
+\title{Calculate the dice coefficient for two lists a and b}
 \usage{
 calcDice(a, b)
 }
@@ -12,10 +12,10 @@ calcDice(a, b)
 \item{b}{list with elements}
 }
 \value{
-di list with length of longer set a or b containing the dice similarity coefficient at each position
+di list with length of set b containing the dice similarity coefficient at each list element
 }
 \description{
-Calculate the dice for two sets a and b
+Calculate the dice coefficient for two lists a and b
 }
 \examples{
 \dontrun{

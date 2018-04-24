@@ -6,6 +6,17 @@
 \usage{
 createJaccardFrameMeSH(mesh, drugbank, epso, esso, epi)
 }
+\arguments{
+\item{mesh}{list with mesh terms sorted by frequency}
+
+\item{drugbank}{list with drugbank terms sorted by frequency}
+
+\item{epso}{list with epso terms sorted by frequency}
+
+\item{esso}{list with esso terms sorted by frequency}
+
+\item{epi}{list with epi terms sorted by frequency}
+}
 \value{
 djaccardmesh the data frame for the jaccard coefficient that can be used by createJaccardPlotMeSH
 }
@@ -14,6 +25,6 @@ Creates data frame for plotting the jaccard coefficients against MeSH
 }
 \examples{
 \dontrun{
-createJaccardFrameMeSH()
+djaccardmesh <- createJaccardFrameMeSH(mesh, drugbank, epso, esso, epi)
 }
 }

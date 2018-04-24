@@ -2,7 +2,7 @@
 % Please edit documentation in R/calcSimilarities.R
 \name{jaccard}
 \alias{jaccard}
-\title{Calculate jaccard similarity coefficient}
+\title{Calculate jaccard similarity coefficient or two sets a and b}
 \usage{
 jaccard(ainterb, aunionb)
 }
@@ -15,7 +15,7 @@ jaccard(ainterb, aunionb)
 jac double value with the jaccard similarity coefficient
 }
 \description{
-Calculate jaccard similarity coefficient
+Calculate jaccard similarity coefficient or two sets a and b
 }
 \examples{
 \dontrun{

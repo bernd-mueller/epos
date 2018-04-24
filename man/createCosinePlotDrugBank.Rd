@@ -10,13 +10,13 @@ createCosinePlotDrugBank(dcosinedrugbank)
 \item{dcosinedrugbank}{the data frame containing the columns with the cosine coefficients}
 }
 \value{
-dcosineplotdrugbank the ggplot object
+cosineplotdrugbank the ggplot object
 }
 \description{
 Creates the plot for all cosine coefficients against drugbank
 }
 \examples{
 \dontrun{
-createCosinePlotDrugBank(createCosineFrameDrugBank())
+cosinedrugbankplot <- createCosinePlotDrugBank(dcosinedrugbank)
 }
 }
