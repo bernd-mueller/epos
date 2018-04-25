@@ -18,13 +18,13 @@ createDiceFrameDrugBank(mesh, drugbank, epso, esso, epi)
 \item{epi}{list with epi terms sorted by frequency}
 }
 \value{
-ddicedrugbank the data frame for the dice coefficient against DrugBank that can be used by createDicePlotDrugBank
+dicedrugbank the data frame for the dice coefficient against DrugBank that can be used by createDicePlotDrugBank
 }
 \description{
 Creates data frame for plotting the dice coefficients against DrugBank
 }
 \examples{
 \dontrun{
-createDiceFrameDrugBank(mesh, drugbank, epso, esso, epi)
+dicedrugbank <- createDiceFrameDrugBank(mesh, drugbank, epso, esso, epi)
 }
 }

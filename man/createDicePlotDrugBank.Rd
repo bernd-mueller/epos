@@ -4,10 +4,10 @@
 \alias{createDicePlotDrugBank}
 \title{Creates the plot for all dice coefficients against drugbank}
 \usage{
-createDicePlotDrugBank(ddicedrugbank)
+createDicePlotDrugBank(dicedrugbank)
 }
 \arguments{
-\item{ddicedrugbank}{the data frame containing the columns with the dice coefficients}
+\item{dicedrugbank}{the data frame containing the columns with the dice coefficients}
 }
 \value{
 diceplotdrugbank the ggplot object
@@ -17,6 +17,6 @@ Creates the plot for all dice coefficients against drugbank
 }
 \examples{
 \dontrun{
-dicedrugbankplot <- createDicePlotDrugBank(ddicedrugbank)
+dicedrugbankplot <- createDicePlotDrugBank(dicedrugbank)
 }
 }

@@ -15,7 +15,8 @@ Imports: mongolite,
     ggplot2,
     tidyr,
     dplyr,
-    testthat
+    testthat,
+    gridExtra
 Suggests: 
     knitr,
     rmarkdown

@@ -18,13 +18,13 @@ createDiceFrameMeSH(mesh, drugbank, epso, esso, epi)
 \item{epi}{list with epi terms sorted by frequency}
 }
 \value{
-ddicemesh the data frame for the dice coefficient against MeSH that can be used by createDicePlotMeSH
+dicemesh the data frame for the dice coefficient against MeSH that can be used by createDicePlotMeSH
 }
 \description{
 Creates data frame for plotting the dice coefficients against MeSH
 }
 \examples{
 \dontrun{
-ddicemesh <- createDiceFrameMeSH(mesh, drugbank, epso, esso, epi)
+dicemesh <- createDiceFrameMeSH(mesh, drugbank, epso, esso, epi)
 }
 }

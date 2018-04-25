@@ -18,13 +18,13 @@ createCosineFrameMeSH(mesh, drugbank, epso, esso, epi)
 \item{epi}{list with epi terms sorted by frequency}
 }
 \value{
-dcosinemesh the data frame for the cosine coefficient against MeSH that can be used by createCosinePlotMeSH
+cosinemesh the data frame for the cosine coefficient against MeSH that can be used by createCosinePlotMeSH
 }
 \description{
 Creates data frame for plotting the cosine coefficients against MeSH
 }
 \examples{
 \dontrun{
-dcosinemesh <- createCosineFrameMeSH(mesh, drugbank, epso, esso, epi)
+cosinemesh <- createCosineFrameMeSH(mesh, drugbank, epso, esso, epi)
 }
 }

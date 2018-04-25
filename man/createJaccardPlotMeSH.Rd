@@ -4,19 +4,19 @@
 \alias{createJaccardPlotMeSH}
 \title{Creates the plot for all jaccard coefficients against mesh}
 \usage{
-createJaccardPlotMeSH(djaccardmesh)
+createJaccardPlotMeSH(jaccardmesh)
 }
 \arguments{
-\item{djaccardmesh}{the data frame containing the columns with the jaccard coefficients}
+\item{jaccardmesh}{the data frame containing the columns with the jaccard coefficients}
 }
 \value{
-jaccardplotmesh the ggplot object
+jaccardmeshplot the ggplot object
 }
 \description{
 Creates the plot for all jaccard coefficients against mesh
 }
 \examples{
 \dontrun{
-createJaccardPlotMeSH(createJaccardFrameMeSH())
+jaccardmeshplot <- createJaccardPlotMeSH(jaccardmesh)
 }
 }

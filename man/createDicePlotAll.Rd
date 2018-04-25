@@ -4,12 +4,12 @@
 \alias{createDicePlotAll}
 \title{Creates the plot for all dice coefficients amongst the three epilepsy ontologies}
 \usage{
-createDicePlotAll(ddiceepso, ddiceesso)
+createDicePlotAll(diceepso, diceesso)
 }
 \arguments{
-\item{ddiceepso}{the data frame containing the columns with the dice coefficients of epi and esso against epso}
+\item{diceepso}{the data frame containing the columns with the dice coefficients of epi and esso against epso}
 
-\item{ddiceesso}{the data frame containing the columns with the dice coefficients of epi and epso against esso}
+\item{diceesso}{the data frame containing the columns with the dice coefficients of epi and epso against esso}
 }
 \value{
 diceepilepsyplot the ggplot object
@@ -19,6 +19,6 @@ Creates the plot for all dice coefficients amongst the three epilepsy ontologies
 }
 \examples{
 \dontrun{
-diceepilepsyplot <- createDicePlotAll(ddiceepso, ddiceesso)
+diceepilepsyplot <- createDicePlotAll(diceepso, diceesso)
 }
 }

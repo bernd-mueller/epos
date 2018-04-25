@@ -4,10 +4,10 @@
 \alias{createCosinePlotMeSH}
 \title{Creates the plot for all cosine coefficients against mesh}
 \usage{
-createCosinePlotMeSH(dcosinemesh)
+createCosinePlotMeSH(cosinemesh)
 }
 \arguments{
-\item{dcosinemesh}{the data frame containing the columns with the cosine coefficients}
+\item{cosinemesh}{the data frame containing the columns with the cosine coefficients}
 }
 \value{
 cosineplot the ggplot object
@@ -17,6 +17,6 @@ Creates the plot for all cosine coefficients against mesh
 }
 \examples{
 \dontrun{
-createCosinePlotMeSH(createCosineFrameMeSH())
+cosinemeshplot <- createCosinePlotMeSH(cosinemesh)
 }
 }
