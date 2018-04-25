@@ -4,10 +4,10 @@
 \alias{createDicePlotMeSH}
 \title{Creates the plot for all dice coefficients against mesh}
 \usage{
-createDicePlotMeSH(ddicemesh)
+createDicePlotMeSH(dicemesh)
 }
 \arguments{
-\item{ddicemesh}{the data frame containing the columns with the dice coefficients}
+\item{dicemesh}{the data frame containing the columns with the dice coefficients}
 }
 \value{
 diceplotmesh the ggplot object
@@ -17,6 +17,6 @@ Creates the plot for all dice coefficients against mesh
 }
 \examples{
 \dontrun{
-createDicePlotMeSH(createDiceFrameMeSH())
+dicemeshplot <- createDicePlotMeSH(dicemesh)
 }
 }

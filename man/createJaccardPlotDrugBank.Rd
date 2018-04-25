@@ -4,10 +4,10 @@
 \alias{createJaccardPlotDrugBank}
 \title{Creates the plot for all jaccard coefficients against drugbank}
 \usage{
-createJaccardPlotDrugBank(djaccarddrugbank)
+createJaccardPlotDrugBank(jaccarddrugbank)
 }
 \arguments{
-\item{djaccarddrugbank}{the data frame containing the columns with the jaccard coefficients}
+\item{jaccarddrugbank}{the data frame containing the columns with the jaccard coefficients}
 }
 \value{
 jaccardplotdrugbank the ggplot object
@@ -17,6 +17,6 @@ Creates the plot for all jaccard coefficients against drugbank
 }
 \examples{
 \dontrun{
-jaccarddrugbankplot <- createJaccardPlotDrugBank(djaccarddrugbank)
+jaccarddrugbankplot <- createJaccardPlotDrugBank(jaccarddrugbank)
 }
 }

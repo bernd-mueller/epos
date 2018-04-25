@@ -18,13 +18,13 @@ createCosineFrameDrugBank(mesh, drugbank, epso, esso, epi)
 \item{epi}{list with epi terms sorted by frequency}
 }
 \value{
-dcosinedrugbank the data frame for the cosine coefficient against DrugBank that can be used by createCosinePlotDrugBank
+cosinedrugbank the data frame for the cosine coefficient against DrugBank that can be used by createCosinePlotDrugBank
 }
 \description{
 Creates data frame for plotting the cosine coefficients against DrugBank
 }
 \examples{
 \dontrun{
-createCosineFrameDrugBank(mesh, drugbank, epso, esso, epi)
+cosinedrugbank <- createCosineFrameDrugBank(mesh, drugbank, epso, esso, epi)
 }
 }

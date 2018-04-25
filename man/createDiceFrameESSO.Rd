@@ -14,13 +14,13 @@ createDiceFrameESSO(epso, esso, epi)
 \item{epi}{list with epi terms sorted by frequency}
 }
 \value{
-ddiceesso the data frame for the dice coefficient against ESSO
+diceesso the data frame for the dice coefficient against ESSO
 }
 \description{
 Creates data frame for plotting the dice coefficients against ESSO
 }
 \examples{
 \dontrun{
-ddiceesso <- createDiceFrameESSO(epso, esso, epi)
+diceesso <- createDiceFrameESSO(epso, esso, epi)
 }
 }

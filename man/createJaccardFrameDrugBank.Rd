@@ -18,13 +18,13 @@ createJaccardFrameDrugBank(mesh, drugbank, epso, esso, epi)
 \item{epi}{list with epi terms sorted by frequency}
 }
 \value{
-djaccarddrugbank the data frame for the jaccard coefficient against DrugBank that can be used by createJaccardPlotDrugBank
+jaccarddrugbank the data frame for the jaccard coefficient against DrugBank that can be used by createJaccardPlotDrugBank
 }
 \description{
 Creates data frame for plotting the jaccard coefficients against DrugBank
 }
 \examples{
 \dontrun{
-createJaccardFrameDrugBank(mesh, drugbank, epso, esso, epi)
+jaccarddrugbank <- createJaccardFrameDrugBank(mesh, drugbank, epso, esso, epi)
 }
 }

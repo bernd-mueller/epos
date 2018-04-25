@@ -4,12 +4,12 @@
 \alias{createCosinePlotAll}
 \title{Creates the plot for all cosine coefficients against drugbank}
 \usage{
-createCosinePlotAll(dcosineepso, dcosineesso)
+createCosinePlotAll(cosineepso, cosineesso)
 }
 \arguments{
-\item{dcosineepso}{the data frame containing the columns with the cosine coefficients of epi and esso against epso}
+\item{cosineepso}{the data frame containing the columns with the cosine coefficients of epi and esso against epso}
 
-\item{dcosineesso}{the data frame containing the columns with the cosine coefficients of epi and epso against esso}
+\item{cosineesso}{the data frame containing the columns with the cosine coefficients of epi and epso against esso}
 }
 \value{
 cosineplotdrugbank the ggplot object
@@ -19,6 +19,6 @@ Creates the plot for all cosine coefficients against drugbank
 }
 \examples{
 \dontrun{
-cosineepilepsyplot <- createCosinePlotAll(dcosineepso, dcosineesso)
+cosineepilepsyplot <- createCosinePlotAll(cosineepso, cosineesso)
 }
 }

@@ -14,13 +14,13 @@ createJaccardFrameEpSO(epso, esso, epi)
 \item{epi}{list with epi terms sorted by frequency}
 }
 \value{
-djaccardepso the data frame for the jaccard coefficient against EpSO
+jaccardepso the data frame for the jaccard coefficient against EpSO
 }
 \description{
 Creates data frame for plotting the jaccard coefficients against EpSO
 }
 \examples{
 \dontrun{
-djaccardepso <- createJaccardFrameEpSO(epso, esso, epi)
+jaccardepso <- createJaccardFrameEpSO(epso, esso, epi)
 }
 }

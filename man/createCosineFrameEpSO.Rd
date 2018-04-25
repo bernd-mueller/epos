@@ -14,13 +14,13 @@ createCosineFrameEpSO(epso, esso, epi)
 \item{epi}{list with epi terms sorted by frequency}
 }
 \value{
-dcosineepso the data frame for the cosine coefficient against EpSO
+cosineepso the data frame for the cosine coefficient against EpSO
 }
 \description{
 Creates data frame for plotting the cosine coefficients against EpSO
 }
 \examples{
 \dontrun{
-dcosineepso <- createCosineFrameEpSO(epso, esso, epi)
+cosineepso <- createCosineFrameEpSO(epso, esso, epi)
 }
 }

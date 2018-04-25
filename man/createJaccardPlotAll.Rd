@@ -4,12 +4,12 @@
 \alias{createJaccardPlotAll}
 \title{Creates the plot for all jaccard coefficients amongst the three epilepsy ontologies}
 \usage{
-createJaccardPlotAll(djaccardepso, djaccardesso)
+createJaccardPlotAll(jaccardepso, jaccardesso)
 }
 \arguments{
-\item{djaccardepso}{the data frame containing the columns with the jaccard coefficients of epi and esso against epso}
+\item{jaccardepso}{the data frame containing the columns with the jaccard coefficients of epi and esso against epso}
 
-\item{djaccardesso}{the data frame containing the columns with the jaccard coefficients of epi and epso against esso}
+\item{jaccardesso}{the data frame containing the columns with the jaccard coefficients of epi and epso against esso}
 }
 \value{
 jaccardepilepsyplot the ggplot object
@@ -19,6 +19,6 @@ Creates the plot for all jaccard coefficients amongst the three epilepsy ontolog
 }
 \examples{
 \dontrun{
-jaccardepilepsyplot <- createJaccardPlotAll(djaccardepso, djaccardesso)
+jaccardepilepsyplot <- createJaccardPlotAll(jaccardepso, jaccardesso)
 }
 }
