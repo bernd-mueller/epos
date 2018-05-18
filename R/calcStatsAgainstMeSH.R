@@ -5,6 +5,7 @@
 #' @param epso list with epso terms sorted by frequency
 #' @param esso list with esso terms sorted by frequency
 #' @param epi list with epi terms sorted by frequency
+#' 
 #' @return dicemesh the data frame for the dice coefficient against MeSH that can be used by createDicePlotMeSH
 #'
 #' @examples

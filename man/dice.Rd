@@ -2,7 +2,7 @@
 % Please edit documentation in R/calcSimilarities.R
 \name{dice}
 \alias{dice}
-\title{Calculate dice similarity coefficient}
+\title{Calculate dice similarity metric}
 \usage{
 dice(ainterb, lengtha, lengthb)
 }
@@ -17,7 +17,7 @@ dice(ainterb, lengtha, lengthb)
 dice double vlaue with the dice similarity coefficient
 }
 \description{
-Calculate dice similarity coefficient
+Calculate dice similarity metric
 }
 \examples{
 \dontrun{

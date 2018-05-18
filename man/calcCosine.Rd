@@ -2,7 +2,7 @@
 % Please edit documentation in R/calcSimilarities.R
 \name{calcCosine}
 \alias{calcCosine}
-\title{Calculate the cosine coefficient for two lists a and b}
+\title{Calculate the cosine similarity metric for two lists a and b}
 \usage{
 calcCosine(a, b)
 }
@@ -15,7 +15,7 @@ calcCosine(a, b)
 co list with length of set b containing the cosine similarity coefficient at each position
 }
 \description{
-Calculate the cosine coefficient for two lists a and b
+Calculate the cosine similarity metric for two lists a and b
 }
 \examples{
 \dontrun{

@@ -2,20 +2,24 @@
 % Please edit documentation in R/calcSimilarities.R
 \name{jaccard}
 \alias{jaccard}
-\title{Calculate jaccard similarity coefficient or two sets a and b}
+\title{Calculate jaccard similarity metric for two sets a and b}
 \usage{
-jaccard(ainterb, aunionb)
+jaccard(ainterb, aunionb, lengtha, lengthb)
 }
 \arguments{
 \item{ainterb}{integer value with number of intersecting elements between set a and b}
 
 \item{aunionb}{integer value with number of union elements between set a and b}
+
+\item{lengtha}{length of set a}
+
+\item{lengthb}{length of set b}
 }
 \value{
 jac double value with the jaccard similarity coefficient
 }
 \description{
-Calculate jaccard similarity coefficient or two sets a and b
+Calculate jaccard similarity metric for two sets a and b
 }
 \examples{
 \dontrun{
