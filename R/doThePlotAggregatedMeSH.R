@@ -76,17 +76,18 @@ aggregatedPlotMeSH <- function (cosinemesh, dicemesh, jaccardmesh) {
     ggplot2::theme_minimal () +
     ggplot2::theme(panel.grid.major = ggplot2::element_line(colour = "gray"),
                    panel.grid.minor.y = ggplot2::element_line(colour = "gray"),
-                   legend.text=ggplot2::element_text(size=14),
+                   legend.text=ggplot2::element_text(size=16, face = "bold"),
                    legend.position=c(0,1),
                    legend.justification=c(0, 0),
                    legend.direction="horizontal",
                    legend.title = ggplot2::element_blank(),
-                   plot.title = ggplot2::element_text(size = 14, face = "bold"),
-                   axis.title.x = ggplot2::element_text(size = 14, face = "bold"),
-                   axis.title.y = ggplot2::element_text(size = 14, face = "bold"),
-                   axis.text.x = ggplot2::element_text(size = 11),
-                   axis.text.y = ggplot2::element_text(size = 11)) +
-    ggplot2::labs (y="Mean", x="TopK", title = "Mean of Cosine, Dice, and Jaccard with Standard Deviation against MeSH", subtitle = "") +
+                   plot.title = ggplot2::element_text(size = 16, face = "bold"),
+                   axis.title.x = ggplot2::element_text(size = 16, face = "bold"),
+                   axis.title.y = ggplot2::element_text(size = 16, face = "bold"),
+                   axis.text.x = ggplot2::element_text(size = 14),
+                   axis.text.y = ggplot2::element_text(size = 14)) +
+    ggplot2::labs (y="Mean", x="TopK", title = "", subtitle = "") +
+#    ggplot2::labs (y="Mean", x="TopK", title = "Mean of Cosine, Dice, and Jaccard with Standard Deviation against MeSH", subtitle = "") +
     ggplot2::scale_colour_manual(values=cols)+
     ggplot2::scale_fill_manual(values=cols) +
     ggplot2::scale_size_manual()

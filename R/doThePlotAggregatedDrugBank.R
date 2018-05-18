@@ -1,13 +1,28 @@
+#' Create aggregated plot with mean and standard deviation of all similarity metrics against DrugBank
+#'
+#' @param cosinedrugbank data.frame containing the vector with cosine metrics for MeSH, EpSO, ESSO, and EPILONT against DrugBank
+#' @param dicedrugbank data.frame containing the vector with dice metrics for MeSH, EpSO, ESSO, and EPILONT against DrugBank
+#' @param jaccarddrugbank data.frame containing the vector with jaccard metrics for MeSH, EpSO, ESSO, and EPILONT against DrugBank
+#'
+#' @return aggdrug the plot with the aggregated graphs
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' aggdrug <- aggregatedPlotDrugBank(cosinedrugbank, dicedrugbank, jaccarddrugbank)
+#' }
 aggregatedPlotDrugBank <- function (cosinedrugbank, dicedrugbank, jaccarddrugbank) {
-  # MeSH: red     #ff0000
+  # DrugBank: darkturquoise     #00CED1
   # EpSO: blue        #0000ff
   # ESSO: orange      #FFA500
   # EPILONT: purple   #800080
-  cols <- c("MeSH" = "#ff0000", "EpSO"="#0000FF","ESSO"="#FFA500","EPILONT"="#800080")
+  cols <- c(MeSH = "#00CED1", EpSO="#0000FF",ESSO="#FFA500",EPILONT="#800080")
   
-  myalpha = shQuote("0.9")
-  mymeansize = 2
+  myalpha = shQuote("0.2")
+  mymeansize = 3
+  mysdsize = 1
   
+
   mesh_metrics <- create_metrics (cosinedrugbank$MeSH, dicedrugbank$MeSH, jaccarddrugbank$MeSH, jaccarddrugbank$Elements)
   mesh_stats <- create_stats(mesh_metrics)
   mesh_error <- create_error(mesh_stats)
@@ -24,54 +39,62 @@ aggregatedPlotDrugBank <- function (cosinedrugbank, dicedrugbank, jaccarddrugban
   epi_stats <- create_stats(epi_metrics)
   epi_error <- create_error(epi_stats)
   
-  epi_stats[epi_stats < 0] <- 0
+  epimaxsd <- epi_stats$comean + epi_stats$cosd
+  epimaxsd <- epimaxsd[epimaxsd > 1] <- 1
   
-  ggplot2::ggplot(
+  aggdrug <- ggplot2::ggplot(
     data = mesh_stats, 
-    ggplot2::aes_string(x="elements", y="mean", colour = shQuote("MeSH"))
+    ggplot2::aes_string(x="elements", y="comean", colour = shQuote("MeSH"))
   ) + 
     ggplot2::geom_step(size = mymeansize) +
     ggplot2::geom_ribbon(
-      data = mesh_stats, 
-      ggplot2::aes_string(x = "elements", ymin = "mean - sd", ymax = "mean + sd", colour = shQuote("MeSH"), fill = shQuote("red"), alpha = myalpha), show.legend = FALSE
-    ) + 
+      data = mesh_stats,
+      ggplot2::aes_string(x = "elements", ymin = "comean - cosd", ymax = "comean + cosd", colour = shQuote("MeSH"), fill = shQuote("MeSH"), alpha = myalpha), show.legend = FALSE, size = mysdsize
+    ) +
     ggplot2::geom_step(
-      data = epso_stats, 
-      ggplot2::aes_string(x="elements", y="mean", colour = shQuote("EpSO")), size = mymeansize
-    ) + 
+      data = epso_stats,
+      ggplot2::aes_string(x="elements", y="comean", colour = shQuote("EpSO")), size = mymeansize
+    ) +
     ggplot2::geom_ribbon(
-      data = epso_stats, 
-      ggplot2::aes_string(x = "elements", ymin = "mean - sd", ymax = "mean + sd", colour = shQuote("EpSO"), fill = shQuote("blue"), alpha = myalpha), show.legend = FALSE
-    ) + 
+      data = epso_stats,
+      ggplot2::aes_string(x = "elements", ymin = "comean - cosd", ymax = "comean + cosd", colour = shQuote("EpSO"), fill = shQuote("EpSO"), alpha = myalpha), show.legend = FALSE, size = mysdsize
+    ) +
     ggplot2::geom_step(
-      data = esso_stats, 
-      ggplot2::aes_string(x="elements", y="mean", colour = shQuote("ESSO")), size = mymeansize
-    ) + 
+      data = esso_stats,
+      ggplot2::aes_string(x="elements", y="comean", colour = shQuote("ESSO")), size = mymeansize
+    ) +
     ggplot2::geom_ribbon(
-      data = esso_stats, 
-      ggplot2::aes_string(x = "elements", ymin = "mean - sd", ymax = "mean + sd", colour = shQuote("ESSO"), fill = shQuote("orange"), alpha = myalpha), show.legend = FALSE
-    ) + 
+      data = esso_stats,
+      ggplot2::aes_string(x = "elements", ymin = "comean - cosd", ymax = "comean + cosd", colour = shQuote("ESSO"), fill = shQuote("ESSO"), alpha = myalpha), show.legend = FALSE, size = mysdsize
+    ) +
     ggplot2::geom_step(
       data = epi_stats, 
-      ggplot2::aes_string(x="elements", y="mean", colour = shQuote("EPILONT")), size = mymeansize
+      ggplot2::aes_string(x="elements", y="comean", colour = shQuote("EPILONT")), size = mymeansize
     ) + 
     ggplot2::geom_ribbon(
       data = epi_stats, 
-      ggplot2::aes_string(x="elements", ymin = "mean -sd", ymax = "mean + sd", colour = shQuote("EPILONT"), fill = shQuote("purple"), alpha = myalpha), show.legend = FALSE
+      ggplot2::aes_string(x = "elements", ymin = "comean - cosd", ymax = "epimaxsd", colour = shQuote("EPILONT"), fill = shQuote("EPILONT"), alpha = myalpha), show.legend = FALSE, size = mysdsize    
     ) + 
+    ggplot2::coord_cartesian (xlim = c(0,2604), ylim = c(0.86125,1)) +
+    ggplot2::scale_x_continuous(breaks = c(0, 500,1000,1500, 2000, 2604)) +
+    ggplot2::scale_y_continuous(breaks = c(0.875, 0.9, 0.925, 0.95, 0.975, 1)) +
     ggplot2::theme_minimal () +
     ggplot2::theme(panel.grid.major = ggplot2::element_line(colour = "gray"),
                    panel.grid.minor.y = ggplot2::element_line(colour = "gray"),
-                   legend.text=ggplot2::element_text(size=11),
+                   legend.text=ggplot2::element_text(size=16, face = "bold"),
                    legend.position=c(0,1),
                    legend.justification=c(0, 0),
                    legend.direction="horizontal",
                    legend.title = ggplot2::element_blank(),
-                   plot.title = ggplot2::element_text(size = 11, face = "bold"),
-                   axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
-                   axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
-                   axis.text.x = ggplot2::element_text(size = 11)) +
-    ggplot2::labs (y="Mean", x="TopK", title = "Mean of Cosine, Dice, and Jaccard with Standard Deviation against DrugBank", subtitle = "") +
+                   plot.title = ggplot2::element_text(size = 16, face = "bold"),
+                   axis.title.x = ggplot2::element_text(size = 16, face = "bold"),
+                   axis.title.y = ggplot2::element_text(size = 16, face = "bold"),
+                   axis.text.x = ggplot2::element_text(size = 14),
+                   axis.text.y = ggplot2::element_text(size = 14)) +
+    ggplot2::labs (y="Mean", x="TopK", title = "", subtitle = "") +
+#    ggplot2::labs (y="Mean", x="TopK", title = "Mean of Cosine, Dice, and Jaccard with Standard Deviation against DrugBank", subtitle = "") +
     ggplot2::scale_colour_manual(values=cols)+
-    ggplot2::scale_size_manual() 
+    ggplot2::scale_fill_manual(values=cols) +
+    ggplot2::scale_size_manual()
+  return (aggdrug)
 }
