@@ -18,7 +18,17 @@ calcJaccard <- function (a, b) {
   for (i in 1:lo) {
     cinter <- length(intersect(a[1:i], b[1:i]))
     cunion <- length(union(x = a[1:i], y = b[1:i]))
-    cjac <- jaccard (cinter, cunion)
+    
+    curalength <- i
+    if (i>la) {
+      curalength <- la  
+    } 
+    curblength <- i
+    if (i > lb) {
+      curblength <- lb
+    } 
+    
+    cjac <- jaccard (cinter, cunion, curalength, curblength)
     
     
     if (i == 1) {
@@ -30,10 +40,12 @@ calcJaccard <- function (a, b) {
   return (ja)
 }
 
-#' Calculate jaccard similarity coefficient or two sets a and b
+#' Calculate jaccard similarity metric for two sets a and b
 #'
 #' @param ainterb integer value with number of intersecting elements between set a and b
 #' @param aunionb integer value with number of union elements between set a and b
+#' @param lengtha length of set a
+#' @param lengthb length of set b
 #'
 #' @return jac double value with the jaccard similarity coefficient 
 #' @export
@@ -42,12 +54,13 @@ calcJaccard <- function (a, b) {
 #' \dontrun{
 #' jaccard(1,3)
 #' }
-jaccard <- function (ainterb, aunionb) {
-  jac <- (ainterb) / (aunionb-ainterb)
+jaccard <- function (ainterb, aunionb, lengtha, lengthb) {
+  jaccoefficient <- (ainterb) / (lengtha+lengthb-ainterb)
+  jac <- 1-jaccoefficient
   return (jac)
 }
 
-#' Calculate the dice coefficient for two lists a and b
+#' Calculate the dice similarity metric for two lists a and b
 #'
 #' @param a list with elements that should be of same type as in list b
 #' @param b list with elements
@@ -84,7 +97,7 @@ calcDice <- function (a, b) {
   di
 }
 
-#' Calculate dice similarity coefficient
+#' Calculate dice similarity metric
 #'
 #' @param ainterb integer value with number of intersecting elements between set a and b
 #' @param lengtha integer value with the number of items in set a
@@ -99,10 +112,11 @@ calcDice <- function (a, b) {
 #' }
 dice <- function (ainterb, lengtha, lengthb) {
   dice <- 2*(ainterb/(lengtha+lengthb))
-  dice
+  dice <- 1- dice
+  return (dice)
 }
 
-#' Calculate the cosine coefficient for two lists a and b
+#' Calculate the cosine similarity metric for two lists a and b
 #'
 #' @param a list with elements that should be of same type as in list b
 #' @param b list with elements
@@ -140,7 +154,7 @@ calcCosine <- function (a, b) {
   return (co)
 }
 
-#' Calculate cosine similarity coefficient
+#' Calculate cosine similarity metric
 #'
 #' @param ainterb integer value with number of intersecting elements between set a and b
 #' @param lengtha integer value with the number of items in set a
@@ -155,5 +169,6 @@ calcCosine <- function (a, b) {
 #' }
 cosine <- function (ainterb, lengtha, lengthb) {
   cosine <- (ainterb) / (lengtha^(1/2) * lengthb^(1/2))
+  cosine <- 1 - cosine
   return (cosine)
 }

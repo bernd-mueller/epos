@@ -33,15 +33,15 @@ createJaccardPlotAll <- function (jaccardepso, jaccardesso) {
     ggplot2::theme_minimal ()+
     ggplot2::theme(panel.grid.major = ggplot2::element_line(colour = "gray"), 
                    panel.grid.minor.y = ggplot2::element_line(colour = "gray"),
-                   legend.text=ggplot2::element_text(size=10),
+                   legend.text=ggplot2::element_text(size=11),
                    legend.position=c(0,1), 
                    legend.justification=c(0, 0),
                    legend.direction="horizontal",
                    legend.title = ggplot2::element_blank(),
-                   plot.title = ggplot2::element_text(size = 10, face = "bold"),
-                   axis.title.x = ggplot2::element_text(size = 10, face = "bold"),
-                   axis.title.y = ggplot2::element_text(size = 10, face = "bold"),
-                   axis.text.x = ggplot2::element_text(size = 10)) +
+                   plot.title = ggplot2::element_text(size = 11, face = "bold"),
+                   axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
+                   axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
+                   axis.text.x = ggplot2::element_text(size = 11)) +
     ggplot2::labs (y="JaccardTopK", x="TopK", title = "JaccardTopK of Epilepsy Ontologies", subtitle = "") +
     ggplot2::geom_step(size=1) + 
     ggplot2::geom_step(data = jaccardepso, ggplot2::aes_string(x="Elements", y="EPILONT", colour = shQuote("EpSO EPI")), size=1) + 
@@ -89,15 +89,15 @@ createDicePlotAll <- function (diceepso, diceesso) {
     ggplot2::theme_minimal ()+
     ggplot2::theme(panel.grid.major = ggplot2::element_line(colour = "gray"), 
                    panel.grid.minor.y = ggplot2::element_line(colour = "gray"),
-                   legend.text=ggplot2::element_text(size=10),
+                   legend.text=ggplot2::element_text(size=11),
                    legend.position=c(0,1), 
                    legend.justification=c(0, 0),
                    legend.direction="horizontal",
                    legend.title = ggplot2::element_blank(),
-                   plot.title = ggplot2::element_text(size = 10, face = "bold"),
-                   axis.title.x = ggplot2::element_text(size = 10, face = "bold"),
-                   axis.title.y = ggplot2::element_text(size = 10, face = "bold"),
-                   axis.text.x = ggplot2::element_text(size = 10)) +
+                   plot.title = ggplot2::element_text(size = 11, face = "bold"),
+                   axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
+                   axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
+                   axis.text.x = ggplot2::element_text(size = 11)) +
     ggplot2::labs (y="DiceTopK", x="TopK", title = "DiceTopK of Epilepsy Ontologies", subtitle = "") +
     ggplot2::geom_step(size=1) + 
     ggplot2::geom_step(data = diceepso, ggplot2::aes_string(x="Elements", y="EPILONT", colour = shQuote("EpSO EPI")), size=1) + 
@@ -149,15 +149,15 @@ createCosinePlotAll <- function(cosineepso, cosineesso) {
     ggplot2::theme_minimal ()+
     ggplot2::theme(panel.grid.major = ggplot2::element_line(colour = "gray"), 
                    panel.grid.minor.y = ggplot2::element_line(colour = "gray"),
-                   legend.text=ggplot2::element_text(size=10),
+                   legend.text=ggplot2::element_text(size=11),
                    legend.position=c(0,1), 
                    legend.justification=c(0, 0),
                    legend.direction="horizontal",
                    legend.title = ggplot2::element_blank(),
-                   plot.title = ggplot2::element_text(size = 10, face = "bold"),
-                   axis.title.x = ggplot2::element_text(size = 10, face = "bold"),
-                   axis.title.y = ggplot2::element_text(size = 10, face = "bold"),
-                   axis.text.x = ggplot2::element_text(size = 10)) +
+                   plot.title = ggplot2::element_text(size = 11, face = "bold"),
+                   axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
+                   axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
+                   axis.text.x = ggplot2::element_text(size = 11)) +
     ggplot2::labs (y="CosineTopK", x="TopK", title = "CosineTopK of Epilepsy Ontologies", subtitle = "") +
     ggplot2::geom_step(size=1) + 
     ggplot2::geom_step(data = cosineepso, ggplot2::aes_string(x="Elements", y="EPILONT", colour = shQuote("EpSO EPI")), size=1) + 

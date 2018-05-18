@@ -2,7 +2,7 @@
 % Please edit documentation in R/calcSimilarities.R
 \name{cosine}
 \alias{cosine}
-\title{Calculate cosine similarity coefficient}
+\title{Calculate cosine similarity metric}
 \usage{
 cosine(ainterb, lengtha, lengthb)
 }
@@ -17,7 +17,7 @@ cosine(ainterb, lengtha, lengthb)
 cosine double vlaue with the cosine similarity coefficient
 }
 \description{
-Calculate cosine similarity coefficient
+Calculate cosine similarity metric
 }
 \examples{
 \dontrun{

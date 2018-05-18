@@ -31,21 +31,21 @@ createJaccardPlotMeSH <- function (jaccardmesh) {
     ggplot2::theme_minimal ()+
     ggplot2::theme(panel.grid.major = ggplot2::element_line(colour = "gray"), 
                    panel.grid.minor.y = ggplot2::element_line(colour = "gray"),
-                   legend.text=ggplot2::element_text(size=10),
+                   legend.text=ggplot2::element_text(size=11),
                    legend.position=c(0,1), 
                    legend.justification=c(0, 0),
                    legend.direction="horizontal",
                    legend.title = ggplot2::element_blank(),
-                   plot.title = ggplot2::element_text(size = 10, face = "bold"),
-                   axis.title.x = ggplot2::element_text(size = 10, face = "bold"),
-                   axis.title.y = ggplot2::element_text(size = 10, face = "bold"),
-                   axis.text.x = ggplot2::element_text(size = 10)) +
+                   plot.title = ggplot2::element_text(size = 11, face = "bold"),
+                   axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
+                   axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
+                   axis.text.x = ggplot2::element_text(size = 11)) +
     ggplot2::labs (y="JaccardTopK", x="TopK", title = "JaccardTopK against MeSH", subtitle = "") +
     ggplot2::geom_step(size=1) + 
     ggplot2::geom_step(data = jaccardmesh, ggplot2::aes_string(x="Elements", y="EpSO", colour = shQuote("EpSO")), size=1) + 
     ggplot2::geom_step(data = jaccardmesh, ggplot2::aes_string(x="Elements", y="ESSO", colour = shQuote("ESSO")), size=1) + 
     ggplot2::geom_step(data = jaccardmesh, ggplot2::aes_string(x="Elements", y="EPILONT", colour = shQuote("EPILONT")), size=1) + 
-    ggplot2::coord_trans(x = "log10", limx = c(10, 28107), limy = c(-0.001,0.15)) +
+    ggplot2::coord_trans(x = "log10", limx = c(1000, 28107), limy = c(-0.001,0.1)) +
     ggplot2::scale_x_continuous(breaks = c(1, 10, 100, 1000,10000,28107)) +
     ggplot2::scale_y_continuous(breaks = c(0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15)) +
     ggplot2::scale_colour_manual(values=cols)+
