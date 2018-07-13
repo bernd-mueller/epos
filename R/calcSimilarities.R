@@ -14,8 +14,8 @@ calcJaccard <- function (a, b) {
   la = length(a)
   lb = length(b)
   lo = lb
-  
   for (i in 1:lo) {
+    
     cinter <- length(intersect(a[1:i], b[1:i]))
     cunion <- length(union(x = a[1:i], y = b[1:i]))
     

@@ -26,6 +26,8 @@ create_metrics <- function (cosine, dice, jaccard, elements) {
 #' @importFrom dplyr rowwise
 #' @importFrom dplyr %>%
 #' @importFrom dplyr mutate
+#' @importFrom stats median
+#' @importFrom stats sd
 #' 
 #' @export
 #'
@@ -34,6 +36,6 @@ create_metrics <- function (cosine, dice, jaccard, elements) {
 #' stats <- create_stats(metrics)
 #' }
 create_stats <- function (metrics) {
-  stats <- metrics %>% dplyr::rowwise() %>% dplyr::mutate(comean = mean (c(cosine,dice,jaccard)), comedian = median(c(cosine,dice,jaccard)),cosd = sd(c(cosine,dice,jaccard)))  
+  stats <- metrics %>% dplyr::rowwise() %>% dplyr::mutate(comean = mean (c(cosine,dice,jaccard)), comedian = stats::median(c(cosine,dice,jaccard)),cosd = stats::sd(c(cosine,dice,jaccard)))  
   return (stats)
 }

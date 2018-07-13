@@ -45,9 +45,9 @@ createJaccardPlotMeSH <- function (jaccardmesh) {
     ggplot2::geom_step(data = jaccardmesh, ggplot2::aes_string(x="Elements", y="EpSO", colour = shQuote("EpSO")), size=1) + 
     ggplot2::geom_step(data = jaccardmesh, ggplot2::aes_string(x="Elements", y="ESSO", colour = shQuote("ESSO")), size=1) + 
     ggplot2::geom_step(data = jaccardmesh, ggplot2::aes_string(x="Elements", y="EPILONT", colour = shQuote("EPILONT")), size=1) + 
-    ggplot2::coord_trans(x = "log10", limx = c(1000, 28107), limy = c(-0.001,0.1)) +
-    ggplot2::scale_x_continuous(breaks = c(1, 10, 100, 1000,10000,28107)) +
-    ggplot2::scale_y_continuous(breaks = c(0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15)) +
+    ggplot2::coord_cartesian (xlim = c(0,28107), ylim = c(0.96125,1)) +
+    ggplot2::scale_x_continuous(breaks = c(0, 5000, 10000, 15000,20000,25000, 28107)) +
+    ggplot2::scale_y_continuous(breaks = c(0.96125, 0.975, 0.9875, 1)) +
     ggplot2::scale_colour_manual(values=cols)+
     ggplot2::scale_size_manual() 
   return (jaccardmeshplot)
@@ -100,9 +100,9 @@ createDicePlotMeSH <- function (dicemesh) {
     ggplot2::geom_step(data = dicemesh, ggplot2::aes_string(x="Elements", y="EpSO", colour = shQuote("EpSO")), size=1) + 
     ggplot2::geom_step(data = dicemesh, ggplot2::aes_string(x="Elements", y="ESSO", colour = shQuote("ESSO")), size=1) + 
     ggplot2::geom_step(data = dicemesh, ggplot2::aes_string(x="Elements", y="EPILONT", colour = shQuote("EPILONT")), size=1) + 
-    ggplot2::coord_trans(x = "log10", limx = c(10, 28107), limy = c(-0.001,0.15)) +
-    ggplot2::scale_x_continuous(breaks = c(1, 10, 100, 1000,10000,28107)) +
-    ggplot2::scale_y_continuous(breaks = c(0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15)) +
+    ggplot2::coord_cartesian (xlim = c(0,28107), ylim = c(0.925,1)) +
+    ggplot2::scale_x_continuous(breaks = c(0, 5000, 10000, 15000,20000,25000, 28107)) +
+    ggplot2::scale_y_continuous(breaks = c(0.925, 0.95, 0.975, 1)) +
     ggplot2::scale_colour_manual(values=cols)+
     ggplot2::scale_size_manual()   
   return (dicemeshplot)
@@ -154,9 +154,9 @@ createCosinePlotMeSH <- function (cosinemesh) {
     ggplot2::geom_step(data = cosinemesh, ggplot2::aes_string(x="Elements", y="EpSO", colour = shQuote("EpSO")), size=1) + 
     ggplot2::geom_step(data = cosinemesh, ggplot2::aes_string(x="Elements", y="ESSO", colour = shQuote("ESSO")), size=1) + 
     ggplot2::geom_step(data = cosinemesh, ggplot2::aes_string(x="Elements", y="EPILONT", colour = shQuote("EPILONT")), size=1) + 
-    ggplot2::coord_trans(x = "log10", limx = c(10, 28107), limy = c(-0.001,0.15)) +
-    ggplot2::scale_x_continuous(breaks = c(1, 10, 100, 1000,10000,28107)) +
-    ggplot2::scale_y_continuous(breaks = c(0, 0.025, 0.05, 0.075, 0.1, 0.125, 0.15)) +
+    ggplot2::coord_cartesian (xlim = c(0,28107), ylim = c(0.875,1)) +
+    ggplot2::scale_x_continuous(breaks = c(0, 5000, 10000, 15000,20000,25000, 28107)) +
+    ggplot2::scale_y_continuous(breaks = c(0.875, 0.9, 0.925, 0.95, 0.975, 1)) +
     ggplot2::scale_colour_manual(values=cols)+
     ggplot2::scale_size_manual()   
   return (cosinemeshplot)

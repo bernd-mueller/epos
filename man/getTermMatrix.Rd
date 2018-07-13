@@ -4,7 +4,7 @@
 \alias{getTermMatrix}
 \title{Receives a sorted hashmap with found entities from a dictionary}
 \usage{
-getTermMatrix(dictionary)
+getTermMatrix(dictionary, collection)
 }
 \arguments{
 \item{dictionary}{Character vector that is the name of a dicitonary having pre-calculated stats. This can be
