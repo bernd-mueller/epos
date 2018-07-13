@@ -25,20 +25,16 @@ aggregatedPlotDrugBank <- function (cosinedrugbank, dicedrugbank, jaccarddrugban
 
   mesh_metrics <- create_metrics (cosinedrugbank$MeSH, dicedrugbank$MeSH, jaccarddrugbank$MeSH, jaccarddrugbank$Elements)
   mesh_stats <- create_stats(mesh_metrics)
-  mesh_error <- create_error(mesh_stats)
-  
+
   epso_metrics <- create_metrics (cosinedrugbank$EpSO, dicedrugbank$EpSO, jaccarddrugbank$EpSO, jaccarddrugbank$Elements)
   epso_stats <- create_stats(epso_metrics)
-  epso_error <- create_error(epso_stats)
-  
+
   esso_metrics <- create_metrics (cosinedrugbank$ESSO, dicedrugbank$ESSO, jaccarddrugbank$ESSO, jaccarddrugbank$Elements)
   esso_stats <- create_stats(esso_metrics)
-  esso_error <- create_error(esso_stats)
-  
+
   epi_metrics <- create_metrics (cosinedrugbank$EPILONT, dicedrugbank$EPILONT, jaccarddrugbank$EPILONT, jaccarddrugbank$Elements)
   epi_stats <- create_stats(epi_metrics)
-  epi_error <- create_error(epi_stats)
-  
+
   epimaxsd <- epi_stats$comean + epi_stats$cosd
   epimaxsd <- epimaxsd[epimaxsd > 1] <- 1
   

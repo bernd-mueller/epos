@@ -24,12 +24,18 @@
 #' \dontrun{
 #' jaccardepilepsyplot <- createJaccardPlotAll(jaccardepso, jaccardesso)
 #' }
-createJaccardPlotAll <- function (jaccardepso, jaccardesso) {
-  cols <- c("ESSO EpSO" = "#8A2BE2", "EpSO EPI"="#7CFC00", "ESSO EPI"="#C71585")
+createJaccardPlotDBMeSH <- function (jmeshepso, jmeshesso, jmeshepi) {
+  djmesh <- data.frame (Elements = 1:962, 
+                        EpSO = jmeshepso[1:962],
+                        ESSO = jmeshesso[1:962],
+                        EPILONT = jmeshepi[1:962])
   
-  jaccardepilepsyplot <- ggplot2::ggplot(data = jaccardepso, ggplot2::aes_string(x="Elements", 
-                                                                                  y="ESSO", 
-                                                                                  colour = shQuote("ESSO EpSO")), log10="x") + 
+  cols <- c("EpSO" = "#8A2BE2", "ESSO"="#7CFC00", "EPILONT"="#C71585")
+  
+  jaccarddbmesh <- ggplot2::ggplot(data = djmesh, 
+                                   ggplot2::aes_string(x="Elements", 
+                                                       y="EpSO",
+                                                       colour = shQuote("EpSO"))) + 
     ggplot2::theme_minimal ()+
     ggplot2::theme(panel.grid.major = ggplot2::element_line(colour = "gray"), 
                    panel.grid.minor.y = ggplot2::element_line(colour = "gray"),
@@ -42,17 +48,19 @@ createJaccardPlotAll <- function (jaccardepso, jaccardesso) {
                    axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
                    axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
                    axis.text.x = ggplot2::element_text(size = 11)) +
-    ggplot2::labs (y="JaccardTopK", x="TopK", title = "JaccardTopK of Epilepsy Ontologies", subtitle = "") +
+    ggplot2::labs (y="Jaccard", x="Length", title = "Jaccard Similarity between DrugBank vectors of Epilepsy ontologies versus MeSH derived DrugBank vector", subtitle = "") +
     ggplot2::geom_step(size=1) + 
-    ggplot2::geom_step(data = jaccardepso, ggplot2::aes_string(x="Elements", y="EPILONT", colour = shQuote("EpSO EPI")), size=1) + 
-    ggplot2::geom_step(data = jaccardesso, ggplot2::aes_string(x="Elements", y="EPILONT", colour = shQuote("ESSO EPI")), size=1) +
-    ggplot2::coord_trans(limx = c(0,919),limy = c(0.925,1)) +
-    ggplot2::scale_x_continuous(breaks = c(0, 250, 500, 750, 919)) +
-    ggplot2::scale_y_continuous(breaks = c(0.925, 0.95, 0.975, 1)) +
+    ggplot2::geom_step(data = djmesh, ggplot2::aes_string(x="Elements", y="ESSO", colour = shQuote("ESSO")), size=1) + 
+    ggplot2::geom_step(data = djmesh, ggplot2::aes_string(x="Elements", y="EPILONT", colour = shQuote("EPILONT")), size=1) +
+    ggplot2::coord_trans(limx = c(0,962),limy = c(0,1)) +
+    ggplot2::scale_x_continuous(breaks = c(0, 250, 500, 750, 962)) +
+    ggplot2::scale_y_continuous(breaks = c(0.25, 0.5, 0.75, 1)) +
     ggplot2::scale_colour_manual(name="Dictionary",values=cols)+
     ggplot2::scale_size_manual()   
-  return (jaccardepilepsyplot)
+  return (jaccarddbmesh)
 }
+
+
 
 #' Creates the plot for all dice coefficients amongst the three epilepsy ontologies
 #'
@@ -84,8 +92,8 @@ createDicePlotAll <- function (diceepso, diceesso) {
   cols <- c("ESSO EpSO" = "#8A2BE2", "EpSO EPI"="#7CFC00", "ESSO EPI"="#C71585")
   
   diceepilepsyplot <- ggplot2::ggplot(data = diceepso, ggplot2::aes_string(x="Elements", 
-                                                                            y="ESSO", 
-                                                                            colour = shQuote("ESSO EpSO")), log10="x") + 
+                                                                           y="ESSO", 
+                                                                           colour = shQuote("ESSO EpSO")), log10="x") + 
     ggplot2::theme_minimal ()+
     ggplot2::theme(panel.grid.major = ggplot2::element_line(colour = "gray"), 
                    panel.grid.minor.y = ggplot2::element_line(colour = "gray"),
@@ -103,7 +111,7 @@ createDicePlotAll <- function (diceepso, diceesso) {
     ggplot2::geom_step(data = diceepso, ggplot2::aes_string(x="Elements", y="EPILONT", colour = shQuote("EpSO EPI")), size=1) + 
     ggplot2::geom_step(data = diceesso, ggplot2::aes_string(x="Elements", y="EPILONT", colour = shQuote("ESSO EPI")), size=1) +
     ggplot2::coord_trans(limx = c(0,919),limy = c(0.85,1)) +
-    ggplot2::scale_x_continuous(breaks = c(0, 250, 500, 750, 919)) +
+    ggplot2::scale_x_continuous(breaks = c(0, 25, 50, 75, 100)) +
     ggplot2::scale_y_continuous(breaks = c(0.85, 0.9, 0.95, 1)) +
     ggplot2::scale_colour_manual(name="Dictionary",values=cols)+
     ggplot2::scale_size_manual()   
@@ -144,8 +152,8 @@ createCosinePlotAll <- function(cosineepso, cosineesso) {
   #geom_text(data = drugbanklabel, aes(label=point_label), show.legend = FALSE, hjust=+0.3, vjust=-1) +
   
   cosineepilepsyplot <- ggplot2::ggplot(data = cosineepso, ggplot2::aes_string(x="Elements", 
-                                                                                y="ESSO", 
-                                                                                colour = shQuote("ESSO EpSO")), log10="x") + 
+                                                                               y="ESSO", 
+                                                                               colour = shQuote("ESSO EpSO")), log10="x") + 
     ggplot2::theme_minimal ()+
     ggplot2::theme(panel.grid.major = ggplot2::element_line(colour = "gray"), 
                    panel.grid.minor.y = ggplot2::element_line(colour = "gray"),

@@ -39,7 +39,7 @@ createJaccardPlotDrugBank <- function (jaccarddrugbank) {
                    axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
                    axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
                    axis.text.x = ggplot2::element_text(size = 11)) +
-    ggplot2::labs (y="JaccardTopK", x="TopK", title = "JaccardTopK against ATC", subtitle = "") +
+    ggplot2::labs (y="JaccardTopK", x="TopK", title = "JaccardTopK against DrugBank", subtitle = "") +
     ggplot2::geom_step(size=1) + 
     ggplot2::geom_step(data = jaccarddrugbank, ggplot2::aes_string(x="Elements", y="EpSO", colour = shQuote("EpSO")), size=1) + 
     ggplot2::geom_step(data = jaccarddrugbank, ggplot2::aes_string(x="Elements", y="ESSO", colour = shQuote("ESSO")), size=1) + 
@@ -93,11 +93,11 @@ createDicePlotDrugBank <- function (dicedrugbank) {
                    axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
                    axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
                    axis.text.x = ggplot2::element_text(size = 11)) +
-    ggplot2::labs (y="DiceTopK", x="TopK", title = "DiceTopK against ATC", subtitle = "") +
+    ggplot2::labs (y="DiceTopK", x="TopK", title = "DiceTopK against DrugBank", subtitle = "") +
     ggplot2::geom_step(size=1) + 
-    ggplot2::geom_step(data = jaccarddrugbank, ggplot2::aes_string(x="Elements", y="EpSO", colour = shQuote("EpSO")), size=1) + 
-    ggplot2::geom_step(data = jaccarddrugbank, ggplot2::aes_string(x="Elements", y="ESSO", colour = shQuote("ESSO")), size=1) + 
-    ggplot2::geom_step(data = jaccarddrugbank, ggplot2::aes_string(x="Elements", y="EPILONT", colour = shQuote("EPILONT")), size=1) + 
+    ggplot2::geom_step(data = dicedrugbank, ggplot2::aes_string(x="Elements", y="EpSO", colour = shQuote("EpSO")), size=1) + 
+    ggplot2::geom_step(data = dicedrugbank, ggplot2::aes_string(x="Elements", y="ESSO", colour = shQuote("ESSO")), size=1) + 
+    ggplot2::geom_step(data = dicedrugbank, ggplot2::aes_string(x="Elements", y="EPILONT", colour = shQuote("EPILONT")), size=1) + 
     ggplot2::coord_trans(limx = c(1,2603),limy = c(0.9375,1)) +
     ggplot2::scale_x_continuous(breaks = c(1, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2603)) +
     ggplot2::scale_y_continuous(breaks = c(0.9, 0.9125, 0.925, 0.9375, 0.95, 0.9625, 0.975, 0.9875, 1)) +
@@ -147,11 +147,11 @@ createCosinePlotDrugBank <- function (cosinedrugbank) {
                    axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
                    axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
                    axis.text.x = ggplot2::element_text(size = 11)) +
-    ggplot2::labs (y="CosineTopK", x="TopK", title = "CosineTopK against ATC", subtitle = "") +
+    ggplot2::labs (y="CosineTopK", x="TopK", title = "CosineTopK against DrugBank", subtitle = "") +
     ggplot2::geom_step(size=1) + 
-    ggplot2::geom_step(data = jaccarddrugbank, ggplot2::aes_string(x="Elements", y="EpSO", colour = shQuote("EpSO")), size=1) + 
-    ggplot2::geom_step(data = jaccarddrugbank, ggplot2::aes_string(x="Elements", y="ESSO", colour = shQuote("ESSO")), size=1) + 
-    ggplot2::geom_step(data = jaccarddrugbank, ggplot2::aes_string(x="Elements", y="EPILONT", colour = shQuote("EPILONT")), size=1) + 
+    ggplot2::geom_step(data = cosinedrugbank, ggplot2::aes_string(x="Elements", y="EpSO", colour = shQuote("EpSO")), size=1) + 
+    ggplot2::geom_step(data = cosinedrugbank, ggplot2::aes_string(x="Elements", y="ESSO", colour = shQuote("ESSO")), size=1) + 
+    ggplot2::geom_step(data = cosinedrugbank, ggplot2::aes_string(x="Elements", y="EPILONT", colour = shQuote("EPILONT")), size=1) + 
     ggplot2::coord_trans(limx = c(1,2603),limy = c(0.9375,1)) +
     ggplot2::scale_x_continuous(breaks = c(1, 250, 500, 750, 1000, 1250, 1500, 1750, 2000, 2250, 2603)) +
     ggplot2::scale_y_continuous(breaks = c(0.9, 0.9125, 0.925, 0.9375, 0.95, 0.9625, 0.975, 0.9875, 1)) +
