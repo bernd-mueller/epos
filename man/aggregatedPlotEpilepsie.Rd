@@ -2,32 +2,35 @@
 % Please edit documentation in R/doThePlotAggregatedEpilepsy.R
 \name{aggregatedPlotEpilepsie}
 \alias{aggregatedPlotEpilepsie}
-\title{Title}
+\title{Create a plot object that aggregates cosine, dice, and jaccard similarity coefficients for all three 
+epilepsy ontologies EpSO, ESSO, and EPILONT}
 \usage{
 aggregatedPlotEpilepsie(cosineepso, cosineesso, diceepso, diceesso, jaccardesso,
   jaccardepso)
 }
 \arguments{
-\item{cosineepso}{}
+\item{cosineepso}{vector with cosine similarity coefficient values for EpSO}
 
-\item{cosineesso}{}
+\item{cosineesso}{vector with cosine similarity coefficient values for ESSO}
 
-\item{diceepso}{}
+\item{diceepso}{vector with dice similarity coefficient values for EpSO}
 
-\item{diceesso}{}
+\item{diceesso}{vector with dice similarity coefficient values for ESSO}
 
-\item{jaccardesso}{}
+\item{jaccardesso}{vector with jaccard similarity coefficient values for ESSO}
 
-\item{jaccardepso}{}
+\item{jaccardepso}{vector with jaccard similarity coefficient values for EpSO}
 }
 \value{
 aggeps
 }
 \description{
-Title
+Create a plot object that aggregates cosine, dice, and jaccard similarity coefficients for all three 
+epilepsy ontologies EpSO, ESSO, and EPILONT
 }
 \examples{
 \dontrun{
-aggeps <- aggregatedPlotEpilepsie(cosineepso, cosineesso, diceepso, diceesso, jaccardesso, jaccardepso)
+aggeps <- aggregatedPlotEpilepsie(cosineepso, cosineesso, \\
+diceepso, diceesso, jaccardesso, jaccardepso)
 }
 }

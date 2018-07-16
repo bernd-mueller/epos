@@ -2,24 +2,24 @@
 % Please edit documentation in R/processATC.R
 \name{countATC}
 \alias{countATC}
-\title{Title}
+\title{Count the ATC second level classes for all drug names in the druglist}
 \usage{
 countATC(druglist, atchashda, atchashaa, atchashsec)
 }
 \arguments{
-\item{druglist}{}
+\item{druglist}{a character vector containing a list of drug names}
 
-\item{atchashda}{}
+\item{atchashda}{a hashmap with drug names as keys and atc classes as values}
 
-\item{atchashaa}{}
+\item{atchashaa}{a hashmap with atc classes as keys and atc names as values}
 
-\item{atchashsec}{}
+\item{atchashsec}{a hashmap containing the second level atc classes as keys and their names as values}
 }
 \value{
 atccounter
 }
 \description{
-Title
+Count the ATC second level classes for all drug names in the druglist
 }
 \examples{
 \dontrun{

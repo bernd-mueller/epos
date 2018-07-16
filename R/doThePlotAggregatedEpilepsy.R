@@ -1,18 +1,20 @@
-#' Title
+#' Create a plot object that aggregates cosine, dice, and jaccard similarity coefficients for all three 
+#' epilepsy ontologies EpSO, ESSO, and EPILONT
 #'
-#' @param cosineepso 
-#' @param cosineesso 
-#' @param diceepso 
-#' @param diceesso 
-#' @param jaccardesso 
-#' @param jaccardepso 
+#' @param cosineepso vector with cosine similarity coefficient values for EpSO
+#' @param cosineesso vector with cosine similarity coefficient values for ESSO
+#' @param diceepso vector with dice similarity coefficient values for EpSO
+#' @param diceesso vector with dice similarity coefficient values for ESSO
+#' @param jaccardesso vector with jaccard similarity coefficient values for ESSO
+#' @param jaccardepso vector with jaccard similarity coefficient values for EpSO
 #'
 #' @return aggeps
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' aggeps <- aggregatedPlotEpilepsie(cosineepso, cosineesso, diceepso, diceesso, jaccardesso, jaccardepso)
+#' aggeps <- aggregatedPlotEpilepsie(cosineepso, cosineesso, \
+#' diceepso, diceesso, jaccardesso, jaccardepso)
 #' }
 aggregatedPlotEpilepsie <- function (cosineepso, cosineesso, diceepso, diceesso, jaccardesso, jaccardepso) {
   # DrugBank: darkturquoise     #00CED1

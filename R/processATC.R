@@ -70,12 +70,12 @@ filterApprovedDrugs <- function (druglist, atchashda) {
   return(approveddrugs)
 }
 
-#' Title
+#' Count the ATC second level classes for all drug names in the druglist
 #'
-#' @param druglist 
-#' @param atchashda 
-#' @param atchashaa 
-#' @param atchashsec 
+#' @param druglist a character vector containing a list of drug names
+#' @param atchashda a hashmap with drug names as keys and atc classes as values
+#' @param atchashaa a hashmap with atc classes as keys and atc names as values
+#' @param atchashsec a hashmap containing the second level atc classes as keys and their names as values
 #'
 #' @return atccounter
 #' @export
@@ -109,17 +109,40 @@ countATC <- function (druglist, atchashda, atchashaa, atchashsec) {
   return (atccounter)
 }
 
+#' Sort a hashmap by its values
+#'
+#' @param ahashmap a hashmap that will be sorted by its values
+#'
+#' @return sortedhm the sorted hashmap
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' shm <- sortHashMapByValue(ahm)
+#' }
 sortHashMapByValue <- function (ahashmap) {
   thekeys <- ahashmap$keys()
   thevalues <- as.integer(ahashmap$values())
   m <- matrix(thevalues, nrow=length(thekeys))
   rownames(m) <- thekeys
-  res <- sort(rowSums(m), decreasing = TRUE)
-  return (res)
+  sortedhm <- sort(rowSums(m), decreasing = TRUE)
+  return (sortedhm)
 }
 
+#' Read the second level ATC classes from the file drugbankatc-secondlevel.map
+#'
+#' @param filename the file name that is supposed to be drugbankatc-secondlevel.map
+#' @param seperator the csv file delimiter
+#'
+#' @return atchashsec a hashmap with second level ATC classes as keys and their names as values
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' atchashsec <- readSecondLevelATC("inst/misc/drugbankatc-secondlevel.map", "\t")
+#' }
 readSecondLevelATC <- function (filename, seperator) {
-  secondatc <- read.csv(file = "inst/misc/drugbankatc-secondlevel.map", sep = "\t")
+  secondatc <- utils::read.csv(file = "inst/misc/drugbankatc-secondlevel.map", sep = "\t")
   atcnames <- secondatc[,2]
   atccodes <- secondatc[,1]
   catccodes <- as.character(atccodes)
