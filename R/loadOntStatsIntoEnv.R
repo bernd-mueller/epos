@@ -73,22 +73,3 @@ loadEPILONT <- function () {
   aepi <- genDictListFromRawFreq(epi)
   return (aepi)
 }
-
-#' Clears object that was loaded from harddrive into a list of terms sorted by frequency
-#'
-#' @param topfreqdictraw list with terms from a dictionary sorted by frequency
-#'
-#' @return a sorted list of terms
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' genDictListFromRawFreq(epi)
-#' }
-genDictListFromRawFreq <- function (topfreqdictraw) {
-  # remove last element from all lists because it is falsely a 1 from previous processing
-  la = length(topfreqdictraw)
-  topfreqdictraw <- topfreqdictraw[-la]
-  a <- attributes(topfreqdictraw)$names
-  a
-}

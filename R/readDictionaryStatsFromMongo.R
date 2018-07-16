@@ -2,6 +2,7 @@
 #'
 #' @param dictionary Character vector that is the name of a dicitonary having pre-calculated stats. This can be
 #' MeSH, DrugBank, Agrovoc, EpSO, ESSO, or EPILONT
+#' @param collection the name of the MongoDB collection to be used
 #' 
 #'
 #' @return a sorted hashmap containing all found entities from the respective dictionaries with frequencies
