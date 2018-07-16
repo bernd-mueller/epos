@@ -22,7 +22,7 @@ getTermMatrix <- function(dictionary, collection) {
     "EpSO" = "EpSO",
     "ESSO" = "ESSO",
     "EPILONT" = "EPLIONT")
-  
+   
   ## TDM Server
   serverip <- "134.95.56.146"
   mydb <- "snoke"
