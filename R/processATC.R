@@ -120,7 +120,7 @@ countATC <- function (druglist, atchashda, atchashaa, atchashlevel, length) {
   for (drug in druglist) {
     atccode <- atchashda$find(drug)
     atcname <- atchashaa$find(atccode)
-    atccode <- substr(atccode, 1, 4)
+    atccode <- substr(atccode, 1, length)
     atcup   <- atchashsec$find(atccode)
     atckey <- paste(atcup, " ", atccode, sep = "")
     if (counter == 0) {
@@ -194,7 +194,7 @@ readSecondLevelATC <- function (filename, seperator) {
 #' atchashthird <- readThirdLevelATC("inst/resources/drugbankatc-thirdlevel.map", "\t")
 #' }
 readThirdLevelATC <- function (filename, seperator) {
-  thirddatc <- utils::read.csv(file = filename, sep = seperator)
+  thirdatc <- utils::read.csv(file = filename, sep = seperator)
   atcnames <- thirdatc[,2]
   atccodes <- thirdatc[,1]
   catccodes <- as.character(atccodes)
