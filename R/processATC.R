@@ -8,10 +8,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' atchashda <- readAtcMapIntoHashMapDrugNamesAtcCodes(file = "inst/misc/db-atc.map", sep = "\t")
+#' atchashda <- readAtcMapIntoHashMapDrugNamesAtcCodes(file = "inst/resources/db-atc.map", sep = "\t")
 #' }
 readAtcMapIntoHashMapDrugNamesAtcCodes <-  function (filename, seperator) {
-  atcmap <- utils::read.csv(file = "inst/misc/db-atc.map", sep = "\t")
+  atcmap <- utils::read.csv(file = filename, sep = seperator)
   drugnames <- atcmap[,4]
   atccodes <- atcmap[,2]
   catccodes <- as.character(atccodes)
@@ -30,10 +30,10 @@ readAtcMapIntoHashMapDrugNamesAtcCodes <-  function (filename, seperator) {
 #'
 #' @examples
 #' \dontrun{
-#' atchashaa <- readAtcMapIntoHashMapAtcCodesAtcNames(file = "inst/misc/db-atc.map", sep = "\t")
+#' atchashaa <- readAtcMapIntoHashMapAtcCodesAtcNames(file = "inst/resources/db-atc.map", sep = "\t")
 #' }
 readAtcMapIntoHashMapAtcCodesAtcNames <-  function (filename, seperator) {
-  atcmap <- utils::read.csv(file = "inst/misc/db-atc.map", sep = "\t")
+  atcmap <- utils::read.csv(file = filename, sep = seperator)
   atcnames <- atcmap[,3]
   atccodes <- atcmap[,2]
   catccodes <- as.character(atccodes)
@@ -70,6 +70,36 @@ filterApprovedDrugs <- function (druglist, atchashda) {
   return(approveddrugs)
 }
 
+#' Filter a given list of drug names for having an ATC code starting with N indicating to be a 
+#' drug for the Nervous System
+#'
+#' @param druglist a list of drug names
+#' @param atchashda a hashmap containing the drug names as keys
+#'
+#' @return neurodrugs a hashmap filtered for having an ATC code starting with N
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' neurodrugs <- filterNeuroDrugs(druglist, atchashda)
+#' }
+filterNeuroDrugs <- function (druglist, atchashda) {
+  counter = 0
+  for (drug in druglist) {
+    if (drug %in% atchashda$keys()) {
+      atccode <- atchashda$find(drug)
+      if (startsWith(atccode, "N")) {
+        if (counter == 0) {
+          neurodrugs <- drug
+        } else {
+          neurodrugs <- c(neurodrugs, drug)
+        }
+        counter = counter + 1
+      }
+    }
+  }
+  return(neurodrugs)
+}
 #' Count the ATC second level classes for all drug names in the druglist
 #'
 #' @param druglist a character vector containing a list of drug names
@@ -84,13 +114,13 @@ filterApprovedDrugs <- function (druglist, atchashda) {
 #' \dontrun{
 #' atccounter <- countATC(druglist, atchashda, atchashaa, atchashsec)
 #' }
-countATC <- function (druglist, atchashda, atchashaa, atchashsec) {
+countATC <- function (druglist, atchashda, atchashaa, atchashlevel, length) {
   counter <- 0
   
   for (drug in druglist) {
     atccode <- atchashda$find(drug)
     atcname <- atchashaa$find(atccode)
-    atccode <- substr(atccode, 1, 3)
+    atccode <- substr(atccode, 1, 4)
     atcup   <- atchashsec$find(atccode)
     atckey <- paste(atcup, " ", atccode, sep = "")
     if (counter == 0) {
@@ -139,14 +169,36 @@ sortHashMapByValue <- function (ahashmap) {
 #'
 #' @examples
 #' \dontrun{
-#' atchashsec <- readSecondLevelATC("inst/misc/drugbankatc-secondlevel.map", "\t")
+#' atchashsec <- readSecondLevelATC("inst/resources/drugbankatc-secondlevel.map", "\t")
 #' }
 readSecondLevelATC <- function (filename, seperator) {
-  secondatc <- utils::read.csv(file = "inst/misc/drugbankatc-secondlevel.map", sep = "\t")
+  secondatc <- utils::read.csv(file = filename, sep = seperator)
   atcnames <- secondatc[,2]
   atccodes <- secondatc[,1]
   catccodes <- as.character(atccodes)
   catcnames <- as.character(atcnames)
   atchashsec <- hashmap::hashmap(catccodes, catcnames)
   return (atchashsec)
+}
+
+#' Read the third level ATC classes from the file drugbankatc-thirdlevel.map
+#'
+#' @param filename the file name that is supposed to be drugbankatc-thirdlevel.map
+#' @param seperator the csv file delimiter
+#'
+#' @return atchashthird a hashmap with third level ATC classes as keys and their names as values
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' atchashthird <- readThirdLevelATC("inst/resources/drugbankatc-thirdlevel.map", "\t")
+#' }
+readThirdLevelATC <- function (filename, seperator) {
+  thirddatc <- utils::read.csv(file = filename, sep = seperator)
+  atcnames <- thirdatc[,2]
+  atccodes <- thirdatc[,1]
+  catccodes <- as.character(atccodes)
+  catcnames <- as.character(atcnames)
+  atchashthird <- hashmap::hashmap(catccodes, catcnames)
+  return (atchashthird)
 }

@@ -30,9 +30,9 @@ createATCBarChart <- function (shm, plottitle) {
     }
     counter <- counter + 1
   }
-  labels <- c(labels, "Other")
-  counts <- c(as.integer(counts), sum)
-  
+  #labels <- c(labels, "Other")
+  #counts <- c(as.integer(counts), sum)
+  counts <- c(as.integer(counts))
 
   dpie <- data.frame(ATC=labels, Count = counts)
   levels(dpie$ATC) <- gsub("([A-Z]+ [A-Z]+ )([A-Z]+ )", "\\1   \n\\2", levels(dpie$ATC))
@@ -53,7 +53,7 @@ createATCBarChart <- function (shm, plottitle) {
                    axis.text.x = ggplot2::element_text(size = 9)) + 
     ggplot2::geom_bar(stat="identity", width=.5, fill="tomato3") + 
     ggplot2::labs(title="",  subtitle=plottitle, caption="") +
-    ggplot2::theme(axis.text.x = ggplot2::element_text(angle=80, vjust=0.6))
+    ggplot2::theme(axis.text.x = ggplot2::element_text(angle=65, vjust=0.6))
   
   return(plotbar)
 }
