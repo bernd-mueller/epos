@@ -5,8 +5,8 @@
 \title{Create a plot object that aggregates cosine, dice, and jaccard similarity coefficients for all three 
 epilepsy ontologies EpSO, ESSO, and EPILONT}
 \usage{
-aggregatedPlotEpilepsie(cosineepso, cosineesso, diceepso, diceesso, jaccardesso,
-  jaccardepso)
+aggregatedPlotEpilepsie(cosineepso, cosineesso, diceepso, diceesso,
+  jaccardesso, jaccardepso)
 }
 \arguments{
 \item{cosineepso}{vector with cosine similarity coefficient values for EpSO}

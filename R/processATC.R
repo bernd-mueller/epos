@@ -8,7 +8,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' atchashda <- readAtcMapIntoHashMapDrugNamesAtcCodes(file = "inst/resources/db-atc.map", sep = "\t")
+#' atchashda <- readAtcMapIntoHashMapDrugNamesAtcCodes(filename = "inst/resources/db-atc.map", seperator = "\t")
 #' }
 readAtcMapIntoHashMapDrugNamesAtcCodes <-  function (filename, seperator) {
   atcmap <- utils::read.csv(file = filename, sep = seperator)
@@ -30,7 +30,7 @@ readAtcMapIntoHashMapDrugNamesAtcCodes <-  function (filename, seperator) {
 #'
 #' @examples
 #' \dontrun{
-#' atchashaa <- readAtcMapIntoHashMapAtcCodesAtcNames(file = "inst/resources/db-atc.map", sep = "\t")
+#' atchashaa <- readAtcMapIntoHashMapAtcCodesAtcNames(filename = "inst/resources/db-atc.map", seperator = "\t")
 #' }
 readAtcMapIntoHashMapAtcCodesAtcNames <-  function (filename, seperator) {
   atcmap <- utils::read.csv(file = filename, sep = seperator)
@@ -105,14 +105,15 @@ filterNeuroDrugs <- function (druglist, atchashda) {
 #' @param druglist a character vector containing a list of drug names
 #' @param atchashda a hashmap with drug names as keys and atc classes as values
 #' @param atchashaa a hashmap with atc classes as keys and atc names as values
-#' @param atchashsec a hashmap containing the second level atc classes as keys and their names as values
+#' @param atchashlevel a hashmap containing atc classes from same level as keys and their names as values
+#' @param length length of the ATC code
 #'
 #' @return atccounter
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' atccounter <- countATC(druglist, atchashda, atchashaa, atchashsec)
+#' atccounter <- countATC(druglist, atchashda, atchashaa, atchashlevel, length)
 #' }
 countATC <- function (druglist, atchashda, atchashaa, atchashlevel, length) {
   counter <- 0

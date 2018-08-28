@@ -50,7 +50,7 @@ createATCBarChart <- function (shm, plottitle) {
                    plot.subtitle = ggplot2::element_text(size = 11, face = "bold"),
                    axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
                    axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
-                   axis.text.x = ggplot2::element_text(size = 9)) + 
+                   axis.text.x = ggplot2::element_text(size = 11, face = "bold")) + 
     ggplot2::geom_bar(stat="identity", width=.5, fill="tomato3") + 
     ggplot2::labs(title="",  subtitle=plottitle, caption="") +
     ggplot2::theme(axis.text.x = ggplot2::element_text(angle=65, vjust=0.6))

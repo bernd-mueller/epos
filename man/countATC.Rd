@@ -4,7 +4,7 @@
 \alias{countATC}
 \title{Count the ATC second level classes for all drug names in the druglist}
 \usage{
-countATC(druglist, atchashda, atchashaa, atchashsec)
+countATC(druglist, atchashda, atchashaa, atchashlevel, length)
 }
 \arguments{
 \item{druglist}{a character vector containing a list of drug names}
@@ -13,7 +13,9 @@ countATC(druglist, atchashda, atchashaa, atchashsec)
 
 \item{atchashaa}{a hashmap with atc classes as keys and atc names as values}
 
-\item{atchashsec}{a hashmap containing the second level atc classes as keys and their names as values}
+\item{atchashlevel}{a hashmap containing atc classes from same level as keys and their names as values}
+
+\item{length}{length of the ATC code}
 }
 \value{
 atccounter
@@ -23,6 +25,6 @@ Count the ATC second level classes for all drug names in the druglist
 }
 \examples{
 \dontrun{
-atccounter <- countATC(druglist, atchashda, atchashaa, atchashsec)
+atccounter <- countATC(druglist, atchashda, atchashaa, atchashlevel, length)
 }
 }
