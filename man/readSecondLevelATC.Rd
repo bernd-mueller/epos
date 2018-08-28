@@ -19,6 +19,6 @@ Read the second level ATC classes from the file drugbankatc-secondlevel.map
 }
 \examples{
 \dontrun{
-atchashsec <- readSecondLevelATC("inst/misc/drugbankatc-secondlevel.map", "\\t")
+atchashsec <- readSecondLevelATC("inst/resources/drugbankatc-secondlevel.map", "\\t")
 }
 }

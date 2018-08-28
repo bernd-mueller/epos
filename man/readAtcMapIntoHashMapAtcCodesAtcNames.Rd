@@ -19,6 +19,6 @@ Processes the input file db-atc.map to form a HashMap containing the drug names 
 }
 \examples{
 \dontrun{
-atchashaa <- readAtcMapIntoHashMapAtcCodesAtcNames(file = "inst/misc/db-atc.map", sep = "\\t")
+atchashaa <- readAtcMapIntoHashMapAtcCodesAtcNames(filename = "inst/resources/db-atc.map", seperator = "\\t")
 }
 }
