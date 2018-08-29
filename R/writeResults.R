@@ -6,6 +6,7 @@
 #' @param dneuromaxk data frame containing columns for each intersection, ATC class, and reference list
 #'
 #' @return data frame with all resuults
+#' 
 #' @export
 #'
 #' @examples
@@ -173,6 +174,9 @@ createDashVectorForATC <- function (druglist, atchashda, atchashsec, slatc) {
 #' @param vennvector vector containing 
 #'
 #' @return res list with elements from the vector
+#' 
+#' @importFrom stringr str_replace_all
+#' 
 #' @export
 #'
 #' @examples

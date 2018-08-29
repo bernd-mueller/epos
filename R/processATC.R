@@ -113,6 +113,9 @@ filterNeuroDrugs <- function (druglist, atchashda) {
 #' @param length length of the ATC code
 #'
 #' @return atccounter
+#' 
+#' @importFrom hashmap hashmap
+#' 
 #' @export
 #'
 #' @examples
@@ -129,7 +132,7 @@ countATC <- function (druglist, atchashda, atchashaa, atchashlevel, length) {
     atcup   <- atchashlevel$find(atccode)
     atckey <- paste(atcup, " ", atccode, sep = "")
     if (counter == 0) {
-      atccounter <- hashmap (atckey, 1)
+      atccounter <- hashmap::hashmap (atckey, 1)
     } else {
       curcount <- 1
       if (atckey %in% atccounter$keys()) {
@@ -172,7 +175,7 @@ sortHashMapByValue <- function (ahashmap) {
 #' @return atchashsec a hashmap with second level ATC classes as keys and their names as values
 #' 
 #' @importFrom utils read.csv
-#' @importFrom hashmap hashap
+#' @importFrom hashmap hashmap
 #' 
 #' @export
 #'
