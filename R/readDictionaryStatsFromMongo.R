@@ -44,7 +44,7 @@ getTermMatrix <- function(dictionary, collection) {
   
   ## create the counter
   counter = 1
-  hm <- hashmap("1", "1")
+  hm <- hashmap::hashmap("1", "1")
   
   while(length(doc <- iter$one())) {
     curdoc <- doc

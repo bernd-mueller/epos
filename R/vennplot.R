@@ -1,6 +1,9 @@
 #' Draw venn diagram with example values
 #'
 #' @return venn diagram
+#' 
+#' @importFrom VennDiagram draw.triple.venn
+#' 
 #' @export
 #'
 #' @examples
