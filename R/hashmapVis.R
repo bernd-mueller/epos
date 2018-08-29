@@ -4,6 +4,18 @@
 #' @param plottitle character vector that is the title of the plot
 #'
 #' @return plotbar a ggplot2 object containing the plot
+#' 
+#' @importFrom ggplot2 ggplot
+#' @importFrom ggplot2 aes_string
+#' @importFrom ggplot2 theme_minimal
+#' @importFrom ggplot2 theme
+#' @importFrom ggplot2 element_line
+#' @importFrom ggplot2 element_text
+#' @importFrom ggplot2 element_blank
+#' @importFrom ggplot2 geom_bar
+#' @importFrom ggplot2 labs
+#' @importFrom ggplot2 theme
+#' 
 #' @export
 #'
 #' @examples

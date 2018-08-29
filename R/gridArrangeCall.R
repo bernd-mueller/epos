@@ -9,7 +9,8 @@
 #' @param jaccardmeshplot plot with jaccard coefficients against MeSH
 #' @param jaccarddrugbankplot plot with jaccard coefficients against DrugBank
 #' @param jaccardepilepsyplot plot with jaccard coefficients of Epilepsy Ontologies
-
+#'
+#' @importFrom gridExtra grid.arrange
 #'
 #' @return full
 #'

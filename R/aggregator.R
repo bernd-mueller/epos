@@ -1,3 +1,14 @@
+#' Aggregat a list to matrix
+#'
+#' @param x this is a list
+#'
+#' @return res this is a matrix
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' getPerms(c("a",b"))
+#' }
 getPerms <- function(x) {
   if (length(x) == 1) {
     return(x)

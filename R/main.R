@@ -1,6 +1,10 @@
 #' Main function to call everything and produce the results
 #'
 #' @return result table
+#' 
+#' @importFrom TopKLists calculate.maxK
+#' @importFrom xtable xtable
+#' 
 #' @export
 #'
 #' @examples
@@ -33,5 +37,9 @@ dneuromaxk <- TopKLists::calculate.maxK(dneuro, 3, 5, 10)
 
 neurospace <- as.character(dneuromaxk$topkspace)
 
-return (createBaseTable(neurospace, atchashda, atchashsec, dneuromaxk))
+neurotable <- createBaseTable(neurospace, atchashda, atchashsec, dneuromaxk)
+
+print(xtable::xtable(neurotable, type = "latex", tabular.environment="longtable"), file = "neurotable.tex")
+
+return (neurotable)
 }

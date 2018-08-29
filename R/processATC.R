@@ -4,11 +4,15 @@
 #' @param seperator character vector with the seperator used within the map-file
 #'
 #' @return atchashda hashmap with drug names as keys and atc codes as values 
+#' 
+#' @importFrom utils read.csv
+#' @importFrom hashmap hashmap
+#' 
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' atchashda <- readAtcMapIntoHashMapDrugNamesAtcCodes(filename = "inst/resources/db-atc.map", seperator = "\t")
+#' atchashda <- readAtcMapIntoHashMapDrugNamesAtcCodes(filename = "db-atc.map", seperator = "\t")
 #' }
 readAtcMapIntoHashMapDrugNamesAtcCodes <-  function (filename, seperator) {
   atcmap <- utils::read.csv(file = filename, sep = seperator)
@@ -30,7 +34,7 @@ readAtcMapIntoHashMapDrugNamesAtcCodes <-  function (filename, seperator) {
 #'
 #' @examples
 #' \dontrun{
-#' atchashaa <- readAtcMapIntoHashMapAtcCodesAtcNames(filename = "inst/resources/db-atc.map", seperator = "\t")
+#' atchashaa <- readAtcMapIntoHashMapAtcCodesAtcNames(filename = "db-atc.map", seperator = "\t")
 #' }
 readAtcMapIntoHashMapAtcCodesAtcNames <-  function (filename, seperator) {
   atcmap <- utils::read.csv(file = filename, sep = seperator)
@@ -122,7 +126,7 @@ countATC <- function (druglist, atchashda, atchashaa, atchashlevel, length) {
     atccode <- atchashda$find(drug)
     atcname <- atchashaa$find(atccode)
     atccode <- substr(atccode, 1, length)
-    atcup   <- atchashsec$find(atccode)
+    atcup   <- atchashlevel$find(atccode)
     atckey <- paste(atcup, " ", atccode, sep = "")
     if (counter == 0) {
       atccounter <- hashmap (atckey, 1)
@@ -166,6 +170,10 @@ sortHashMapByValue <- function (ahashmap) {
 #' @param seperator the csv file delimiter
 #'
 #' @return atchashsec a hashmap with second level ATC classes as keys and their names as values
+#' 
+#' @importFrom utils read.csv
+#' @importFrom hashmap hashap
+#' 
 #' @export
 #'
 #' @examples
@@ -188,6 +196,10 @@ readSecondLevelATC <- function (filename, seperator) {
 #' @param seperator the csv file delimiter
 #'
 #' @return atchashthird a hashmap with third level ATC classes as keys and their names as values
+#' 
+#' @importFrom utils read.csv
+#' @importFrom hashmap hashmap
+#' 
 #' @export
 #'
 #' @examples
