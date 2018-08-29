@@ -16,7 +16,11 @@ Imports: mongolite,
     tidyr,
     dplyr,
     testthat,
-    gridExtra
+    gridExtra,
+    TopKLists,
+    VennDiagram,
+    stringr,
+    xtable
 Suggests: 
     knitr,
     rmarkdown

@@ -7,7 +7,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' getPerms(c("a",b"))
+#' getPerms(c("a","b"))
 #' }
 getPerms <- function(x) {
   if (length(x) == 1) {
