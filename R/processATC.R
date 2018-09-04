@@ -102,7 +102,9 @@ filterNeuroDrugs <- function (druglist, atchashda) {
       }
     }
   }
-  return(neurodrugs)
+  if (counter != 0) {
+    return(neurodrugs)
+  }
 }
 #' Count the ATC second level classes for all drug names in the druglist
 #'
