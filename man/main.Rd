@@ -14,6 +14,6 @@ Main function to call everything and produce the results
 }
 \examples{
 \dontrun{
-main()
+main(FALSE)
 }
 }
