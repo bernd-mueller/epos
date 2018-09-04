@@ -58,7 +58,7 @@ main <- function () {
       type = "latex",
       tabular.environment = "longtable"
     ),
-    file = "neurotable.tex"
+    file = "inst/results/neurotable.tex"
   )
   
   return (neurotable)
