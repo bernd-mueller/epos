@@ -1,4 +1,4 @@
 library(testthat)
-library(epilepsyontologysimilarities)
+library(epos)
 
-test_check("epilepsyontologysimilarities")
+test_check("epos")

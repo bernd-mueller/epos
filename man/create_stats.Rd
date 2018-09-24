@@ -16,7 +16,9 @@ stats the data.frame metrics with added columns for mean, media, and standard de
 Calculate data.frame containing stats for mean, median, and standard deviation
 }
 \examples{
-\dontrun{
-stats <- create_stats(metrics)
-}
+dcframe <- calcCosineAgainstDrugBank ()
+ddframe <- calcDiceAgainstDrugBank ()
+djframe <- calcJaccardAgainstDrugBank()
+meshmetrics <- create_metrics (dcframe$MeSH, ddframe$MeSH, djframe$MeSH, djframe$Elements)
+meshstats <- create_stats(meshmetrics)
 }

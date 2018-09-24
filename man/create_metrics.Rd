@@ -22,7 +22,8 @@ metrics data.frame containing cosine, dice, jaccard, elements, and mean and medi
 Calculate required metrics for the aggregated plots against MeSH, DrugBank, and all Epilepsy Ontologies
 }
 \examples{
-\dontrun{
-metrics <- create_metrics(cosine, dice, jaccard, elements)
-}
+dcframe <- calcCosineAgainstDrugBank ()
+ddframe <- calcDiceAgainstDrugBank ()
+djframe <- calcJaccardAgainstDrugBank()
+meshmetrics <- create_metrics (dcframe$MeSH, ddframe$MeSH, djframe$MeSH, djframe$Elements)
 }

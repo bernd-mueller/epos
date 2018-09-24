@@ -20,7 +20,5 @@ dice double vlaue with the dice similarity coefficient
 Calculate dice similarity metric
 }
 \examples{
-\dontrun{
 dice(1,3, 4)
-}
 }

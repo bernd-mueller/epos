@@ -1,4 +1,4 @@
-library(epilepsyontologysimilarities)
+library(epos)
 context("test_cosine")
 
 test_that("Test cosine if it calculates the correct cosine coefficient", {

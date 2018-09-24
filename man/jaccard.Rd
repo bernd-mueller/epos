@@ -22,7 +22,5 @@ jac double value with the jaccard similarity coefficient
 Calculate jaccard similarity metric for two sets a and b
 }
 \examples{
-\dontrun{
 jaccard(1,3)
-}
 }

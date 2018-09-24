@@ -20,7 +20,5 @@ cosine double vlaue with the cosine similarity coefficient
 Calculate cosine similarity metric
 }
 \examples{
-\dontrun{
-cosine(1,3)
-}
+cosine(1,3,4)
 }

@@ -1,4 +1,4 @@
-library(epilepsyontologysimilarities)
+library(epos)
 context("test_calcJaccard")
 
 test_that("Test calcJaccard if it calculates the correct vector with jaccard coefficients", {

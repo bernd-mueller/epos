@@ -13,7 +13,5 @@ result table
 Main function to call everything and produce the results
 }
 \examples{
-\dontrun{
-main(FALSE)
-}
+main()
 }

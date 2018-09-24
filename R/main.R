@@ -8,9 +8,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' main(FALSE)
-#' }
+#' main()
 main <- function () {
   atchashda <-
     readAtcMapIntoHashMapDrugNamesAtcCodes(filename = "inst/resources/db-atc.map", seperator = "\t")
@@ -21,16 +19,11 @@ main <- function () {
   atchashsec <-
     readSecondLevelATC("inst/resources/drugbankatc-secondlevel.map", "\t")
   
-  if (FALSE) {
-    tepso <- getTermMatrix("DrugBank", "snoke260618aggEpilepsieEpSO")
-    tesso <- getTermMatrix("DrugBank", "snoke260618aggEpilepsieESSO")
-    tepi <-
-      getTermMatrix("DrugBank", "snoke260618aggEpilepsieEPILONT")
-  } else {
-    load("inst/resources/tepso.rda")
-    load("inst/resources/tesso.rda")
-    load("inst/resources/tepi.rda")
-  }
+
+  load("inst/resources/tepso.rda")
+  load("inst/resources/tesso.rda")
+  load("inst/resources/tepi.rda")
+  
   lepso <- genDictListFromRawFreq(tepso)
   neuroepso <- filterNeuroDrugs(lepso, atchashda)
   
