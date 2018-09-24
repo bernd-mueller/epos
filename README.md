@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/ZBMEDLABS/epilepsyontologysimilarities.svg?branch=master)](https://travis-ci.org/ZBMEDLABS/epilepsyontologysimilarities)
 
-# epilepsyontologysimilarities
+# epos
 This is an R package that is developed for analyzing and visualizing statistical information of biomedical named entities that were automatically identified with a UIMA-based text mining workflow on the corpus of LIVIVO. The major scope of this R package is the comparison of drug names that co-occur with entities of epilepsy ontologies in documents of the LIVIVO corpus.
 
 Basically, the UIMA-based workflow takes as input a dictionary containing biomedical entities with synonyms for identifying them in documents of the LIVIVO corpus. The epilepsy ontologies EpSO, ESSO, and EPILONT are used for creating three different dictionaries for epilepsy. The current version of DrugBank is taken for creating a dictionary for drug names. The results of the text mining workflow is written into a MongoDB databases. Finally, the information in the MongoDB is aggregated for creating lists of drug names that are sorted by their frequency of documents in which they co-occur with entities from each of the epilepsy dictionaries. These three frequency sorted lists are saved as R-objects in inst/resources/[tepso.rda,tesso.rda,tepi.rda].
