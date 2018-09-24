@@ -18,7 +18,5 @@ ja list with length of set b containing the jaccard similarity coefficient for e
 Calculate the jaccard coefficient for two lists a and b
 }
 \examples{
-\dontrun{
 calcJaccard(c(1,2,3), c(2,3,4))
-}
 }

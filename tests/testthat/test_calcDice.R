@@ -1,4 +1,4 @@
-library(epilepsyontologysimilarities)
+library(epos)
 context("test_calcDice")
 
 test_that("Test calcDice if it calculates the correct vector with dice coefficients", {

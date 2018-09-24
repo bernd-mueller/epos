@@ -18,7 +18,5 @@ co list with length of set b containing the cosine similarity coefficient at eac
 Calculate the cosine similarity metric for two lists a and b
 }
 \examples{
-\dontrun{
 calcCosine(c(1,2,3), c(2,3,4))
-}
 }

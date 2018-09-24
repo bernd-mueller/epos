@@ -7,9 +7,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' calcJaccard(c(1,2,3), c(2,3,4))
-#' }
 calcJaccard <- function (a, b) {
   la = length(a)
   lb = length(b)
@@ -51,9 +49,7 @@ calcJaccard <- function (a, b) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' jaccard(1,3)
-#' }
 jaccard <- function (ainterb, aunionb, lengtha, lengthb) {
   jaccoefficient <- (ainterb) / (lengtha+lengthb-ainterb)
   jac <- 1-jaccoefficient
@@ -69,9 +65,7 @@ jaccard <- function (ainterb, aunionb, lengtha, lengthb) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' calcDice(c(1,2,3), c(2,3,4))
-#' }
 calcDice <- function (a, b) {
   la = length(a)
   lb = length(b)
@@ -107,9 +101,7 @@ calcDice <- function (a, b) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' dice(1,3, 4)
-#' }
 dice <- function (ainterb, lengtha, lengthb) {
   dice <- 2*(ainterb/(lengtha+lengthb))
   dice <- 1- dice
@@ -125,9 +117,7 @@ dice <- function (ainterb, lengtha, lengthb) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' calcCosine(c(1,2,3), c(2,3,4))
-#' }
 calcCosine <- function (a, b) {
   la = length(a)
   lb = length(b)
@@ -164,9 +154,7 @@ calcCosine <- function (a, b) {
 #' @export
 #'
 #' @examples
-#' \dontrun{
-#' cosine(1,3)
-#' }
+#' cosine(1,3,4)
 cosine <- function (ainterb, lengtha, lengthb) {
   cosine <- (ainterb) / (lengtha^(1/2) * lengthb^(1/2))
   cosine <- 1 - cosine
