@@ -1,7 +1,7 @@
 #' Calculate cosine similarity coefficients for each of the frequency vector mesh, epso
 #' esso, and epi against the drugbank vector
 #'
-#' @return dcframe dataframe with the columns for Elements, MeSH, EpSO, ESSO and EPILONT
+#' @return dcframe dataframe with the columns for Elements, MeSH, EpSO, ESSO and EPILONT 
 #'
 #' @examples
 #' dcframe <- calcCosineAgainstDrugBank ()
