@@ -20,9 +20,9 @@ main <- function () {
     readSecondLevelATC("inst/resources/drugbankatc-secondlevel.map", "\t")
   
 
-  load("inst/resources/tepso.rda")
-  load("inst/resources/tesso.rda")
-  load("inst/resources/tepi.rda")
+  tepso <- loadDictionaryFrequencyDrugBankCoOcEpSO ()
+  tesso <- loadDictionaryFrequencyDrugBankCoOcESSO ()
+  tepi <- loadDictionaryFrequencyDrugBankCoOcEPILONT ()
   
   lepso <- genDictListFromRawFreq(tepso)
   neuroepso <- filterNeuroDrugs(lepso, atchashda)

@@ -4,14 +4,7 @@
 \alias{createJaccardFrameESSO}
 \title{Creates data frame for plotting the jaccard coefficients against ESSO}
 \usage{
-createJaccardFrameESSO(epso, esso, epi)
-}
-\arguments{
-\item{epso}{list with epso terms sorted by frequency}
-
-\item{esso}{list with esso terms sorted by frequency}
-
-\item{epi}{list with epi terms sorted by frequency}
+createJaccardFrameESSO()
 }
 \value{
 jaccardesso the data frame for the jaccard coefficient against ESSO
@@ -20,7 +13,6 @@ jaccardesso the data frame for the jaccard coefficient against ESSO
 Creates data frame for plotting the jaccard coefficients against ESSO
 }
 \examples{
-\dontrun{
-jaccardesso <- createJaccardFrameESSO(epso, esso, epi)
-}
+jaccardesso <- createJaccardFrameESSO()
+
 }

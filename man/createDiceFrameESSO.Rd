@@ -4,14 +4,7 @@
 \alias{createDiceFrameESSO}
 \title{Creates data frame for plotting the dice coefficients against ESSO}
 \usage{
-createDiceFrameESSO(epso, esso, epi)
-}
-\arguments{
-\item{epso}{list with epso terms sorted by frequency}
-
-\item{esso}{list with esso terms sorted by frequency}
-
-\item{epi}{list with epi terms sorted by frequency}
+createDiceFrameESSO()
 }
 \value{
 diceesso the data frame for the dice coefficient against ESSO
@@ -20,7 +13,6 @@ diceesso the data frame for the dice coefficient against ESSO
 Creates data frame for plotting the dice coefficients against ESSO
 }
 \examples{
-\dontrun{
-diceesso <- createDiceFrameESSO(epso, esso, epi)
-}
+diceesso <- createDiceFrameESSO()
+
 }

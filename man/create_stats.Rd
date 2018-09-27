@@ -21,4 +21,5 @@ ddframe <- calcDiceAgainstDrugBank ()
 djframe <- calcJaccardAgainstDrugBank()
 meshmetrics <- create_metrics (dcframe$MeSH, ddframe$MeSH, djframe$MeSH, djframe$Elements)
 meshstats <- create_stats(meshmetrics)
+
 }

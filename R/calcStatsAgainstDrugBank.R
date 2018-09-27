@@ -1,68 +1,90 @@
-#' Creates data frame for plotting the dice coefficients against DrugBank
+#' Calculate cosine similarity coefficients for each of the frequency vector mesh, epso
+#' esso, and epi against the drugbank vector
 #'
-#' @param mesh list with mesh terms sorted by frequency
-#' @param drugbank list with drugbank terms sorted by frequency 
-#' @param epso list with epso terms sorted by frequency
-#' @param esso list with esso terms sorted by frequency
-#' @param epi list with epi terms sorted by frequency
-#'
-#' @return dicedrugbank the data frame for the dice coefficient against DrugBank that can be used by createDicePlotDrugBank
+#' @return dcframe dataframe with the columns for Elements, MeSH, EpSO, ESSO and EPILONT 
 #'
 #' @examples
-#' \dontrun{
-#' dicedrugbank <- createDiceFrameDrugBank(mesh, drugbank, epso, esso, epi)
-#' }
-createDiceFrameDrugBank <- function (mesh, drugbank, epso, esso, epi) {
-  dmeshdrugbank <- calcDice (mesh, drugbank)
-  depsodrugbank <- calcDice (epso, drugbank)
-  dessodrugbank <- calcDice (esso, drugbank)
-  depidrugbank <- calcDice (epi, drugbank)
+#' dcframe <- calcCosineAgainstDrugBank ()
+#' 
+#' @export
+calcCosineAgainstDrugBank <- function () {
+  mesh <- loadDictionaryFrequencyMeSH()
+  epso <- loadDictionaryFrequencyEpSO()
+  esso <- loadDictionaryFrequencyESSO()
+  epi <- loadDictionaryFrequencyEPILONT()
+  drugbank <- loadDictionaryFrequencyDrugBank ()
   
-  dicedrugbank <- data.frame (Elements = 1:length(dmeshdrugbank), MeSH = dmeshdrugbank, EpSO = depsodrugbank, ESSO = dessodrugbank, EPILONT = depidrugbank)
-  return (dicedrugbank)
+  dcmesh <- calcCosine(mesh, drugbank)
+  dcepso <- calcCosine(epso, drugbank)
+  dcesso <- calcCosine(esso, drugbank)
+  dcepi <- calcCosine(epi, drugbank)
+  dcframe <- data.frame(
+    Elements = c(1,length(drugbank)),
+    MeSH = dcmesh,
+    EpSO=dcepso,
+    ESSO=dcesso,
+    EPILONT=dcepi
+  )
+  return (dcframe)
 }
 
-#' Creates data frame for plotting the cosine coefficients against DrugBank
-#' 
-#' @param mesh list with mesh terms sorted by frequency
-#' @param drugbank list with drugbank terms sorted by frequency 
-#' @param epso list with epso terms sorted by frequency
-#' @param esso list with esso terms sorted by frequency
-#' @param epi list with epi terms sorted by frequency
-#' @return cosinedrugbank the data frame for the cosine coefficient against DrugBank that can be used by createCosinePlotDrugBank
+#' Calculate dice similarity coefficients for each of the frequency vector mesh, epso
+#' esso, and epi against the drugbank vector
+#'
+#' @return ddframe dataframe with the columns for Elements, MeSH, EpSO, ESSO and EPILONT
 #'
 #' @examples
-#' \dontrun{
-#' cosinedrugbank <- createCosineFrameDrugBank(mesh, drugbank, epso, esso, epi)
-#' }
-createCosineFrameDrugBank <- function (mesh, drugbank, epso, esso, epi) {
-  cmeshdrugbank <- calcCosine (mesh, drugbank)
-  cepsodrugbank <- calcCosine (epso, drugbank)
-  cessodrugbank <- calcCosine (esso, drugbank)
-  cepidrugbank <- calcCosine (epi, drugbank)
-  cosinedrugbank <- data.frame (Elements = 1:length(cmeshdrugbank), MeSH = cmeshdrugbank, EpSO = cepsodrugbank, ESSO = cessodrugbank, EPILONT = cepidrugbank)
-  return (cosinedrugbank)
+#' ddframe <- calcDiceAgainstDrugBank ()
+#' 
+#' @export
+calcDiceAgainstDrugBank <- function () {
+  mesh <- loadDictionaryFrequencyMeSH()
+  epso <- loadDictionaryFrequencyEpSO()
+  esso <- loadDictionaryFrequencyESSO()
+  epi <- loadDictionaryFrequencyEPILONT()
+  drugbank <- loadDictionaryFrequencyDrugBank ()
+  
+  ddmesh <- calcDice(mesh, drugbank)
+  ddepso <- calcDice(epso, drugbank)
+  ddesso <- calcDice(esso, drugbank)
+  ddepi <- calcDice(epi, drugbank)
+  ddframe <- data.frame(
+    Elements = c(1,length(drugbank)),
+    MeSH = ddmesh,
+    EpSO=ddepso,
+    ESSO=ddesso,
+    EPILONT=ddepi
+  )
+  return (ddframe)
 }
 
-#' Creates data frame for plotting the jaccard coefficients against DrugBank
-#' 
-#' @param mesh list with mesh terms sorted by frequency
-#' @param drugbank list with drugbank terms sorted by frequency 
-#' @param epso list with epso terms sorted by frequency
-#' @param esso list with esso terms sorted by frequency
-#' @param epi list with epi terms sorted by frequency
-#' 
-#' @return jaccarddrugbank the data frame for the jaccard coefficient against DrugBank that can be used by createJaccardPlotDrugBank
+
+#' Calculate jaccard similarity coefficients for each of the frequency vector mesh, epso
+#' esso, and epi against the drugbank vector
+#'
+#' @return ddframe dataframe with the columns for Elements, MeSH, EpSO, ESSO and EPILONT
 #'
 #' @examples
-#' \dontrun{
-#' jaccarddrugbank <- createJaccardFrameDrugBank(mesh, drugbank, epso, esso, epi)
-#' }
-createJaccardFrameDrugBank <- function (mesh, drugbank, epso, esso, epi) {
-  jmeshdrugbank <- calcJaccard (mesh, drugbank)
-  jepsodrugbank <- calcJaccard (epso, drugbank)
-  jessodrugbank <- calcJaccard (esso, drugbank)
-  jepidrugbank <- calcJaccard (epi, drugbank)
-  jaccarddrugbank <- data.frame (Elements = 1:length(jmeshdrugbank), MeSH = jmeshdrugbank, EpSO = jepsodrugbank, ESSO = jessodrugbank, EPILONT = jepidrugbank)
-  return (jaccarddrugbank)
+#' djframe <- calcJaccardAgainstDrugBank ()
+#' 
+#' @export
+calcJaccardAgainstDrugBank <- function () {
+  mesh <- loadDictionaryFrequencyMeSH()
+  epso <- loadDictionaryFrequencyEpSO()
+  esso <- loadDictionaryFrequencyESSO()
+  epi <- loadDictionaryFrequencyEPILONT()
+  drugbank <- loadDictionaryFrequencyDrugBank ()
+  
+  djmesh <- calcJaccard(mesh, drugbank)
+  djepso <- calcJaccard(epso, drugbank)
+  djesso <- calcJaccard(esso, drugbank)
+  djepi <- calcJaccard(epi, drugbank)
+  djframe <- data.frame(
+    Elements = c(1,length(drugbank)),
+    MeSH = djmesh,
+    EpSO=djepso,
+    ESSO=djesso,
+    EPILONT=djepi
+  )
+  return (djframe)
 }
