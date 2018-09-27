@@ -2,7 +2,7 @@
 % Please edit documentation in R/loadDictFreq.R
 \name{loadDictionaryFrequencyMeSH}
 \alias{loadDictionaryFrequencyMeSH}
-\title{Load the RDS object inst/resources/MeSH.rds into a variable that is returned by this function. 
+\title{Load the RDS object inst/extdata/MeSH.rds into a variable that is returned by this function. 
 The returned list contains all terms from the dictionary MeSH with its frequency of
 occurrences in the LIVIVO corpus. The moment of execution for generating the data 
 stored in the RDS-file on the corpus of LIVIVO is June 26th 2018.}
@@ -13,11 +13,12 @@ loadDictionaryFrequencyMeSH()
 mesh list with MesH terms sorted by their frequency
 }
 \description{
-Load the RDS object inst/resources/MeSH.rds into a variable that is returned by this function. 
+Load the RDS object inst/extdata/MeSH.rds into a variable that is returned by this function. 
 The returned list contains all terms from the dictionary MeSH with its frequency of
 occurrences in the LIVIVO corpus. The moment of execution for generating the data 
 stored in the RDS-file on the corpus of LIVIVO is June 26th 2018.
 }
 \examples{
 mesh <- loadDictionaryFrequencyMeSH ()
+
 }

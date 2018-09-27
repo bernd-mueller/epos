@@ -26,4 +26,5 @@ dcframe <- calcCosineAgainstDrugBank ()
 ddframe <- calcDiceAgainstDrugBank ()
 djframe <- calcJaccardAgainstDrugBank()
 meshmetrics <- create_metrics (dcframe$MeSH, ddframe$MeSH, djframe$MeSH, djframe$Elements)
+
 }

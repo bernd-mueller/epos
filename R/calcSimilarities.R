@@ -7,7 +7,7 @@
 #' @export
 #'
 #' @examples
-#' calcJaccard(c(1,2,3), c(2,3,4))
+#' calcJaccard(c(1,2), c(2,3))
 calcJaccard <- function (a, b) {
   la = length(a)
   lb = length(b)
@@ -49,7 +49,7 @@ calcJaccard <- function (a, b) {
 #' @export
 #'
 #' @examples
-#' jaccard(1,3)
+#' jaccard(1,3, 2, 3)
 jaccard <- function (ainterb, aunionb, lengtha, lengthb) {
   jaccoefficient <- (ainterb) / (lengtha+lengthb-ainterb)
   jac <- 1-jaccoefficient
@@ -65,7 +65,7 @@ jaccard <- function (ainterb, aunionb, lengtha, lengthb) {
 #' @export
 #'
 #' @examples
-#' calcDice(c(1,2,3), c(2,3,4))
+#' calcDice(c(1,2), c(2,3))
 calcDice <- function (a, b) {
   la = length(a)
   lb = length(b)
@@ -101,7 +101,7 @@ calcDice <- function (a, b) {
 #' @export
 #'
 #' @examples
-#' dice(1,3, 4)
+#' dice(1, 3, 4)
 dice <- function (ainterb, lengtha, lengthb) {
   dice <- 2*(ainterb/(lengtha+lengthb))
   dice <- 1- dice
@@ -117,7 +117,7 @@ dice <- function (ainterb, lengtha, lengthb) {
 #' @export
 #'
 #' @examples
-#' calcCosine(c(1,2,3), c(2,3,4))
+#' calcCosine(c(1,2), c(2,3))
 calcCosine <- function (a, b) {
   la = length(a)
   lb = length(b)

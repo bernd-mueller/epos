@@ -1,4 +1,4 @@
-library(epilepsyontologysimilarities)
+library(epos)
 context("test_create_metrics")
 
 test_that("Test create_metrics if it calculates the correct data.frame", {

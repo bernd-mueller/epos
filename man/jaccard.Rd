@@ -22,5 +22,5 @@ jac double value with the jaccard similarity coefficient
 Calculate jaccard similarity metric for two sets a and b
 }
 \examples{
-jaccard(1,3)
+jaccard(1,3, 2, 3)
 }

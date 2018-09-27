@@ -4,14 +4,7 @@
 \alias{createCosineFrameESSO}
 \title{Creates data frame for plotting the cosine coefficients against ESSO}
 \usage{
-createCosineFrameESSO(epso, esso, epi)
-}
-\arguments{
-\item{epso}{list with epso terms sorted by frequency}
-
-\item{esso}{list with esso terms sorted by frequency}
-
-\item{epi}{list with epi terms sorted by frequency}
+createCosineFrameESSO()
 }
 \value{
 cosineesso the data frame for the cosine coefficient against ESSO
@@ -20,7 +13,6 @@ cosineesso the data frame for the cosine coefficient against ESSO
 Creates data frame for plotting the cosine coefficients against ESSO
 }
 \examples{
-\dontrun{
-cosineesso <- createCosineFrameESSO(epso, esso, epi)
-}
+cosineesso <- createCosineFrameESSO()
+
 }

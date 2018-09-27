@@ -20,5 +20,5 @@ dice double vlaue with the dice similarity coefficient
 Calculate dice similarity metric
 }
 \examples{
-dice(1,3, 4)
+dice(1, 3, 4)
 }

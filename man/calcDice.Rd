@@ -18,5 +18,5 @@ di list with length of set b containing the dice similarity coefficient at each 
 Calculate the dice similarity metric for two lists a and b
 }
 \examples{
-calcDice(c(1,2,3), c(2,3,4))
+calcDice(c(1,2), c(2,3))
 }
