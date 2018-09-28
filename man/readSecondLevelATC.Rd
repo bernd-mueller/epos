@@ -18,7 +18,7 @@ atchashsec a hashmap with second level ATC classes as keys and their names as va
 Read the second level ATC classes from the file drugbankatc-secondlevel.map
 }
 \examples{
-\dontrun{
-atchashsec <- readSecondLevelATC("inst/resources/drugbankatc-secondlevel.map", "\\t")
-}
+atchashsec <-
+  readSecondLevelATC(
+  system.file("extdata", "drugbankatc-secondlevel.map", package = "epos"), "\\t")
 }

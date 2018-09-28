@@ -18,7 +18,7 @@ atchashaa hashmap with atc codes as keys and atc names as values
 Processes the input file db-atc.map to form a HashMap containing the drug names with ATC codes
 }
 \examples{
-\dontrun{
-atchashaa <- readAtcMapIntoHashMapAtcCodesAtcNames(filename = "db-atc.map", seperator = "\\t")
-}
+atchashaa <-
+  readAtcMapIntoHashMapAtcCodesAtcNames(
+    system.file("extdata", "db-atc.map", package = "epos"), "\\t")
 }
