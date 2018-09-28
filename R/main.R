@@ -1,28 +1,41 @@
 #' Main function to call everything and produce the results
 #'
-#' @return result table
+#' @param coocepso list of drug names sorted by frequency co-occuring with EpSO
+#' @param coocesso list of drug names sorted by frequency co-occuring with ESSO
+#' @param coocepi list of drug names sorted by frequency co-occuring with EPILONT
+#'
+#' @return result table containin the aggregated list of drug terms and their associations
 #'
 #' @importFrom TopKLists calculate.maxK
 #' @importFrom xtable xtable
+#' @importFrom utils data
 #'
 #' @export
 #'
 #' @examples
-#' main()
-main <- function () {
+#' utils::data(rawDrugBankCoOcEpSO, package="epos")
+#' utils::data(rawDrugBankCoOcESSO, package="epos")
+#' utils::data(rawDrugBankCoOcEPILONT, package="epos")
+#' createNeuroTable(coocepso = rawDrugBankCoOcEpSO, 
+#'   coocesso=rawDrugBankCoOcESSO,
+#'   coocepi=rawDrugBankCoOcEPILONT)
+createNeuroTable <- function (coocepso, coocesso, coocepi) {
   atchashda <-
-    readAtcMapIntoHashMapDrugNamesAtcCodes(filename = "inst/resources/db-atc.map", seperator = "\t")
+    readAtcMapIntoHashMapDrugNamesAtcCodes(
+      system.file("extdata", "db-atc.map", package = "epos"), "\t")
   
   atchashaa <-
-    readAtcMapIntoHashMapAtcCodesAtcNames(filename = "inst/resources/db-atc.map", seperator = "\t")
+    readAtcMapIntoHashMapAtcCodesAtcNames(
+      system.file("extdata", "db-atc.map", package = "epos"), "\t")
   
   atchashsec <-
-    readSecondLevelATC("inst/resources/drugbankatc-secondlevel.map", "\t")
+    readSecondLevelATC(
+      system.file("extdata", "drugbankatc-secondlevel.map", package = "epos"), "\t")
   
 
-  tepso <- loadDictionaryFrequencyDrugBankCoOcEpSO ()
-  tesso <- loadDictionaryFrequencyDrugBankCoOcESSO ()
-  tepi <- loadDictionaryFrequencyDrugBankCoOcEPILONT ()
+  tepso <- coocepso
+  tesso <- coocesso
+  tepi <- coocepi
   
   lepso <- genDictListFromRawFreq(tepso)
   neuroepso <- filterNeuroDrugs(lepso, atchashda)
@@ -44,15 +57,6 @@ main <- function () {
   
   neurotable <-
     createBaseTable(neurospace, atchashda, atchashsec, dneuromaxk)
-  
-  print(
-    xtable::xtable(
-      neurotable,
-      type = "latex",
-      tabular.environment = "longtable"
-    ),
-    file = "inst/results/neurotable.tex"
-  )
   
   return (neurotable)
 }
