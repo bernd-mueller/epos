@@ -40,13 +40,13 @@
 #' neurotable <-
 #'   createBaseTable(neurospace, atchashda, atchashsec, dneuromaxk)
 createBaseTable <- function (neurospace, atchashda, atchashsec, dneuromaxk) {
-  i_epso_esso_epi <- createListFromVennVector(dneuromaxk$venntable$objects$EPILONT_EpSO_ESSO)
-  i_epso_epi      <- createListFromVennVector(dneuromaxk$venntable$objects$EPILONT_EpSO)
-  i_esso_epi      <- createListFromVennVector(dneuromaxk$venntable$objects$EPILONT_ESSO)
-  i_epso_esso     <- createListFromVennVector(dneuromaxk$venntable$objects$EpSO_ESSO)
-  i_epi           <- createListFromVennVector(dneuromaxk$venntable$objects$EPILONT)
-  i_epso          <- createListFromVennVector(dneuromaxk$venntable$objects$EpSO)
-  i_esso          <- createListFromVennVector(dneuromaxk$venntable$objects$ESSO)
+  i_epso_esso_epi <- unlist(strsplit(stringr::str_replace_all((dneuromaxk$venntable$objects$EPILONT_EpSO_ESSO), "\\*", ""), ", "))
+  i_epso_epi      <- unlist(strsplit(stringr::str_replace_all((dneuromaxk$venntable$objects$EPILONT_EpSO), "\\*", ""), ", "))
+  i_esso_epi      <- unlist(strsplit(stringr::str_replace_all((dneuromaxk$venntable$objects$EPILONT_ESSO), "\\*", ""), ", "))
+  i_epso_esso     <- unlist(strsplit(stringr::str_replace_all((dneuromaxk$venntable$objects$EpSO_ESSO), "\\*", ""), ", "))
+  i_epi           <- unlist(strsplit(stringr::str_replace_all((dneuromaxk$venntable$objects$EPILONT), "\\*", ""), ", "))
+  i_epso          <- unlist(strsplit(stringr::str_replace_all((dneuromaxk$venntable$objects$EpSO), "\\*", ""), ", "))
+  i_esso          <- unlist(strsplit(stringr::str_replace_all((dneuromaxk$venntable$objects$ESSO), "\\*", ""), ", "))
   
   neurotopk <- c(intersect(neurospace, i_epso_esso_epi), setdiff(i_epso_esso_epi, neurospace), # 29
                  intersect(neurospace, i_epso_esso), setdiff(i_epso_esso, neurospace),     # 7

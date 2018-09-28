@@ -44,7 +44,7 @@
 createTanimotoBaseline <-
   function (neuroepso, neuroesso, neuroepi, dneuromaxk) {
     
-    neurobase <- createListFromVennVector(dneuromaxk$venntable$objects$EPILONT_EpSO_ESSO)
+    neurobase <-  unlist(strsplit(stringr::str_replace_all((dneuromaxk$venntable$objects$EPILONT_EpSO_ESSO), "\\*", ""), ", "))
     
     topk <- length(neurobase)
     
