@@ -5,7 +5,7 @@
 # epos
 Analysis and Visualization of statistical information derived from biomedical named entities that were automatically extracted with a UIMA-based text mining workflow on the corpus of BioASQ. The major scope of this R package is the comparison of drug names that co-occur with entities of epilepsy ontologies in documents from the BioASQ corpus.
 
-Basically, the UIMA-based workflow takes as input a dictionary containing biomedical entities with synonyms for identifying them in documents of the LIVIVO corpus. The epilepsy ontologies EpSO, ESSO, EPILONT, EPISEM and FENICS are used for creating three different dictionaries for epilepsy. The current version of the DrugBank open data vocabulary is taken for creating a dictionary for drug names.
+Basically, the UIMA-based workflow takes as input a dictionary containing biomedical entities with synonyms for identifying them in documents of the BioASQ corpus. The epilepsy ontologies EpSO, ESSO, EPILONT, EPISEM and FENICS are used for creating three different dictionaries for epilepsy. The current version of the DrugBank open data vocabulary is taken for creating a dictionary for drug names.
 
 The UIMA-based text mining workflow is described in the following three publications:
 
