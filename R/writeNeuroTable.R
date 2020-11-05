@@ -1,6 +1,5 @@
 #' Create the final resulting data frame
 #'
-#' @param neurospace list of drug names that were aggregated using TopKLists::calculate.max topkspace
 #' @param atchashda hashmap retrieved from readAtcMapIntoHashMapDrugNamesAtcCodes
 #' @param atchashsec hashmap retrieved from readSecondLevelATC
 #' @param dneuromaxk data frame containing columns for each intersection, ATC class, and reference list
@@ -10,9 +9,11 @@
 #' @export
 #'
 #' @examples
-#' utils::data(rawDrugBankCoOcEpSO, package="epos")
-#' utils::data(rawDrugBankCoOcESSO, package="epos")
-#' utils::data(rawDrugBankCoOcEPILONT, package="epos")
+#' utils::data(rawDrugNamesCoOcEpSO, package="epos")
+#' utils::data(rawDrugNamesCoOcESSO, package="epos")
+#' utils::data(rawDrugNamesCoOcEPILONT, package="epos")
+#' utils::data(rawDrugNamesCoOcEPISEM, package="epos")
+#' utils::data(rawDrugNamesCoOcFENICS, package="epos")
 #' atchashda <-
 #' readAtcMapIntoHashMapDrugNamesAtcCodes(
 #'   system.file("extdata", "db-atc.map", package = "epos"), "\t")
@@ -21,42 +22,73 @@
 #'     system.file("extdata", "db-atc.map", package = "epos"), "\t")
 #' atchashsec <-
 #'   readSecondLevelATC(
-#'     system.file("extdata", "drugbankatc-secondlevel.map", package = "epos"), "\t")
-#' tepso <- rawDrugBankCoOcEpSO
-#' tesso <- rawDrugBankCoOcESSO
-#' tepi <- rawDrugBankCoOcEPILONT
-#' lepso <- genDictListFromRawFreq(tepso)
-#' neuroepso <- filterNeuroDrugs(lepso, atchashda)
-#' lesso <- genDictListFromRawFreq(tesso)
-#' neuroesso <- filterNeuroDrugs(lesso, atchashda)
-#' lepi <- genDictListFromRawFreq(tepi)
-#' neuroepi <- filterNeuroDrugs(lepi, atchashda)
+#'     system.file("extdata", "atc-secondlevel.map", package = "epos"), "\t")
+#' epso <- genDictListFromRawFreq(rawDrugNamesCoOcEpSO)
+#' neuroepso <- filterNeuroDrugs(epso, atchashda)
+#' esso <- genDictListFromRawFreq(rawDrugNamesCoOcESSO)
+#' neuroesso   <- filterNeuroDrugs(esso, atchashda)
+#' epi <- genDictListFromRawFreq(rawDrugNamesCoOcEPILONT)
+#' neuroepi    <- filterNeuroDrugs(epi, atchashda)
+#' episem <- genDictListFromRawFreq(rawDrugNamesCoOcEPISEM)
+#' neuroepisem <- filterNeuroDrugs(episem, atchashda)
+#' fenics <- genDictListFromRawFreq(rawDrugNamesCoOcFENICS)
+#' neurofenics <- filterNeuroDrugs(fenics, atchashda)
+#' mx <- max(
+#'     c(length(neuroepso), length(neuroesso), length(neuroepi),
+#'       length(neuroepisem), length(neurofenics)))
 #' dneuro <-
-#'   data.frame(EpSO = neuroepso[1:210],
-#'              ESSO = neuroesso[1:210],
-#'              EPILONT = neuroepi[1:210])
-#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, 3, 5, 10)
-#' neurospace <- as.character(dneuromaxk$topkspace)
-#' neurotable <-
-#'   createBaseTable(neurospace, atchashda, atchashsec, dneuromaxk)
-createBaseTable <- function (neurospace, atchashda, atchashsec, dneuromaxk) {
-  i_epso_esso_epi <- unlist(strsplit(stringr::str_replace_all((dneuromaxk$venntable$objects$EPILONT_EpSO_ESSO), "\\*", ""), ", "))
-  i_epso_epi      <- unlist(strsplit(stringr::str_replace_all((dneuromaxk$venntable$objects$EPILONT_EpSO), "\\*", ""), ", "))
-  i_esso_epi      <- unlist(strsplit(stringr::str_replace_all((dneuromaxk$venntable$objects$EPILONT_ESSO), "\\*", ""), ", "))
-  i_epso_esso     <- unlist(strsplit(stringr::str_replace_all((dneuromaxk$venntable$objects$EpSO_ESSO), "\\*", ""), ", "))
-  i_epi           <- unlist(strsplit(stringr::str_replace_all((dneuromaxk$venntable$objects$EPILONT), "\\*", ""), ", "))
-  i_epso          <- unlist(strsplit(stringr::str_replace_all((dneuromaxk$venntable$objects$EpSO), "\\*", ""), ", "))
-  i_esso          <- unlist(strsplit(stringr::str_replace_all((dneuromaxk$venntable$objects$ESSO), "\\*", ""), ", "))
+#'   data.frame(EpSO = c(neuroepso, rep("", (mx-length(neuroepso)))),
+#'              ESSO = c(neuroesso, rep("", (mx-length(neuroesso)))),
+#'              EPILONT = c(neuroepi, rep("", (mx-length(neuroepi)))),
+#'              EPISEM = c(neuroepisem, rep("", (mx-length(neuroepisem)))),
+#'              FENICS = c(neurofenics, rep("", (mx-length(neurofenics)))))
+#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=10)
+#' neurotable <- createNeuroTable(atchashda, atchashsec, dneuromaxk)
+createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
+  neurospace <- dneuromaxk$topkspace
+  neurotopk <- c()
+  counter <- 0
+  for (o in dneuromaxk$venntable$objects) {
+    counter <- counter + 1
+      d <- unlist(strsplit(stringr::str_replace_all((o), "\\*", ""), ", "))
+      d <- d[nchar(d) > 0]
+      i <- intersect(neurospace, d)
+      s <-  setdiff(d, neurospace)
+      neurotopk <- c(neurotopk, i, s)
+  }
+
+  broadspectrum <- c(             
+    "Brivaracetam",
+    "Clobazam",
+    "Felbamate",
+    "Lamotrigine",
+    "Levetiracetam",
+    "Perampanel",
+    "Rufinamide",
+    "Topiramate",
+    "Valproate",
+    "Zonisamide"
+  )
+
+  focal <- c(
+    "Carbamazepine",
+    "Cenobamate",
+    "Eslicarbazepine",
+    "Gabapentin",
+    "Lacosamid",
+    "Oxcarbazepine",
+    "Phenobarbital",
+    "Phenytoin",
+    "Pregabalin",
+    "Primidone",
+    "Stiripentol",
+    "Tiagabine",
+    "Vigabatrin"
+  )  
+  abscence <- "Ethosuximide"
   
-  neurotopk <- c(intersect(neurospace, i_epso_esso_epi), setdiff(i_epso_esso_epi, neurospace), # 29
-                 intersect(neurospace, i_epso_esso), setdiff(i_epso_esso, neurospace),     # 7
-                 intersect(neurospace, i_epso), setdiff(i_epso, neurospace),          # 2
-                 intersect(neurospace, i_epso_epi), setdiff(i_epso_epi, neurospace),      # 1
-                 intersect(neurospace, i_epi), setdiff(i_epi, neurospace),           # 7
-                 intersect(neurospace, i_esso_epi), setdiff(i_esso_epi, neurospace),      # 2
-                 intersect(neurospace, i_esso), setdiff(i_esso, neurospace))
-  
-  
+  up2date <- union (abscence, union (broadspectrum, focal))
+
   lancet <- c(
     "Carbamazepine",
     "Gabapentin",
@@ -70,54 +102,76 @@ createBaseTable <- function (neurospace, atchashda, atchashsec, dneuromaxk) {
   )
   
   drugse <- c(
-    "Lorazepam",
-    "Diazepam",
     "Clonazepam",
-    "Midazolam",
-    "Phenytoin",
-    "Valproic Acid",
+    "Diazepam",
+    "Etomidate",
+    "Isoflurane",
     "Levetiracetam",
+    "Lorazepam",
+    "Midazolam",
+    "Pentobarbital",
     "Phenobarbital",
+    "Phenytoin",
     "Propofol",
     "Thiopental",
-    "Pentobarbital",
-    "Isoflurane",
-    "Etomidate"
+    "Valproic Acid"
+  )
+  
+  seizuremed <- c(
+    "Brivaracetam",
+    "Cannabidiol",
+    "Carbamazepine",
+    "Cenobamate",
+    "Clobazam",
+    "Clonazepam",
+    "Diazepam",
+    "Eslicarbazepine acetate",
+    "Ethosuximide",
+    "Ezogabine",
+    "Felbamate",
+    "Fenfluramine",
+    "Gabapentin",
+    "Lacosamide",
+    "Lamotrigine",
+    "Levetiracetam",
+    "Lorazepam",
+    "Midazolam",
+    "Oxcarbazepine",
+    "Perampanel",
+    "Phenobarbital",
+    "Phenytoin",
+    "Pregabalin",
+    "Primidone",
+    "Rufinamide",
+    "Stiripentol",
+    "Tiagabine",
+    "Topiramate",
+    "Valproic acid",
+    "Vigabatrin",
+    "Zonisamide"
   )
   # neurotopk <- neurospace[1:39]
   rnames <- ""
   for (drug in neurotopk) {
-    if (drug %in% i_epso_esso_epi) {
-      rnames <- c(rnames, "EpSO_ESSO_EPILONT")
-    } else if (drug %in% i_epso_esso) {
-      rnames <- c(rnames, "EpSO_ESSO")
-    } else if (drug %in% i_epso_epi) {
-      rnames <- c(rnames, "EpSO_EPILONT")
-    } else if (drug %in% i_esso_epi) {
-      rnames <- c(rnames, "ESSO_EPILONT")
-    } else if (drug %in% i_epso) {
-      rnames <- c(rnames, "EpSO")
-    } else if (drug %in% i_esso) {
-      rnames <- c(rnames, "ESSO")
-    } else if (drug %in% i_epi) {
-      rnames <- c(rnames, "EPILONT")
+    counter <- 0
+    for (n in dneuromaxk$venntable$objects) {
+      counter <- counter + 1
+      curn <- unlist(strsplit(stringr::str_replace_all((n), "\\*", ""), ", "))
+      cur <- names(dneuromaxk$venntable$objects)[[counter]]
+      #print(c(counter, cur, curn))
+      if (drug %in% curn) {
+        rnames <- c(rnames, cur)
+      }
     }
   }
   rnames <- rnames [2:length(rnames)]
   
-  #rnames <- c(
-   # rep("EpSO_ESSO_EPILONT", length(i_epso_esso_epi)),
-  #  rep("EpSO_ESSO", length(i_epso_esso)),
-  #  rep("EpSO", length(i_epso)),
-  #  rep("EpSO_EPILONT", length(i_epso_epi)),
-  #  rep("EPILONT", length(i_epi)),
-  #  rep("ESSO_EPILONT", length(i_esso_epi)),
-  #  rep("ESSO", length(i_esso))
-  #)
   ranking <- rep("", length(neurotopk))
   lanc <- rep ("", length(neurotopk))
   dse <- rep ("", length(neurotopk))
-  counter <- 1
+  u2d <- rep ("", length(neurotopk))
+  efo <- rep ("", length(neurotopk))
+  
   counter <- 1
   for (d in neurotopk) {
     # ranking position
@@ -129,6 +183,12 @@ createBaseTable <- function (neurospace, atchashda, atchashsec, dneuromaxk) {
     }
     if (length(which(drugse == d)) > 0) {
       dse[counter] <- "X"
+    }
+    if (length(which(up2date == d)) > 0) {
+      u2d[counter] <- "X"
+    }
+    if (length(which(seizuremed == d)) > 0) {
+      efo[counter] <- "X"
     }
     counter <- counter + 1
   }
@@ -147,7 +207,9 @@ createBaseTable <- function (neurospace, atchashda, atchashsec, dneuromaxk) {
     N04=createDashVectorForATC(neurotopk, atchashda, atchashsec, "N04"),
     N07=createDashVectorForATC(neurotopk, atchashda, atchashsec, "N07"),
     Lancet=lanc,
-    DSE=dse
+    DSE=dse,
+    U2D=u2d,
+    EFO=efo
   )
   return (dntk)
 }
@@ -155,8 +217,8 @@ createBaseTable <- function (neurospace, atchashda, atchashsec, dneuromaxk) {
 #' Creates a vector with an X at each position where a drug from the druglist matches the ATC class list slatc
 #'
 #' @param druglist list of drug names
-#' @param atchashda hashmap retrieved from readAtcMapIntoHashMapDrugNamesAtcCodes
-#' @param atchashsec hashmap retrieved from readSecondLevelATC
+#' @param atchashda hash retrieved from readAtcMapIntoHashMapDrugNamesAtcCodes
+#' @param atchashsec hash retrieved from readSecondLevelATC
 #' @param slatc list of ATC classes
 #'
 #' @return list with crosses if the drug in druglist matches at the position of the ATC class in slatc
@@ -169,24 +231,26 @@ createBaseTable <- function (neurospace, atchashda, atchashsec, dneuromaxk) {
 createDashVectorForATC <- function (druglist, atchashda, atchashsec, slatc) {
   counter <- 0
   for (n in druglist) {
-    atcc <- substr(atchashda$find(n), 1, 3)
-    atcn <- atchashsec$find(substr(atchashda$find(n), 1, 3))
-    
-    if (counter == 0) {
-      if (atcc == slatc) {
-        al <- "x"
-      } else {
-        al <- ""
+      if (atchashda[[n]] != "") {
+        atcc <- substr(atchashda[[n]], 1, 3)
+        atcn <- atchashsec[[substr(atchashda[[n]], 1, 3)]]
+        
+        if (counter == 0) {
+          if (atcc == slatc) {
+            al <- "X"
+          } else {
+            al <- ""
+          }
+          counter <- counter + 1
+        } else {
+          if (atcc == slatc) {
+            al <- c(al, "X")
+          } else {
+            al <- c(al, "")
+          }
+        }
+       
       }
-      counter <- counter + 1
-    } else {
-      if (atcc == slatc) {
-        al <- c(al, "X")
-      } else {
-        al <- c(al, "")
-      }
-    }
-   
   }
   return (al)
 }

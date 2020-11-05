@@ -9,19 +9,19 @@ filterApprovedDrugs(druglist, atchashda)
 \arguments{
 \item{druglist}{a list of drug names}
 
-\item{atchashda}{a hashmap containing the drug names as keys}
+\item{atchashda}{a hash containing the drug names as keys}
 }
 \value{
-approveddrugs a hashmap filtered for having an ATC code
+approveddrugs a hash filtered for having an ATC code
 }
 \description{
 Filter a given list of drug names for having an ATC code, if not they are dropped
 }
 \examples{
-utils::data(rawDrugBankCoOcEpSO, package="epos")
+utils::data(rawDrugNamesCoOcEpSO, package="epos")
 atchashda <-
   readAtcMapIntoHashMapDrugNamesAtcCodes(
-  system.file("extdata", "db-atc.map", package = "epos"), "\\t")
-tepso <- genDictListFromRawFreq(rawDrugBankCoOcEpSO)
+  system.file("extdata", "db-atc.map", package = "epos"), "\t")
+tepso <- genDictListFromRawFreq(rawDrugNamesCoOcEpSO)
 filterApprovedDrugs(tepso, atchashda)
 }

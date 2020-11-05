@@ -13,7 +13,7 @@ createTanimotoBaseline(neuroepso, neuroesso, neuroepi, dneuromaxk)
 
 \item{neuroepi}{list of neuro drug names co-occurring with epi}
 
-\item{dneuromaxk}{object returned from TopKLists::calculate.maxkS}
+\item{dneuromaxk}{object returned from TopKLists::calculate.maxk}
 }
 \value{
 jaccardepilepsyplot the ggplot object
@@ -22,22 +22,24 @@ jaccardepilepsyplot the ggplot object
 Creates the plot for all jaccard coefficients amongst the three epilepsy ontologies
 }
 \examples{
-utils::data(rawDrugBankCoOcEpSO, package="epos")
+utils::data(rawDrugNamesCoOcEpSO, package="epos")
+utils::data(rawDrugNamesCoOcESSO, package="epos")
+utils::data(rawDrugNamesCoOcEPILONT, package="epos")
 atchashda <-
   readAtcMapIntoHashMapDrugNamesAtcCodes(
-    system.file("extdata", "db-atc.map", package = "epos"), "\\t")
-tepso <- genDictListFromRawFreq(rawDrugBankCoOcEpSO)
+    system.file("extdata", "db-atc.map", package = "epos"), "\t")
+tepso <- genDictListFromRawFreq(rawDrugNamesCoOcEpSO[1:150])
 neuroepso <- filterNeuroDrugs(tepso, atchashda)
-utils::data(rawDrugBankCoOcESSO, package="epos")
-tesso <- genDictListFromRawFreq(rawDrugBankCoOcESSO)
+utils::data(rawDrugNamesCoOcESSO, package="epos")
+tesso <- genDictListFromRawFreq(rawDrugNamesCoOcESSO[1:150])
 neuroesso <- filterNeuroDrugs(tesso, atchashda)
-utils::data(rawDrugBankCoOcEPILONT, package="epos")
-tepi <- genDictListFromRawFreq(rawDrugBankCoOcEPILONT)
+utils::data(rawDrugNamesCoOcEPILONT, package="epos")
+tepi <- genDictListFromRawFreq(rawDrugNamesCoOcEPILONT[1:150])
 neuroepi <- filterNeuroDrugs(tepi, atchashda)
 dneuro <-
-  data.frame(EpSO = neuroepso[1:210],
-             ESSO = neuroesso[1:210],
-             EPILONT = neuroepi[1:210])
+  data.frame(EpSO = neuroepso[1:9],
+             ESSO = neuroesso[1:9],
+             EPILONT = neuroepi[1:9])
 dneuromaxk <- TopKLists::calculate.maxK(dneuro, 3, 5, 10)
 tanimotobaseline <- createTanimotoBaseline(neuroepso, neuroesso, neuroepi, dneuromaxk)
 }
