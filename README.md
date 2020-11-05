@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ZBMEDLABS/epilepsyontologysimilarities.svg?branch=master)](https://travis-ci.org/ZBMEDLABS/epilepsyontologysimilarities)
+[![Build Status](https://api.travis-ci.org/bernd-mueller/epos.svg?branch=master)](https://travis-ci.org/bernd-mueller/epos)
 
 [![](https://cranlogs.r-pkg.org/badges/epos)](https://cran.r-project.org/package=epos)
 
