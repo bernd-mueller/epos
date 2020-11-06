@@ -38,7 +38,7 @@
 #'              EPILONT = c(neuroepi, rep("", (mx-length(neuroepi)))),
 #'              EPISEM = c(neuroepisem, rep("", (mx-length(neuroepisem)))),
 #'              FENICS = c(neurofenics, rep("", (mx-length(neurofenics)))))
-#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=10)
+#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=10, v=10)
 #' neurospace <- as.character(dneuromaxk$topkspace)
 #' dsepso <- calcDSEA(neuroepso, mx)
 #' dsesso <- calcDSEA(neuroesso, mx)
@@ -65,6 +65,7 @@ plotDSEA <- function (dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, k) {
                FENICS = c(dsfenics, rep(max(dsfenics), (topk-length(dsfenics)))),
                Final = c(dsspace, rep(max(dsspace), (topk-length(dsspace))))
     )
+  
   
   cols <-
     c("EpSO" = "#FF0000",#red
@@ -106,7 +107,7 @@ plotDSEA <- function (dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, k) {
       subtitle = ""
     ) +
     ggplot2::geom_step(
-      size = 4,
+      size = 2,
       linetype = 1
     ) +
     ggplot2::geom_step(
@@ -163,7 +164,92 @@ plotDSEA <- function (dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, k) {
     ggplot2::scale_x_continuous(breaks = c(1, 50, 100, 150, 200, 250, 300)) +
     ggplot2::scale_y_continuous(breaks = c(-5, 0, 5, 10, 15)) +
     ggplot2::scale_colour_manual(name = "Dictionary", values = cols) +
-    ggplot2::scale_size_manual()
+    ggplot2::scale_size_manual() +
+    ggplot2::annotate("segment", x = 90, 
+                      xend = which.max(dsepso), 
+                      y = 16, 
+                      yend = max(dsepso)+0.2, 
+                      colour = "#FF0000", 
+                      size=2, alpha=1, arrow=ggplot2::arrow()) + 
+    ggplot2::geom_text(data=(data.frame(x=85,y=16.5,label=
+      paste("max DSEA @ (", 
+            which.max(dsepso), 
+            ",", 
+            round(max(dsepso),2),")",sep=""))), 
+      ggplot2::aes( x=x, y=y, label=label), 
+      color="#FF0000", size=7 , angle=7, fontface="bold" ) +
+    ggplot2::annotate("segment", x = 60, 
+                      xend = (which.max(dsesso)-2), 
+                      y = 11, 
+                      yend = (max(dsesso)+0.2), 
+                      colour = "#00FFFF", 
+                      size=2, alpha=0.75, arrow=ggplot2::arrow()) + 
+    ggplot2::geom_text(data=(data.frame(x=55,y=11.5,label=
+                                          paste("max DSEA @ (", 
+                                                which.max(dsesso), 
+                                                ",", 
+                                                round(max(dsesso),2),")",sep=""))), 
+                       ggplot2::aes( x=x, y=y, label=label), 
+                       color="#00FFFF", size=7 , angle=5, fontface="bold" ) +
+    ggplot2::annotate("segment", 
+                      x = 270, 
+                      xend = which.max(dsepi)+5, 
+                      y = 12, 
+                      yend = max(dsepi), 
+                      colour = "#9ACD32", 
+                      size=2, alpha=0.75, arrow=ggplot2::arrow()) + 
+    ggplot2::geom_text(data=
+                         (data.frame(
+                           x=275,
+                           y=12.5,label=
+                                          paste("max DSEA @ (", 
+                                                which.max(dsepi), 
+                                                ",", 
+                                                round(max(dsepi),2),")",sep=""))), 
+                       ggplot2::aes( x=x, y=y, label=label), 
+                       color="#9ACD32", size=7 , angle=-15, fontface="bold" ) +
+    ggplot2::annotate("segment", x = 15, 
+                      xend = (which.max(dsfenics)-2), 
+                      y = 14, 
+                      yend = (max(dsfenics)+0.2), 
+                      colour = "#008000", 
+                      size=2, alpha=0.75, arrow=ggplot2::arrow()) + 
+    ggplot2::geom_text(data=(data.frame(x=20,y=14.5,label=
+                                          paste("max DSEA @ (", 
+                                                which.max(dsfenics), 
+                                                ",", 
+                                                round(max(dsfenics),2),")",sep=""))), 
+                       ggplot2::aes( x=x, y=y, label=label), 
+                       color="#008000", size=7 , angle=0, fontface="bold" )  +
+    ggplot2::annotate("segment", x = 40, 
+                      xend = (which.max(dsspace)), 
+                      y = 6, 
+                      yend = (max(dsspace)+0.2), 
+                      colour = "#FF00FF", 
+                      size=2, alpha=0.75, arrow=ggplot2::arrow()) + 
+    ggplot2::geom_text(data=(data.frame(x=35,y=6.5,label=
+                                          paste("max DSEA @ (", 
+                                                which.max(dsspace), 
+                                                ",", 
+                                                round(max(dsspace),2),")",sep=""))), 
+                       ggplot2::aes( x=x, y=y, label=label), 
+                       color="#FF00FF", size=7 , angle=33, fontface="bold" )  +
+    ggplot2::annotate("segment", x = 270, 
+                      xend = (which.max(dsepisem)+5), 
+                      y = 8, 
+                      yend = (max(dsepisem)), 
+                      colour = "#0000FF", 
+                      size=2, alpha=0.75, arrow=ggplot2::arrow()) + 
+    ggplot2::geom_text(data=(data.frame(x=275,y=8.5,label=
+                                          paste("max DSEA @ (", 
+                                                which.max(dsepisem), 
+                                                ",", 
+                                                round(max(dsepisem),2),")",sep=""))), 
+                       ggplot2::aes( x=x, y=y, label=label), 
+                       color="#0000FF", size=7 , angle=-30, fontface="bold" )  
+  
+  
+  
   return (enrichmentplot)
 }
 

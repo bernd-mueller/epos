@@ -1,6 +1,6 @@
 [![Build Status](https://api.travis-ci.org/bernd-mueller/epos.svg?branch=master)](https://travis-ci.org/bernd-mueller/epos)
 
-[![](https://cranlogs.r-pkg.org/badges/epos)](https://cran.r-project.org/package=epos)
+[![](https://cranlogs.r-pkg.org/badges/grand-total/epos)](https://cran.r-project.org/package=epos)
 
 # epos
 Analysis and Visualization of statistical information derived from biomedical named entities that were automatically extracted with a UIMA-based text mining workflow on the corpus of BioASQ. The major scope of this R package is the comparison of drug names that co-occur with entities of epilepsy ontologies in documents from the BioASQ corpus.
