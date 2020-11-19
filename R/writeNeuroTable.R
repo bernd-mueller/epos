@@ -56,7 +56,7 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
       s <-  setdiff(d, neurospace)
       neurotopk <- c(neurotopk, i, s)
   }
-
+  #neurotopk <- neurospace
   broadspectrum <- c(             
     "Brivaracetam",
     "Clobazam",
@@ -151,6 +151,8 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
     "Zonisamide"
   )
   # neurotopk <- neurospace[1:39]
+  
+  
   rnames <- ""
   for (drug in neurotopk) {
     counter <- 0
@@ -158,6 +160,7 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
       counter <- counter + 1
       curn <- unlist(strsplit(stringr::str_replace_all((n), "\\*", ""), ", "))
       cur <- names(dneuromaxk$venntable$objects)[[counter]]
+      stringr::str_split(r,"\\_", simplify = TRUE)
       #print(c(counter, cur, curn))
       if (drug %in% curn) {
         rnames <- c(rnames, cur)
@@ -179,39 +182,146 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
       ranking[counter] <- which(neurospace == d)
     }
     if (length(which(lancet == d)) > 0) {
-      lanc[counter] <- "X"
+      lanc[counter] <- "x"
     }
     if (length(which(drugse == d)) > 0) {
-      dse[counter] <- "X"
+      dse[counter] <- "x"
     }
     if (length(which(up2date == d)) > 0) {
-      u2d[counter] <- "X"
+      u2d[counter] <- "x"
     }
     if (length(which(seizuremed == d)) > 0) {
-      efo[counter] <- "X"
+      efo[counter] <- "x"
     }
     counter <- counter + 1
   }
   
+  scoresum <- c()
+  for (r in rnames) {
+    scoresum <- c(scoresum, length(stringr::str_split(r,"\\_", simplify = TRUE)))
+  }
   
   #ranking <- ranking[2:length(ranking)]
   dntk <- data.frame(
-    Rank=ranking,
-    Intersection=rnames,
-    DrugName=neurotopk,
-    N03=createDashVectorForATC(neurotopk, atchashda, atchashsec, "N03"),
-    N05=createDashVectorForATC(neurotopk, atchashda, atchashsec, "N05"),
-    N06=createDashVectorForATC(neurotopk, atchashda, atchashsec, "N06"),
-    N01=createDashVectorForATC(neurotopk, atchashda, atchashsec, "N01"),
-    N02=createDashVectorForATC(neurotopk, atchashda, atchashsec, "N02"),
-    N04=createDashVectorForATC(neurotopk, atchashda, atchashsec, "N04"),
-    N07=createDashVectorForATC(neurotopk, atchashda, atchashsec, "N07"),
-    Lancet=lanc,
-    DSE=dse,
-    U2D=u2d,
-    EFO=efo
+    Score=scoresum[ranking != ""],
+    Rank=ranking[ranking != ""],
+    Intersection=rnames[ranking != ""],
+    DrugName=neurotopk[ranking != ""],
+    Lancet=lanc[ranking != ""],
+    DSE=dse[ranking != ""],
+    U2D=u2d[ranking != ""],
+    EFO=efo[ranking != ""],
+    N03=createDashVectorForATC(neurotopk, atchashda, atchashsec, "N03")[ranking != ""],
+    N05=createDashVectorForATC(neurotopk, atchashda, atchashsec, "N05")[ranking != ""],
+    N06=createDashVectorForATC(neurotopk, atchashda, atchashsec, "N06")[ranking != ""],
+    N01=createDashVectorForATC(neurotopk, atchashda, atchashsec, "N01")[ranking != ""],
+    N02=createDashVectorForATC(neurotopk, atchashda, atchashsec, "N02")[ranking != ""],
+    N04=createDashVectorForATC(neurotopk, atchashda, atchashsec, "N04")[ranking != ""],
+    N07=createDashVectorForATC(neurotopk, atchashda, atchashsec, "N07")[ranking != ""]
   )
   return (dntk)
+}
+
+sortTableByRefMatches <- function (dntk) {
+  l <- length(dntk$DrugName)
+  
+  c0 <- 0
+  c1 <- 0
+  c2 <- 0
+  c3 <- 0
+  c4 <- 0
+  c5 <- 0
+  
+  
+  for (i in 1:l) {
+    curscore <- 0
+    if (dntk$Lancet[i] == "x") {
+      curscore <- curscore + 1
+    }
+    if (dntk$DSE[i] == "x") {
+      curscore <- curscore + 1
+    }
+    if (dntk$U2D[i] == "x") {
+      curscore <- curscore + 1
+    }
+    if (dntk$EFO[i] == "x") {
+      curscore <- curscore + 1
+    }
+    if (dntk$N03[i] == "x") {
+      curscore <- curscore + 1
+    }
+    
+    currow <- dntk[i,]
+    currow$Score <- curscore
+
+    if(curscore == 0) {
+      c0 <- c0 + 1
+      if (c0 == 1) {
+        score0 <- currow
+      } else {
+        score0 <- rbind(score0, currow)
+      }
+    }
+    if(curscore == 1) {
+      c1 <- c1 + 1
+      if (c1 == 1) {
+        score1 <- currow
+      } else {
+        score1 <- rbind(score1, currow)
+      }
+    }
+    if(curscore == 2) {
+      c2 <- c2 + 1
+      if (c2 == 1) {
+        score2 <- currow
+      } else {
+        score2 <- rbind(score2, currow)
+      }
+    }
+    if(curscore == 3) {
+      c3 <- c3 + 1
+      if (c3 == 1) {
+        score3 <- currow
+      } else {
+        score3 <- rbind(score3, currow)
+      }
+    }
+    if(curscore == 4) {
+      c4 <- c4 + 1
+      if (c4 == 1) {
+        score4 <- currow
+      } else {
+        score4 <- rbind(score4, currow)
+      }
+    }
+    if(curscore == 5) {
+      c5 <- c5 + 1
+      if (c5 == 1) {
+        score5 <- currow
+      } else {
+        score5 <- rbind(score5, currow)
+      }
+    }
+  }
+  score5 <- score5[order(as.numeric(score5$Rank)),]
+  score4 <- score4[order(as.numeric(score4$Rank)),]
+  score3 <- score3[order(as.numeric(score3$Rank)),]
+  score2 <- score2[order(as.numeric(score2$Rank)),]
+  score1 <- score1[order(as.numeric(score1$Rank)),]
+  score0 <- score0[order(as.numeric(score0$Rank)),]
+  finalframe <- setNames(data.frame(matrix(ncol = 15, nrow = 0)),
+                         c("Score", "Rank", "Intersection", "DrugName", "Lancet", "DSE",
+                           "U2D", "EFO", "N03", "N05", "N06", "N01", "N02", "N04", "N07"))
+  finalframe <- rbind(finalframe, score5)
+  finalframe <- rbind(finalframe, score4)
+  finalframe <- rbind(finalframe, score3)
+  finalframe <- rbind(finalframe, score2)
+  finalframe <- rbind(finalframe, score1)
+  
+  score0$Score <- 1
+  
+  finalframe <- rbind(finalframe, score0)
+  return (finalframe)
 }
 
 #' Creates a vector with an X at each position where a drug from the druglist matches the ATC class list slatc
@@ -237,14 +347,14 @@ createDashVectorForATC <- function (druglist, atchashda, atchashsec, slatc) {
         
         if (counter == 0) {
           if (atcc == slatc) {
-            al <- "X"
+            al <- "x"
           } else {
             al <- ""
           }
           counter <- counter + 1
         } else {
           if (atcc == slatc) {
-            al <- c(al, "X")
+            al <- c(al, "x")
           } else {
             al <- c(al, "")
           }
