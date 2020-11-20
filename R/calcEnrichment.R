@@ -40,12 +40,12 @@
 #'              FENICS = c(neurofenics, rep("", (mx-length(neurofenics)))))
 #' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=10, v=10)
 #' neurospace <- as.character(dneuromaxk$topkspace)
-# dsepso <- calcDSEA(neuroepso, mx)
-# dsesso <- calcDSEA(neuroesso, mx)
-# dsepi <- calcDSEA(neuroepi, mx)
-# dsepisem <- calcDSEA(neuroepisem, mx)
-# dsfenics <- calcDSEA(neurofenics, mx)
-# dsspace  <-  calcDSEA (neurospace, mx)
+#' dsepso <- calcDSEA(neuroepso, mx)
+#' dsesso <- calcDSEA(neuroesso, mx)
+#' dsepi <- calcDSEA(neuroepi, mx)
+#' dsepisem <- calcDSEA(neuroepisem, mx)
+#' dsfenics <- calcDSEA(neurofenics, mx)
+#' dsspace  <-  calcDSEA (neurospace, mx)
 #' p <- plotDSEA(dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, dneuromaxk$maxK)
 #' ggplot2::ggsave("dsea.png", 
 #'    p <- plotDSEA(dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, 
@@ -168,20 +168,20 @@ plotDSEA <- function (dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, k) {
     ggplot2::scale_y_continuous(breaks = c(-5, 0, 5, 10)) +
     ggplot2::scale_colour_manual(name = "Dictionary", values = cols) +
     ggplot2::scale_size_manual() +
-    ggplot2::annotate("segment", x = 60, 
+    ggplot2::annotate("segment", x = 35, 
                       xend = which.max(dsepso), 
-                      y = 8, 
+                      y = 5.5, 
                       yend = max(dsepso)+0.2, 
                       colour = "#7800FE", 
                       size=2, alpha=1, arrow=ggplot2::arrow()) + 
-    ggplot2::geom_text(data=(data.frame(x=60,y=8.5,label=
+    ggplot2::geom_text(data=(data.frame(x=35,y=6,label=
       paste("max=(", 
             which.max(dsepso), 
             ",", 
             round(max(dsepso),2),")",sep=""))), 
       family="Arial Nova Light",
       ggplot2::aes( x=x, y=y, label=label), 
-      color="#000000", size=7 , angle=6, fontface="bold" ) +
+      color="#000000", size=7 , angle=13, fontface="bold" ) +
     ggplot2::annotate("segment", x = 160, 
                       xend = (which.max(dsesso)+1), 
                       y = 6, 
@@ -230,14 +230,14 @@ plotDSEA <- function (dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, k) {
                        family="Arial Nova Light",
                        ggplot2::aes( x=x, y=y, label=label), 
                        color="#000000", size=7 , angle=0, fontface="bold" )  +
-    ggplot2::annotate("segment", x = 35, 
+    ggplot2::annotate("segment", x = 90, 
                       xend = (which.max(dsspace)), 
-                      y = 5.5, 
+                      y = 9, 
                       yend = (max(dsspace)+0.1), 
                       colour = "#FF00FF", 
                       size=2, alpha=0.75, arrow=ggplot2::arrow()) + 
-    ggplot2::geom_text(data=(data.frame(x=35,
-                                        y=6,
+    ggplot2::geom_text(data=(data.frame(x=90,
+                                        y=9.5,
                                         label=
                                           paste("max=(", 
                                                 which.max(dsspace), 
@@ -245,21 +245,21 @@ plotDSEA <- function (dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, k) {
                                                 round(max(dsspace),2),")",sep=""))),
                        family="Arial Nova Light",
                        ggplot2::aes( x=x, y=y, label=label), 
-                       color="#000000", size=7 , angle=13, fontface="bold" )  +
-    ggplot2::annotate("segment", x = 90, 
+                       color="#000000", size=7 , angle=-3, fontface="bold" )  +
+    ggplot2::annotate("segment", x = 60, 
                       xend = (which.max(dsepisem)+1), 
-                      y = 9, 
+                      y = 8, 
                       yend = (max(dsepisem)+0.1), 
                       colour = "#E80908", 
                       size=2, alpha=0.75, arrow=ggplot2::arrow()) + 
-    ggplot2::geom_text(data=(data.frame(x=90,y=9.5,label=
+    ggplot2::geom_text(data=(data.frame(x=60,y=8.5,label=
                                           paste("max=(", 
                                                 which.max(dsepisem), 
                                                 ",", 
                                                 round(max(dsepisem),2),")",sep=""))), 
                        family="Arial Nova Light",
                        ggplot2::aes( x=x, y=y, label=label), 
-                       color="#000000", size=7 , angle=-3, fontface="bold" )  
+                       color="#000000", size=7 , angle=6, fontface="bold" )  
   
   
   
