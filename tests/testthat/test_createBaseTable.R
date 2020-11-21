@@ -8,5 +8,5 @@ test_that("Test function createBaseTable()", {
   neurotable <- createBaseTable(coocepso = rawDrugNamesCoOcEpSO[1:150],
     coocesso=rawDrugNamesCoOcESSO[1:150],
     coocepi=rawDrugNamesCoOcEPILONT[1:150])
-  expect_that(length(neurotable), equals(14))
+  expect_that(length(neurotable), equals(15))
 })

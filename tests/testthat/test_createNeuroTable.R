@@ -30,5 +30,5 @@ test_that("Test function createNeuroTable()", {
   dneuromaxk <- TopKLists::calculate.maxK(dneuro, 3, 5, 10)
   neurospace <- as.character(dneuromaxk$topkspace)
   neurotable <- createNeuroTable(atchashda, atchashsec, dneuromaxk)
-  expect_that(length(neurotable), equals(14))
+  expect_that(length(neurotable), equals(15))
 })
