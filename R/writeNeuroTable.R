@@ -160,8 +160,6 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
       counter <- counter + 1
       curn <- unlist(strsplit(stringr::str_replace_all((n), "\\*", ""), ", "))
       cur <- names(dneuromaxk$venntable$objects)[[counter]]
-      stringr::str_split(r,"\\_", simplify = TRUE)
-      #print(c(counter, cur, curn))
       if (drug %in% curn) {
         rnames <- c(rnames, cur)
       }
@@ -227,9 +225,11 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
 #' @param dntk the table returned from writeNeuroTable
 #'
 #' @return the sorted table
+#' 
 #' @export
-#' stats::setNames
-#'
+#' 
+#' @importFrom stats setNames
+#' 
 #' @examples
 #' utils::data(rawDrugNamesCoOcEpSO, package="epos")
 #' utils::data(rawDrugNamesCoOcESSO, package="epos")

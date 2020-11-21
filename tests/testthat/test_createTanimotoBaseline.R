@@ -10,10 +10,8 @@ test_that("Test function createTanimotoBaseline()", {
       system.file("extdata", "db-atc.map", package = "epos"), "\t")
   tepso <- genDictListFromRawFreq(rawDrugNamesCoOcEpSO)
   neuroepso <- filterNeuroDrugs(tepso, atchashda)
-  utils::data(rawDrugBankCoOcESSO, package="epos")
   tesso <- genDictListFromRawFreq(rawDrugNamesCoOcESSO)
   neuroesso <- filterNeuroDrugs(tesso, atchashda)
-  utils::data(rawDrugBankCoOcEPILONT, package="epos")
   tepi <- genDictListFromRawFreq(rawDrugNamesCoOcEPILONT)
   neuroepi <- filterNeuroDrugs(tepi, atchashda)
   dneuro <-
