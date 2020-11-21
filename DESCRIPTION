@@ -17,7 +17,8 @@ Imports: hash,
     TopKLists,
     stringr,
     xtable,
-    mongolite
+    mongolite,
+    VennDiagramm
 Suggests: 
     knitr,
     rmarkdown
