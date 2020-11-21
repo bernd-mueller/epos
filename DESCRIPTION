@@ -18,6 +18,7 @@ Imports: hash,
     stringr,
     xtable,
     mongolite,
+    stats,
     VennDiagram
 Suggests: 
     knitr,

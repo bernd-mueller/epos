@@ -222,6 +222,51 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
   return (dntk)
 }
 
+#' Sort table by scoring for each row
+#'
+#' @param dntk the table returned from writeNeuroTable
+#'
+#' @return the sorted table
+#' @export
+#' stats::setNames
+#'
+#' @examples
+#' utils::data(rawDrugNamesCoOcEpSO, package="epos")
+#' utils::data(rawDrugNamesCoOcESSO, package="epos")
+#' utils::data(rawDrugNamesCoOcEPILONT, package="epos")
+#' utils::data(rawDrugNamesCoOcEPISEM, package="epos")
+#' utils::data(rawDrugNamesCoOcFENICS, package="epos")
+#' atchashda <-
+#' readAtcMapIntoHashMapDrugNamesAtcCodes(
+#'   system.file("extdata", "db-atc.map", package = "epos"), "\t")
+#' atchashaa <-
+#'   readAtcMapIntoHashMapAtcCodesAtcNames(
+#'     system.file("extdata", "db-atc.map", package = "epos"), "\t")
+#' atchashsec <-
+#'   readSecondLevelATC(
+#'     system.file("extdata", "atc-secondlevel.map", package = "epos"), "\t")
+#' epso <- genDictListFromRawFreq(rawDrugNamesCoOcEpSO)
+#' neuroepso <- filterNeuroDrugs(epso, atchashda)
+#' esso <- genDictListFromRawFreq(rawDrugNamesCoOcESSO)
+#' neuroesso   <- filterNeuroDrugs(esso, atchashda)
+#' epi <- genDictListFromRawFreq(rawDrugNamesCoOcEPILONT)
+#' neuroepi    <- filterNeuroDrugs(epi, atchashda)
+#' episem <- genDictListFromRawFreq(rawDrugNamesCoOcEPISEM)
+#' neuroepisem <- filterNeuroDrugs(episem, atchashda)
+#' fenics <- genDictListFromRawFreq(rawDrugNamesCoOcFENICS)
+#' neurofenics <- filterNeuroDrugs(fenics, atchashda)
+#' mx <- max(
+#'     c(length(neuroepso), length(neuroesso), length(neuroepi),
+#'       length(neuroepisem), length(neurofenics)))
+#' dneuro <-
+#'   data.frame(EpSO = c(neuroepso, rep("", (mx-length(neuroepso)))),
+#'              ESSO = c(neuroesso, rep("", (mx-length(neuroesso)))),
+#'              EPILONT = c(neuroepi, rep("", (mx-length(neuroepi)))),
+#'              EPISEM = c(neuroepisem, rep("", (mx-length(neuroepisem)))),
+#'              FENICS = c(neurofenics, rep("", (mx-length(neurofenics)))))
+#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=10)
+#' neurotable <- createNeuroTable(atchashda, atchashsec, dneuromaxk)
+#' sortedNeuroTable <- sortTableByRefMatches(neurotable)
 sortTableByRefMatches <- function (dntk) {
   l <- length(dntk$DrugName)
   
@@ -309,7 +354,7 @@ sortTableByRefMatches <- function (dntk) {
   score2 <- score2[order(as.numeric(score2$Rank)),]
   score1 <- score1[order(as.numeric(score1$Rank)),]
   score0 <- score0[order(as.numeric(score0$Rank)),]
-  finalframe <- setNames(data.frame(matrix(ncol = 15, nrow = 0)),
+  finalframe <- stats::setNames(data.frame(matrix(ncol = 15, nrow = 0)),
                          c("Score", "Rank", "Intersection", "DrugName", "Lancet", "DSE",
                            "U2D", "EFO", "N03", "N05", "N06", "N01", "N02", "N04", "N07"))
   finalframe <- rbind(finalframe, score5)
