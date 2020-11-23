@@ -5,8 +5,10 @@
 #' @export
 #' @importFrom VennDiagram draw.quintuple.venn
 #' @examples
+#' \dontrun{
 #' ggplot2::ggsave("venn5.png", plot = drawVenn5(), width=240, height=160, 
 #'   units = "mm", dpi = 300)
+#' }
 drawVenn5 <- function () {
   
   cols <-
@@ -82,8 +84,10 @@ drawVenn5 <- function () {
 #' @export
 #' @importFrom VennDiagram draw.quad.venn
 #' @examples
+#' \dontrun{
 #' ggplot2::ggsave("venn4.png", plot = drawVenn4(), width=240, height=160, 
 #'   units = "mm", dpi = 300)
+#' }
 drawVenn4 <- function () {
   
   cols <-
