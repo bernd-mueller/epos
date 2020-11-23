@@ -268,7 +268,7 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
 #' neurotable <- createNeuroTable(atchashda, atchashsec, dneuromaxk)
 #' sortedNeuroTable <- sortTableByRefMatches(neurotable)
 sortTableByRefMatches <- function (dntk) {
-  l <- length(dntk$DrugName)
+  l <- length(dntk)
   
   c0 <- 0
   c1 <- 0
@@ -277,23 +277,40 @@ sortTableByRefMatches <- function (dntk) {
   c4 <- 0
   c5 <- 0
   
+  score0 <- 0
+  score1 <- 0
+  score2 <- 0
+  score3 <- 0
+  score4 <- 0
+  score5 <- 0
+  
   
   for (i in 1:l) {
     curscore <- 0
-    if (dntk$Lancet[i] == "x") {
-      curscore <- curscore + 1
+    if (!is.na(match("Lancet", colnames(dntk))) & !is.na(dntk["Lancet"][i,])) {
+      if (dntk["Lancet"][i,] == "x") {
+        curscore <- curscore + 1
+      }
     }
-    if (dntk$DSE[i] == "x") {
-      curscore <- curscore + 1
+    if (!is.na(match("DSE", colnames(dntk))) & !is.na(dntk["DSE"][i,])) {
+      if (dntk["DSE"][i,] == "x") {
+        curscore <- curscore + 1
+      }
     }
-    if (dntk$U2D[i] == "x") {
-      curscore <- curscore + 1
+    if (!is.na(match("U2D", colnames(dntk))) & !is.na(dntk["U2D"][i,])) {
+      if (dntk["U2D"][i,] == "x") {
+        curscore <- curscore + 1
+      }
     }
-    if (dntk$EFO[i] == "x") {
-      curscore <- curscore + 1
+    if (!is.na(match("EFO", colnames(dntk))) & !is.na(dntk["EFO"][i,])) {
+      if (dntk["EFO"][i,] == "x") {
+        curscore <- curscore + 1
+      }
     }
-    if (dntk$N03[i] == "x") {
-      curscore <- curscore + 1
+    if (!is.na(match("N03", colnames(dntk))) & !is.na(dntk["N03"][i,])) {
+      if (dntk["N03"][i,] == "x") {
+        curscore <- curscore + 1
+      }
     }
     
     currow <- dntk[i,]
@@ -348,12 +365,24 @@ sortTableByRefMatches <- function (dntk) {
       }
     }
   }
-  score5 <- score5[order(as.numeric(score5$Rank)),]
-  score4 <- score4[order(as.numeric(score4$Rank)),]
-  score3 <- score3[order(as.numeric(score3$Rank)),]
-  score2 <- score2[order(as.numeric(score2$Rank)),]
-  score1 <- score1[order(as.numeric(score1$Rank)),]
-  score0 <- score0[order(as.numeric(score0$Rank)),]
+  if (length(score5)>1) {
+    score5 <- score5[order(as.numeric(unlist(score5["Rank"]))),]
+  }
+  if (length(score4)>1) {
+    score4 <- score4[order(as.numeric(unlist(score4["Rank"]))),]
+  }
+  if (length(score3)>1) {
+    score3 <- score3[order(as.numeric(unlist(score3["Rank"]))),]
+  }
+  if (length(score2)>1) {
+    score2 <- score2[order(as.numeric(unlist(score2["Rank"]))),]
+  }
+  if (length(score1)>1) {
+    score1 <- score1[order(as.numeric(unlist(score1["Rank"]))),]
+  }
+  if (length(score0)>1) {
+    score0 <- score0[order(as.numeric(unlist(score0["Rank"]))),]
+  }
   finalframe <- stats::setNames(data.frame(matrix(ncol = 15, nrow = 0)),
                          c("Score", "Rank", "Intersection", "DrugName", "Lancet", "DSE",
                            "U2D", "EFO", "N03", "N05", "N06", "N01", "N02", "N04", "N07"))
@@ -363,7 +392,7 @@ sortTableByRefMatches <- function (dntk) {
   finalframe <- rbind(finalframe, score2)
   finalframe <- rbind(finalframe, score1)
   
-  score0$Score <- 1
+  score0["Score"] <- 1
   
   finalframe <- rbind(finalframe, score0)
   return (finalframe)

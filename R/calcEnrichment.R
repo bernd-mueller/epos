@@ -38,7 +38,7 @@
 #'              EPILONT = c(neuroepi, rep("", (mx-length(neuroepi)))),
 #'              EPISEM = c(neuroepisem, rep("", (mx-length(neuroepisem)))),
 #'              FENICS = c(neurofenics, rep("", (mx-length(neurofenics)))))
-#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=10, v=10)
+#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=10)
 #' neurospace <- as.character(dneuromaxk$topkspace)
 #' dsepso <- calcDSEA(neuroepso, mx)
 #' dsesso <- calcDSEA(neuroesso, mx)
@@ -47,9 +47,11 @@
 #' dsfenics <- calcDSEA(neurofenics, mx)
 #' dsspace  <-  calcDSEA (neurospace, mx)
 #' p <- plotDSEA(dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, dneuromaxk$maxK)
+#' \dontrun{
 #' ggplot2::ggsave("dsea.png", 
 #'    p <- plotDSEA(dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, 
 #'    dneuromaxk$maxK), width=480, height=320, units = "mm", dpi = 300)
+#' }
 plotDSEA <- function (dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, k) {
   topk <- max(
     c(length(dsepso), length(dsesso), length(dsepi),
@@ -180,7 +182,7 @@ plotDSEA <- function (dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, k) {
             ",", 
             round(max(dsepso),2),")",sep=""))), 
       family="Arial Nova Light",
-      ggplot2::aes( x=x, y=y, label=label), 
+      ggplot2::aes_string( x="x", y="y", label="label"), 
       color="#000000", size=7 , angle=13, fontface="bold" ) +
     ggplot2::annotate("segment", x = 160, 
                       xend = (which.max(dsesso)+1), 
@@ -196,7 +198,7 @@ plotDSEA <- function (dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, k) {
                                                 ",", 
                                                 round(max(dsesso),2),")",sep=""))), 
                        family="Arial Nova Light",
-                       ggplot2::aes( x=x, y=y, label=label), 
+                       ggplot2::aes_string( x="x", y="y", label="label"), 
                        color="#000000", size=7 , angle=-10, fontface="bold" ) +
     ggplot2::annotate("segment", 
                       x = 125, 
@@ -214,7 +216,7 @@ plotDSEA <- function (dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, k) {
                                                 ",", 
                                                 round(max(dsepi),2),")",sep=""))), 
                        family="Arial Nova Light",
-                       ggplot2::aes( x=x, y=y, label=label), 
+                       ggplot2::aes_string( x="x", y="y", label="label"), 
                        color="#000000", size=7 , angle=-5, fontface="bold" ) +
     ggplot2::annotate("segment", x = 15, 
                       xend = (which.max(dsfenics)-2), 
@@ -228,7 +230,7 @@ plotDSEA <- function (dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, k) {
                                                 ",", 
                                                 round(max(dsfenics),2),")",sep=""))),
                        family="Arial Nova Light",
-                       ggplot2::aes( x=x, y=y, label=label), 
+                       ggplot2::aes_string( x="x", y="y", label="label"), 
                        color="#000000", size=7 , angle=0, fontface="bold" )  +
     ggplot2::annotate("segment", x = 90, 
                       xend = (which.max(dsspace)), 
@@ -244,7 +246,7 @@ plotDSEA <- function (dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, k) {
                                                 ",", 
                                                 round(max(dsspace),2),")",sep=""))),
                        family="Arial Nova Light",
-                       ggplot2::aes( x=x, y=y, label=label), 
+                       ggplot2::aes_string( x="x", y="y", label="label"), 
                        color="#000000", size=7 , angle=-3, fontface="bold" )  +
     ggplot2::annotate("segment", x = 60, 
                       xend = (which.max(dsepisem)+1), 
@@ -258,7 +260,7 @@ plotDSEA <- function (dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, k) {
                                                 ",", 
                                                 round(max(dsepisem),2),")",sep=""))), 
                        family="Arial Nova Light",
-                       ggplot2::aes( x=x, y=y, label=label), 
+                       ggplot2::aes_string( x="x", y="y", label="label"), 
                        color="#000000", size=7 , angle=6, fontface="bold" )  
   
   

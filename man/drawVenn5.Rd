@@ -15,6 +15,8 @@ Create Venn Diagramm for the set properties of all five dictionaries from the
 source ontologies
 }
 \examples{
+\dontrun{
 ggplot2::ggsave("venn5.png", plot = drawVenn5(), width=240, height=160, 
   units = "mm", dpi = 300)
+}
 }
