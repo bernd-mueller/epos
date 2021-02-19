@@ -61,15 +61,11 @@ readAtcMapIntoHashMapAtcCodesAtcNames <-  function (filename, seperator) {
 #' tepso <- genDictListFromRawFreq(rawDrugNamesCoOcEpSO)
 #' filterApprovedDrugs(tepso, atchashda)
 filterApprovedDrugs <- function (druglist, atchashda) {
-  counter = 0
   dn <- names(atchashda)
+  approveddrugs <- c()
   for (drug in druglist) {
     if (drug %in% dn) {
-      if (counter == 0) {
-        approveddrugs <- drug
-      } else {
-        approveddrugs <- c(approveddrugs, drug)
-      }
+      approveddrugs <- c(approveddrugs, drug)
     }
     counter = counter + 1
   }
