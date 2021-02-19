@@ -1,3 +1,53 @@
+#' Print Top 10 Drugs
+#'
+#' @param neuroepso Ranked list of drug names co-occurring with EpSO
+#' @param neuroesso Ranked list of drug names co-occurring with ESSO
+#' @param neuroepilont Ranked list of drug names co-occurring with EPILONT
+#' @param neuroepisem Ranked list of drug names co-occurring with EPISEM
+#' @param neurofenics Ranked list of drug names co-occurring with FENICS
+#' 
+#' @return data frame with top 10 drugs for each ontology
+#' @export
+#'
+#' @examples
+#' utils::data(rawDrugNamesCoOcEpSO, package="epos")
+#' utils::data(rawDrugNamesCoOcESSO, package="epos")
+#' utils::data(rawDrugNamesCoOcEPILONT, package="epos")
+#' utils::data(rawDrugNamesCoOcEPISEM, package="epos")
+#' utils::data(rawDrugNamesCoOcFENICS, package="epos")
+#' atchashda <-
+#' readAtcMapIntoHashMapDrugNamesAtcCodes(
+#'   system.file("extdata", "db-atc.map", package = "epos"), "\t")
+#' atchashaa <-
+#'   readAtcMapIntoHashMapAtcCodesAtcNames(
+#'     system.file("extdata", "db-atc.map", package = "epos"), "\t")
+#' atchashsec <-
+#'   readSecondLevelATC(
+#'     system.file("extdata", "atc-secondlevel.map", package = "epos"), "\t")
+#' epso <- genDictListFromRawFreq(rawDrugNamesCoOcEpSO)
+#' neuroepso <- filterNeuroDrugs(epso, atchashda)
+#' esso <- genDictListFromRawFreq(rawDrugNamesCoOcESSO)
+#' neuroesso   <- filterNeuroDrugs(esso, atchashda)
+#' epi <- genDictListFromRawFreq(rawDrugNamesCoOcEPILONT)
+#' neuroepi    <- filterNeuroDrugs(epi, atchashda)
+#' episem <- genDictListFromRawFreq(rawDrugNamesCoOcEPISEM)
+#' neuroepisem <- filterNeuroDrugs(episem, atchashda)
+#' fenics <- genDictListFromRawFreq(rawDrugNamesCoOcFENICS)
+#' neurofenics <- filterNeuroDrugs(fenics, atchashda)
+#' top10table <- printTop10Drugs(neuroepso, neuroesso, neuroepi, neuroepisem, neurofenics)
+#' \dontrun{
+#'   print(xtable::xtable(top10table, type = "latex"), 
+#'     file = "top10table.tex")
+#' }
+printTop10Drugs <- function (neuroepso, neuroesso, neuroepi, neuroepisem, neurofenics) {
+  dneuro <-
+     data.frame(EpSO = neuroepso[1:10],
+                ESSO = neuroesso[1:10],
+                EPILONT = neuroepi[1:10],
+                EPISEM = neuroepisem[1:10],
+                FENICS = neurofenics[1:10])
+}
+
 #' Create the final resulting data frame
 #'
 #' @param atchashda hashmap retrieved from readAtcMapIntoHashMapDrugNamesAtcCodes
@@ -56,6 +106,7 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
       s <-  setdiff(d, neurospace)
       neurotopk <- c(neurotopk, i, s)
   }
+ 
   #neurotopk <- neurospace
   broadspectrum <- c(             
     "Brivaracetam",
@@ -152,6 +203,26 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
   )
   # neurotopk <- neurospace[1:39]
   
+  aeds <- getAllAEDs(atchashda)
+  
+  typetreating <- union (up2date, union(lancet, union(drugse, union(seizuremed, aeds))))
+  
+  typepotential <- c(
+    "Ketamine",
+    "Tryptophan"
+  )
+  
+  typesomehow <- c(
+    "Dextroamphetamine",
+    "Levodopa",
+    "Naloxone"
+  )
+  
+  typesideeffect <- c(
+    "Lidocaine",
+    "Haloperidol",
+    "Morphine"
+  )
   
   rnames <- ""
   for (drug in neurotopk) {
@@ -167,6 +238,7 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
   }
   rnames <- rnames [2:length(rnames)]
   
+  type <- rep("", length(neurotopk))
   ranking <- rep("", length(neurotopk))
   lanc <- rep ("", length(neurotopk))
   dse <- rep ("", length(neurotopk))
@@ -176,6 +248,15 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
   counter <- 1
   for (d in neurotopk) {
     # ranking position
+    if (length(which(typetreating == d)) > 0) {
+      type[counter] <- "T"
+    } else if (length(which(typepotential == d)) > 0) {
+      type[counter] <- "P"
+    } else if (length(which(typesomehow == d)) > 0) {
+      type[counter] <- "R"
+    } else if (length(which(typesideeffect == d)) > 0) {
+      type[counter] <- "S"
+    }
     if (length(which(neurospace == d)) > 0) {
       ranking[counter] <- which(neurospace == d)
     }
@@ -205,6 +286,7 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
     Rank=ranking[ranking != ""],
     Intersection=rnames[ranking != ""],
     DrugName=neurotopk[ranking != ""],
+    Type=type[ranking != ""],
     Lancet=lanc[ranking != ""],
     DSE=dse[ranking != ""],
     U2D=u2d[ranking != ""],
@@ -265,10 +347,13 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
 #'              EPISEM = c(neuroepisem, rep("", (mx-length(neuroepisem)))),
 #'              FENICS = c(neurofenics, rep("", (mx-length(neurofenics)))))
 #' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=10)
-#' neurotable <- createNeuroTable(atchashda, atchashsec, dneuromaxk)
-#' sortedNeuroTable <- sortTableByRefMatches(neurotable)
+# neurotable <- createNeuroTable(atchashda, atchashsec, dneuromaxk)
+# sortedNeuroTable <- sortTableByRefMatches(neurotable)
+# print(xtable::xtable(sortedNeuroTable, type = "latex"),
+#   file = "sortedNeuroTable.tex",
+#   include.rownames=FALSE)
 sortTableByRefMatches <- function (dntk) {
-  l <- length(dntk)
+  l <- length(dntk[,1])
   
   c0 <- 0
   c1 <- 0
@@ -437,4 +522,14 @@ createDashVectorForATC <- function (druglist, atchashda, atchashsec, slatc) {
       }
   }
   return (al)
+}
+
+getAllAEDs <- function (atchashda) {
+  r <- c()
+  for (i in ls(atchashda)) {
+    if (substr(atchashda[[i]], 1, 3) == "N03") {
+      r <- c(r, i)
+    }
+  }
+  return (r)
 }
