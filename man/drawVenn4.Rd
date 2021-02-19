@@ -2,8 +2,8 @@
 % Please edit documentation in R/drawVennDiagramms.R
 \name{drawVenn4}
 \alias{drawVenn4}
-\title{Create Venn Diagramm for the set properties of four dictionaries from the
-source ontologies}
+\title{Create quad Venn Diagramm for overlapping concepts 
+between EpSO, ESSO, EPILONT and EPISEM}
 \usage{
 drawVenn4()
 }
@@ -11,8 +11,8 @@ drawVenn4()
 plot object
 }
 \description{
-Create Venn Diagramm for the set properties of four dictionaries from the
-source ontologies
+Create quad Venn Diagramm for overlapping concepts 
+between EpSO, ESSO, EPILONT and EPISEM
 }
 \examples{
 \dontrun{
