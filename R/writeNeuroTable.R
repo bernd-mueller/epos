@@ -346,12 +346,12 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
 #'              EPILONT = c(neuroepi, rep("", (mx-length(neuroepi)))),
 #'              EPISEM = c(neuroepisem, rep("", (mx-length(neuroepisem)))),
 #'              FENICS = c(neurofenics, rep("", (mx-length(neurofenics)))))
-#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=5)
-# neurotable <- createNeuroTable(atchashda, atchashsec, dneuromaxk)
-# sortedNeuroTable <- sortTableByRefMatches(neurotable)
-# print(xtable::xtable(sortedNeuroTable, type = "latex"),
-#   file = "sortedNeuroTable.tex",
-#   include.rownames=FALSE)
+#' dneuromaxk <- customMaxK(dneuro, L=5, d=5, v=5)
+#' neurotable <- createNeuroTable(atchashda, atchashsec, dneuromaxk)
+#' sortedNeuroTable <- sortTableByRefMatches(neurotable)
+#' print(xtable::xtable(sortedNeuroTable, type = "latex"),
+#'   file = "sortedNeuroTable.tex",
+#'   include.rownames=FALSE)
 sortTableByRefMatches <- function (dntk) {
   l <- length(dntk[,1])
   
