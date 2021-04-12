@@ -30,15 +30,15 @@ atchashaa <-
 atchashsec <-
   readSecondLevelATC(
     system.file("extdata", "atc-secondlevel.map", package = "epos"), "\t")
-epso <- genDictListFromRawFreq(rawDrugNamesCoOcEpSO)
+epso <- rawDrugNamesCoOcEpSO
 neuroepso <- filterNeuroDrugs(epso, atchashda)
-esso <- genDictListFromRawFreq(rawDrugNamesCoOcESSO)
+esso <- rawDrugNamesCoOcESSO
 neuroesso   <- filterNeuroDrugs(esso, atchashda)
-epi <- genDictListFromRawFreq(rawDrugNamesCoOcEPILONT)
+epi <- rawDrugNamesCoOcEPILONT
 neuroepi    <- filterNeuroDrugs(epi, atchashda)
-episem <- genDictListFromRawFreq(rawDrugNamesCoOcEPISEM)
+episem <- rawDrugNamesCoOcEPISEM
 neuroepisem <- filterNeuroDrugs(episem, atchashda)
-fenics <- genDictListFromRawFreq(rawDrugNamesCoOcFENICS)
+fenics <- rawDrugNamesCoOcFENICS
 neurofenics <- filterNeuroDrugs(fenics, atchashda)
 mx <- max(
     c(length(neuroepso), length(neuroesso), length(neuroepi),
@@ -49,5 +49,5 @@ dneuro <-
              EPILONT = c(neuroepi, rep("", (mx-length(neuroepi)))),
              EPISEM = c(neuroepisem, rep("", (mx-length(neuroepisem)))),
              FENICS = c(neurofenics, rep("", (mx-length(neurofenics)))))
-dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=10)
+dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=5)
 }

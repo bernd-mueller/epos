@@ -11,11 +11,11 @@ printTop10Drugs(neuroepso, neuroesso, neuroepi, neuroepisem, neurofenics)
 
 \item{neuroesso}{Ranked list of drug names co-occurring with ESSO}
 
+\item{neuroepi}{Ranked list of drug names co-occurring with EPILONT}
+
 \item{neuroepisem}{Ranked list of drug names co-occurring with EPISEM}
 
 \item{neurofenics}{Ranked list of drug names co-occurring with FENICS}
-
-\item{neuroepilont}{Ranked list of drug names co-occurring with EPILONT}
 }
 \value{
 data frame with top 10 drugs for each ontology
@@ -38,15 +38,15 @@ atchashaa <-
 atchashsec <-
   readSecondLevelATC(
     system.file("extdata", "atc-secondlevel.map", package = "epos"), "\t")
-epso <- genDictListFromRawFreq(rawDrugNamesCoOcEpSO)
+epso <- rawDrugNamesCoOcEpSO
 neuroepso <- filterNeuroDrugs(epso, atchashda)
-esso <- genDictListFromRawFreq(rawDrugNamesCoOcESSO)
+esso <- rawDrugNamesCoOcESSO
 neuroesso   <- filterNeuroDrugs(esso, atchashda)
-epi <- genDictListFromRawFreq(rawDrugNamesCoOcEPILONT)
+epi <- rawDrugNamesCoOcEPILONT
 neuroepi    <- filterNeuroDrugs(epi, atchashda)
-episem <- genDictListFromRawFreq(rawDrugNamesCoOcEPISEM)
+episem <- rawDrugNamesCoOcEPISEM
 neuroepisem <- filterNeuroDrugs(episem, atchashda)
-fenics <- genDictListFromRawFreq(rawDrugNamesCoOcFENICS)
+fenics <- rawDrugNamesCoOcFENICS
 neurofenics <- filterNeuroDrugs(fenics, atchashda)
 top10table <- printTop10Drugs(neuroepso, neuroesso, neuroepi, neuroepisem, neurofenics)
 \dontrun{

@@ -2,7 +2,7 @@
 #'
 #' @param neuroepso Ranked list of drug names co-occurring with EpSO
 #' @param neuroesso Ranked list of drug names co-occurring with ESSO
-#' @param neuroepilont Ranked list of drug names co-occurring with EPILONT
+#' @param neuroepi Ranked list of drug names co-occurring with EPILONT
 #' @param neuroepisem Ranked list of drug names co-occurring with EPISEM
 #' @param neurofenics Ranked list of drug names co-occurring with FENICS
 #' 
@@ -24,15 +24,15 @@
 #' atchashsec <-
 #'   readSecondLevelATC(
 #'     system.file("extdata", "atc-secondlevel.map", package = "epos"), "\t")
-#' epso <- genDictListFromRawFreq(rawDrugNamesCoOcEpSO)
+#' epso <- rawDrugNamesCoOcEpSO
 #' neuroepso <- filterNeuroDrugs(epso, atchashda)
-#' esso <- genDictListFromRawFreq(rawDrugNamesCoOcESSO)
+#' esso <- rawDrugNamesCoOcESSO
 #' neuroesso   <- filterNeuroDrugs(esso, atchashda)
-#' epi <- genDictListFromRawFreq(rawDrugNamesCoOcEPILONT)
+#' epi <- rawDrugNamesCoOcEPILONT
 #' neuroepi    <- filterNeuroDrugs(epi, atchashda)
-#' episem <- genDictListFromRawFreq(rawDrugNamesCoOcEPISEM)
+#' episem <- rawDrugNamesCoOcEPISEM
 #' neuroepisem <- filterNeuroDrugs(episem, atchashda)
-#' fenics <- genDictListFromRawFreq(rawDrugNamesCoOcFENICS)
+#' fenics <- rawDrugNamesCoOcFENICS
 #' neurofenics <- filterNeuroDrugs(fenics, atchashda)
 #' top10table <- printTop10Drugs(neuroepso, neuroesso, neuroepi, neuroepisem, neurofenics)
 #' \dontrun{
@@ -73,15 +73,15 @@ printTop10Drugs <- function (neuroepso, neuroesso, neuroepi, neuroepisem, neurof
 #' atchashsec <-
 #'   readSecondLevelATC(
 #'     system.file("extdata", "atc-secondlevel.map", package = "epos"), "\t")
-#' epso <- genDictListFromRawFreq(rawDrugNamesCoOcEpSO)
+#' epso <- rawDrugNamesCoOcEpSO
 #' neuroepso <- filterNeuroDrugs(epso, atchashda)
-#' esso <- genDictListFromRawFreq(rawDrugNamesCoOcESSO)
+#' esso <- rawDrugNamesCoOcESSO
 #' neuroesso   <- filterNeuroDrugs(esso, atchashda)
-#' epi <- genDictListFromRawFreq(rawDrugNamesCoOcEPILONT)
+#' epi <- rawDrugNamesCoOcEPILONT
 #' neuroepi    <- filterNeuroDrugs(epi, atchashda)
-#' episem <- genDictListFromRawFreq(rawDrugNamesCoOcEPISEM)
+#' episem <- rawDrugNamesCoOcEPISEM
 #' neuroepisem <- filterNeuroDrugs(episem, atchashda)
-#' fenics <- genDictListFromRawFreq(rawDrugNamesCoOcFENICS)
+#' fenics <- rawDrugNamesCoOcFENICS
 #' neurofenics <- filterNeuroDrugs(fenics, atchashda)
 #' mx <- max(
 #'     c(length(neuroepso), length(neuroesso), length(neuroepi),
@@ -327,15 +327,15 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
 #' atchashsec <-
 #'   readSecondLevelATC(
 #'     system.file("extdata", "atc-secondlevel.map", package = "epos"), "\t")
-#' epso <- genDictListFromRawFreq(rawDrugNamesCoOcEpSO)
+#' epso <- rawDrugNamesCoOcEpSO
 #' neuroepso <- filterNeuroDrugs(epso, atchashda)
-#' esso <- genDictListFromRawFreq(rawDrugNamesCoOcESSO)
+#' esso <- rawDrugNamesCoOcESSO
 #' neuroesso   <- filterNeuroDrugs(esso, atchashda)
-#' epi <- genDictListFromRawFreq(rawDrugNamesCoOcEPILONT)
+#' epi <- rawDrugNamesCoOcEPILONT
 #' neuroepi    <- filterNeuroDrugs(epi, atchashda)
-#' episem <- genDictListFromRawFreq(rawDrugNamesCoOcEPISEM)
+#' episem <- rawDrugNamesCoOcEPISEM
 #' neuroepisem <- filterNeuroDrugs(episem, atchashda)
-#' fenics <- genDictListFromRawFreq(rawDrugNamesCoOcFENICS)
+#' fenics <- rawDrugNamesCoOcFENICS
 #' neurofenics <- filterNeuroDrugs(fenics, atchashda)
 #' mx <- max(
 #'     c(length(neuroepso), length(neuroesso), length(neuroepi),
@@ -346,7 +346,7 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
 #'              EPILONT = c(neuroepi, rep("", (mx-length(neuroepi)))),
 #'              EPISEM = c(neuroepisem, rep("", (mx-length(neuroepisem)))),
 #'              FENICS = c(neurofenics, rep("", (mx-length(neurofenics)))))
-#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=10)
+#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=5)
 # neurotable <- createNeuroTable(atchashda, atchashsec, dneuromaxk)
 # sortedNeuroTable <- sortTableByRefMatches(neurotable)
 # print(xtable::xtable(sortedNeuroTable, type = "latex"),
