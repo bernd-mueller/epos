@@ -19,15 +19,15 @@
 #' atchashda <-
 #'     readAtcMapIntoHashMapDrugNamesAtcCodes(
 #'         system.file("extdata", "db-atc.map", package = "epos"), "\t")
-#' epso <- genDictListFromRawFreq(rawDrugNamesCoOcEpSO)
+#' epso <- rawDrugNamesCoOcEpSO
 #' neuroepso <- filterNeuroDrugs(epso, atchashda)
-#' esso <- genDictListFromRawFreq(rawDrugNamesCoOcESSO)
+#' esso <- rawDrugNamesCoOcESSO
 #' neuroesso   <- filterNeuroDrugs(esso, atchashda)
-#' epi <- genDictListFromRawFreq(rawDrugNamesCoOcEPILONT)
+#' epi <- rawDrugNamesCoOcEPILONT
 #' neuroepi    <- filterNeuroDrugs(epi, atchashda)
-#' episem <- genDictListFromRawFreq(rawDrugNamesCoOcEPISEM)
+#' episem <- rawDrugNamesCoOcEPISEM
 #' neuroepisem <- filterNeuroDrugs(episem, atchashda)
-#' fenics <- genDictListFromRawFreq(rawDrugNamesCoOcFENICS)
+#' fenics <- rawDrugNamesCoOcFENICS
 #' neurofenics <- filterNeuroDrugs(fenics, atchashda)
 #' mx <- max(
 #'     c(length(neuroepso), length(neuroesso), length(neuroepi),
@@ -38,7 +38,7 @@
 #'              EPILONT = c(neuroepi, rep("", (mx-length(neuroepi)))),
 #'              EPISEM = c(neuroepisem, rep("", (mx-length(neuroepisem)))),
 #'              FENICS = c(neurofenics, rep("", (mx-length(neurofenics)))))
-#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=10)
+#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=5)
 #' neurospace <- as.character(dneuromaxk$topkspace)
 #' dsepso <- calcDSEA(neuroepso, mx)
 #' dsesso <- calcDSEA(neuroesso, mx)
@@ -287,23 +287,17 @@ plotDSEA <- function (dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, k) {
 #' utils::data(rawDrugNamesCoOcEPISEM, package="epos")
 #' utils::data(rawDrugNamesCoOcFENICS, package="epos")
 #' atchashda <-
-#' readAtcMapIntoHashMapDrugNamesAtcCodes(
-#'   system.file("extdata", "db-atc.map", package = "epos"), "\t")
-#' atchashaa <-
-#'   readAtcMapIntoHashMapAtcCodesAtcNames(
-#'     system.file("extdata", "db-atc.map", package = "epos"), "\t")
-#' atchashsec <-
-#'   readSecondLevelATC(
-#'     system.file("extdata", "atc-secondlevel.map", package = "epos"), "\t")
-#' epso <- genDictListFromRawFreq(rawDrugNamesCoOcEpSO)
+#'     readAtcMapIntoHashMapDrugNamesAtcCodes(
+#'         system.file("extdata", "db-atc.map", package = "epos"), "\t")
+#' epso <- rawDrugNamesCoOcEpSO
 #' neuroepso <- filterNeuroDrugs(epso, atchashda)
-#' esso <- genDictListFromRawFreq(rawDrugNamesCoOcESSO)
+#' esso <- rawDrugNamesCoOcESSO
 #' neuroesso   <- filterNeuroDrugs(esso, atchashda)
-#' epi <- genDictListFromRawFreq(rawDrugNamesCoOcEPILONT)
+#' epi <- rawDrugNamesCoOcEPILONT
 #' neuroepi    <- filterNeuroDrugs(epi, atchashda)
-#' episem <- genDictListFromRawFreq(rawDrugNamesCoOcEPISEM)
+#' episem <- rawDrugNamesCoOcEPISEM
 #' neuroepisem <- filterNeuroDrugs(episem, atchashda)
-#' fenics <- genDictListFromRawFreq(rawDrugNamesCoOcFENICS)
+#' fenics <- rawDrugNamesCoOcFENICS
 #' neurofenics <- filterNeuroDrugs(fenics, atchashda)
 #' mx <- max(
 #'     c(length(neuroepso), length(neuroesso), length(neuroepi),
@@ -314,7 +308,7 @@ plotDSEA <- function (dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, k) {
 #'              EPILONT = c(neuroepi, rep("", (mx-length(neuroepi)))),
 #'              EPISEM = c(neuroepisem, rep("", (mx-length(neuroepisem)))),
 #'              FENICS = c(neurofenics, rep("", (mx-length(neurofenics)))))
-#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=10)
+#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=5)
 #' neurospace <- as.character(dneuromaxk$topkspace)
 #' enepso <- calcEnrichment(neuroepso)
 #' enesso <- calcEnrichment(neuroesso)
