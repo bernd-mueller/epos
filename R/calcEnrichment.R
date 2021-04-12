@@ -38,7 +38,7 @@
 #'              EPILONT = c(neuroepi, rep("", (mx-length(neuroepi)))),
 #'              EPISEM = c(neuroepisem, rep("", (mx-length(neuroepisem)))),
 #'              FENICS = c(neurofenics, rep("", (mx-length(neurofenics)))))
-#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=5)
+#' dneuromaxk <- customMaxK(dneuro, L=5, d=5, v=5)
 #' neurospace <- as.character(dneuromaxk$topkspace)
 #' dsepso <- calcDSEA(neuroepso, mx)
 #' dsesso <- calcDSEA(neuroesso, mx)
@@ -308,7 +308,7 @@ plotDSEA <- function (dsepso, dsesso, dsepi, dsepisem, dsfenics, dsspace, k) {
 #'              EPILONT = c(neuroepi, rep("", (mx-length(neuroepi)))),
 #'              EPISEM = c(neuroepisem, rep("", (mx-length(neuroepisem)))),
 #'              FENICS = c(neurofenics, rep("", (mx-length(neurofenics)))))
-#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=5)
+#' dneuromaxk <- customMaxK(dneuro, L=5, d=5, v=5)
 #' neurospace <- as.character(dneuromaxk$topkspace)
 #' enepso <- calcEnrichment(neuroepso)
 #' enesso <- calcEnrichment(neuroesso)

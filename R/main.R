@@ -8,7 +8,6 @@
 #'
 #' @return result table containin the aggregated list of drug terms and their associations
 #'
-#' @importFrom TopKLists calculate.maxK
 #' @importFrom xtable xtable
 #' @importFrom utils data
 #'
