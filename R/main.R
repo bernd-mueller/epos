@@ -69,7 +69,7 @@ createBaseTable <- function (coocepso, coocesso, coocepi, coocepisem,
                EPISEM = neuroepisem[1:ml],
                FENICS = neurofenics[1:ml])
   
-  dneuromaxk <- TopKLists::calculate.maxK(dneuro, 5, 5, 5)
+  dneuromaxk <- customMaxK(dneuro, 5, 5, 5)
   
   neurospace <- as.character(dneuromaxk$topkspace)
   

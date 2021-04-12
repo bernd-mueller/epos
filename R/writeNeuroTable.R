@@ -85,14 +85,14 @@ printTop10Drugs <- function (neuroepso, neuroesso, neuroepi, neuroepisem, neurof
 #' neurofenics <- filterNeuroDrugs(fenics, atchashda)
 #' mx <- max(
 #'     c(length(neuroepso), length(neuroesso), length(neuroepi),
-#'       length(neuroepisem), length(neurofenics)))
+#'      length(neuroepisem), length(neurofenics)))
 #' dneuro <-
-#'   data.frame(EpSO = c(neuroepso, rep("", (mx-length(neuroepso)))),
-#'              ESSO = c(neuroesso, rep("", (mx-length(neuroesso)))),
-#'              EPILONT = c(neuroepi, rep("", (mx-length(neuroepi)))),
-#'              EPISEM = c(neuroepisem, rep("", (mx-length(neuroepisem)))),
-#'              FENICS = c(neurofenics, rep("", (mx-length(neurofenics)))))
-#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=10)
+#'   data.frame(EpSO = c(neuroepso, rep(1, (mx-length(neuroepso)))),
+#'              ESSO = c(neuroesso, rep(1, (mx-length(neuroesso)))),
+#'              EPILONT = c(neuroepi, rep(1, (mx-length(neuroepi)))),
+#'              EPISEM = c(neuroepisem, rep(1, (mx-length(neuroepisem)))),
+#'              FENICS = c(neurofenics, rep(1, (mx-length(neurofenics)))))
+#' dneuromaxk <- customMaxK(dneuro, L=5, d=5, v=10)
 #' neurotable <- createNeuroTable(atchashda, atchashsec, dneuromaxk)
 createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
   neurospace <- dneuromaxk$topkspace
