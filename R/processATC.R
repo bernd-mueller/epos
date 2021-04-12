@@ -67,7 +67,6 @@ filterApprovedDrugs <- function (druglist, atchashda) {
     if (drug %in% dn) {
       approveddrugs <- c(approveddrugs, drug)
     }
-    counter = counter + 1
   }
   
   return(approveddrugs)
