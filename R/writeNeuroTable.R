@@ -96,7 +96,7 @@ printTop10Drugs <- function (neuroepso, neuroesso, neuroepi, neuroepisem, neurof
 #' neurotable <- createNeuroTable(atchashda, atchashsec, dneuromaxk)
 createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
   neurospace <- dneuromaxk$topkspace
-  neurotopk <- c()
+  neurotopk <- c() 
   counter <- 0
   for (o in dneuromaxk$venntable$objects) {
     counter <- counter + 1
