@@ -55,7 +55,7 @@
 #'              EPILONT = neuroepi[1:210],
 #'              EPISEM = neuroepisem[1:210],
 #'              FENICS = neurofenics[1:210])
-#' dneuromaxk <- customMaxK(dneuro, 5, 5, 5)
+#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, 5, 5, 5)
 #' tanimotobaseline <- createTanimotoBaseline(neuroepso, neuroesso, neuroepi, dneuromaxk)
 createTanimotoBaseline <-
   function (neuroepso, neuroesso, neuroepi, dneuromaxk) {

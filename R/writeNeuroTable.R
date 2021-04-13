@@ -92,7 +92,7 @@ printTop10Drugs <- function (neuroepso, neuroesso, neuroepi, neuroepisem, neurof
 #'              EPILONT = c(neuroepi, rep(1, (mx-length(neuroepi)))),
 #'              EPISEM = c(neuroepisem, rep(1, (mx-length(neuroepisem)))),
 #'              FENICS = c(neurofenics, rep(1, (mx-length(neurofenics)))))
-#' dneuromaxk <- customMaxK(dneuro, L=5, d=5, v=10)
+#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=10)
 #' neurotable <- createNeuroTable(atchashda, atchashsec, dneuromaxk)
 createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
   neurospace <- dneuromaxk$topkspace
@@ -346,7 +346,7 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
 #'              EPILONT = c(neuroepi, rep("", (mx-length(neuroepi)))),
 #'              EPISEM = c(neuroepisem, rep("", (mx-length(neuroepisem)))),
 #'              FENICS = c(neurofenics, rep("", (mx-length(neurofenics)))))
-#' dneuromaxk <- customMaxK(dneuro, L=5, d=5, v=5)
+#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=5)
 #' neurotable <- createNeuroTable(atchashda, atchashsec, dneuromaxk)
 #' sortedNeuroTable <- sortTableByRefMatches(neurotable)
 #' print(xtable::xtable(sortedNeuroTable, type = "latex"),
