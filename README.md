@@ -13,3 +13,7 @@ Müller B, Hagelstein A (2016) Beyond Metadata – Enriching Life Science Public
 Müller B, Hagelstein A, Gübitz T (2016) Life Science Ontologies in Literature Retrieval: A Comparison of Linked Data Sets for Use on Semantic Search on a Heterogeneous Corpus. In: Proceedings of the 20th International Conference on Knowledge Engineering and Knowledge Management. Bologna, Italy
 
 Müller B, Rebholz-Schuhmann D (2020) Selected Approaches Ranking Contextual Term for the BioASQ Multi-label Classification (Task6a and 7a). In: Proceedings of the Joint European Conference on Machine Learning and Knowledge Discovery in Databases ECML PKDD 2019, Würzburg, Germany
+
+Please cite this work as:
+
+Bernd Müller. R-package for the Analysis and Visualization of Epilepsy Ontologies' Similarities According to Co-Occurring Drug Names in the 2021 BioASQ corpus 2021. ZENODO, 10.5281/zenodo.4682869
