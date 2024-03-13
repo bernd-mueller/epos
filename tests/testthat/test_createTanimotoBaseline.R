@@ -36,5 +36,5 @@ test_that("Test function createTanimotoBaseline()", {
                FENICS = neurofenics[1:210])
   dneuromaxk <- TopKLists::calculate.maxK(dneuro, 5, 5, 5)
   tanimotobaseline <- createTanimotoBaseline(neuroepso, neuroesso, neuroepi, dneuromaxk)
-  expect_that(length(tanimotobaseline), equals(9))
+  expect_that(length(tanimotobaseline), equals(11))
 })
