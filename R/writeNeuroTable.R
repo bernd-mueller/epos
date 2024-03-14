@@ -346,7 +346,7 @@ createNeuroTable <- function (atchashda, atchashsec, dneuromaxk) {
 #'              EPILONT = c(neuroepi, rep("", (mx-length(neuroepi)))),
 #'              EPISEM = c(neuroepisem, rep("", (mx-length(neuroepisem)))),
 #'              FENICS = c(neurofenics, rep("", (mx-length(neurofenics)))))
-#' dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=5)
+#' suppressWarnings(dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=5))
 #' neurotable <- createNeuroTable(atchashda, atchashsec, dneuromaxk)
 #' sortedNeuroTable <- sortTableByRefMatches(neurotable)
 #' print(xtable::xtable(sortedNeuroTable, type = "latex"),
@@ -471,11 +471,24 @@ sortTableByRefMatches <- function (dntk) {
   finalframe <- stats::setNames(data.frame(matrix(ncol = 15, nrow = 0)),
                          c("Score", "Rank", "Intersection", "DrugName", "Lancet", "DSE",
                            "U2D", "EFO", "N03", "N05", "N06", "N01", "N02", "N04", "N07"))
-  finalframe <- rbind(finalframe, score5)
-  finalframe <- rbind(finalframe, score4)
-  finalframe <- rbind(finalframe, score3)
-  finalframe <- rbind(finalframe, score2)
-  finalframe <- rbind(finalframe, score1)
+  if (length(score5) > 1) {
+    finalframe <- rbind(finalframe, score5)  
+  }
+  if (length(score4) > 1) {
+    finalframe <- rbind(finalframe, score4)  
+  }
+  if (length(score3) > 1) {
+    finalframe <- rbind(finalframe, score3)  
+  }
+  if (length(score2) > 1) {
+    finalframe <- rbind(finalframe, score2)  
+  }
+  if (length(score1) > 1) {
+    finalframe <- rbind(finalframe, score1)  
+  }
+  if (length(score0) > 1) {
+    finalframe <- rbind(finalframe, score0)  
+  }
   
   score0["Score"] <- 1
   

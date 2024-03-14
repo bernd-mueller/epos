@@ -28,13 +28,21 @@ test_that("Test function createTanimotoBaseline()", {
   neuroepisem <- filterNeuroDrugs(tepisem, atchashda)
   neurofenics <- filterNeuroDrugs(tfenics, atchashda)
   
+  ml <- max(c(
+    length(neuroepso), 
+    length(neuroesso), 
+    length(neuroepi), 
+    length(neuroepisem), 
+    length(neurofenics)))
+  
   dneuro <-
-    data.frame(EpSO = neuroepso[1:210],
-               ESSO = neuroesso[1:210],
-               EPILONT = neuroepi[1:210],
-               EPISEM = neuroepisem[1:210],
-               FENICS = neurofenics[1:210])
-  dneuromaxk <- TopKLists::calculate.maxK(dneuro, 5, 5, 5)
-  tanimotobaseline <- createTanimotoBaseline(neuroepso, neuroesso, neuroepi, dneuromaxk)
+    data.frame(EpSO = neuroepso[1:ml],
+               ESSO = neuroesso[1:ml],
+               EPILONT = neuroepi[1:ml],
+               EPISEM = neuroepisem[1:ml],
+               FENICS = neurofenics[1:ml])
+  suppressWarnings({dneuromaxk <- TopKLists::calculate.maxK(dneuro, 5, 5, 5)})
+  tanimotobaseline <- createTanimotoBaseline(neuroepso, neuroesso, neuroepi, 
+                                             dneuromaxk)
   expect_that(length(tanimotobaseline), equals(11))
 })

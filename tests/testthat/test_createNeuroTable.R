@@ -34,7 +34,7 @@ test_that("Test function createNeuroTable()", {
                EPILONT = neuroepi[1:210],
                EPISEM = neuroepisem[1:210],
                FENICS = neurofenics[1:210])
-  dneuromaxk <- TopKLists::calculate.maxK(dneuro, 5, 5, 5)
+  suppressWarnings(dneuromaxk <- TopKLists::calculate.maxK(dneuro, 5, 5, 5))
   neurospace <- as.character(dneuromaxk$topkspace)
   neurotable <- createNeuroTable(atchashda, atchashsec, dneuromaxk)
   expect_that(length(neurotable), equals(16))

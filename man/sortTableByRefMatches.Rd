@@ -49,7 +49,7 @@ dneuro <-
              EPILONT = c(neuroepi, rep("", (mx-length(neuroepi)))),
              EPISEM = c(neuroepisem, rep("", (mx-length(neuroepisem)))),
              FENICS = c(neurofenics, rep("", (mx-length(neurofenics)))))
-dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=5)
+suppressWarnings(dneuromaxk <- TopKLists::calculate.maxK(dneuro, L=5, d=5, v=5))
 neurotable <- createNeuroTable(atchashda, atchashsec, dneuromaxk)
 sortedNeuroTable <- sortTableByRefMatches(neurotable)
 print(xtable::xtable(sortedNeuroTable, type = "latex"),
