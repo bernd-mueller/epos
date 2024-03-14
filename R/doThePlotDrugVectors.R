@@ -17,7 +17,7 @@
 #' @importFrom ggplot2 scale_y_continuous
 #' @importFrom ggplot2 scale_colour_manual
 #' @importFrom ggplot2 scale_size_manual
-#' @importFrom ggplot2 aes_string
+#' @importFrom ggplot2 aes
 #' @importFrom ggplot2 element_line
 #' @importFrom ggplot2 element_blank
 #' @importFrom ggplot2 element_text
@@ -81,7 +81,7 @@ createTanimotoBaseline <-
         "EPILONT" = "#C71585")
     
     tanimotobase <- ggplot2::ggplot(data = djbase,
-                                     ggplot2::aes_string(
+                                     ggplot2::aes(
                                        x = "Elements",
                                        y = "EpSO",
                                        colour = shQuote("EpSO")
@@ -92,7 +92,7 @@ createTanimotoBaseline <-
         panel.grid.minor.y = ggplot2::element_line(colour = "gray"),
         legend.text = ggplot2::element_text(size =
                                               11),
-        legend.position = c(0, 1),
+        legend.position.inside = c(0, 1),
         legend.justification = c(0, 0),
         legend.direction = "horizontal",
         legend.title = ggplot2::element_blank(),
@@ -107,24 +107,24 @@ createTanimotoBaseline <-
         title = "Tanimoto Similarity between DrugBank vectors of Epilepsy ontologies vs. Aggregated Baseline",
         subtitle = ""
       ) +
-      ggplot2::geom_step(size = 1) +
+      ggplot2::geom_step(linewidth = 1) +
       ggplot2::geom_step(
         data = djbase,
-        ggplot2::aes_string(
+        ggplot2::aes(
           x = "Elements",
           y = "ESSO",
           colour = shQuote("ESSO")
         ),
-        size = 1
+        linewidth = 1
       ) +
       ggplot2::geom_step(
         data = djbase,
-        ggplot2::aes_string(
+        ggplot2::aes(
           x = "Elements",
           y = "EPILONT",
           colour = shQuote("EPILONT")
         ),
-        size = 1
+        linewidth = 1
       ) +
       ggplot2::coord_trans(xlim = c(0, topk), ylim = c(0, 1)) +
       ggplot2::scale_x_continuous(breaks = c(0, 5, 10, 15, 20, 25, topk)) +
@@ -152,7 +152,7 @@ createTanimotoBaseline <-
 #' @importFrom ggplot2 scale_y_continuous
 #' @importFrom ggplot2 scale_colour_manual
 #' @importFrom ggplot2 scale_size_manual
-#' @importFrom ggplot2 aes_string
+#' @importFrom ggplot2 aes
 #' @importFrom ggplot2 element_line
 #' @importFrom ggplot2 element_blank
 #' @importFrom ggplot2 element_text
@@ -175,7 +175,7 @@ createJaccardPlotDBMeSH <-
         "EPILONT" = "#C71585")
     
     jaccarddbmesh <- ggplot2::ggplot(data = djmesh,
-                                     ggplot2::aes_string(
+                                     ggplot2::aes(
                                        x = "Elements",
                                        y = "EpSO",
                                        colour = shQuote("EpSO")
@@ -184,16 +184,16 @@ createJaccardPlotDBMeSH <-
       ggplot2::theme(
         panel.grid.major = ggplot2::element_line(colour = "gray"),
         panel.grid.minor.y = ggplot2::element_line(colour = "gray"),
-        legend.text = ggplot2::element_text(size =
+        legend.text = ggplot2::element_text(linewidth =
                                               11),
         legend.position = c(0, 1),
         legend.justification = c(0, 0),
         legend.direction = "horizontal",
         legend.title = ggplot2::element_blank(),
-        plot.title = ggplot2::element_text(size = 11, face = "bold"),
-        axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
-        axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
-        axis.text.x = ggplot2::element_text(size = 11)
+        plot.title = ggplot2::element_text(linewidth = 11, face = "bold"),
+        axis.title.x = ggplot2::element_text(linewidth = 11, face = "bold"),
+        axis.title.y = ggplot2::element_text(linewidth = 11, face = "bold"),
+        axis.text.x = ggplot2::element_text(linewidth = 11)
       ) +
       ggplot2::labs (
         y = "Jaccard",
@@ -201,24 +201,24 @@ createJaccardPlotDBMeSH <-
         title = "Jaccard Similarity between DrugBank vectors of Epilepsy ontologies versus MeSH derived DrugBank vector",
         subtitle = ""
       ) +
-      ggplot2::geom_step(size = 1) +
+      ggplot2::geom_step(linewidth = 1) +
       ggplot2::geom_step(
         data = djmesh,
-        ggplot2::aes_string(
+        ggplot2::aes(
           x = "Elements",
           y = "ESSO",
           colour = shQuote("ESSO")
         ),
-        size = 1
+        linewidth = 1
       ) +
       ggplot2::geom_step(
         data = djmesh,
-        ggplot2::aes_string(
+        ggplot2::aes(
           x = "Elements",
           y = "EPILONT",
           colour = shQuote("EPILONT")
         ),
-        size = 1
+        linewidth = 1
       ) +
       ggplot2::coord_trans(xlim = c(0, 250), ylim = c(0, 1)) +
       ggplot2::scale_x_continuous(breaks = c(0, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250)) +
@@ -248,7 +248,7 @@ createJaccardPlotDBMeSH <-
 #' @importFrom ggplot2 scale_y_continuous
 #' @importFrom ggplot2 scale_colour_manual
 #' @importFrom ggplot2 scale_size_manual
-#' @importFrom ggplot2 aes_string
+#' @importFrom ggplot2 aes
 #' @importFrom ggplot2 element_line
 #' @importFrom ggplot2 element_blank
 #' @importFrom ggplot2 element_text
@@ -276,7 +276,7 @@ createJaccardPlotMeSHFive <-
         )
     
     jaccarddbmesh <- ggplot2::ggplot(data = djmesh,
-                                     ggplot2::aes_string(
+                                     ggplot2::aes(
                                        x = "Elements",
                                        y = "EpSO",
                                        colour = shQuote("EpSO")
@@ -285,16 +285,16 @@ createJaccardPlotMeSHFive <-
       ggplot2::theme(
         panel.grid.major = ggplot2::element_line(colour = "gray"),
         panel.grid.minor.y = ggplot2::element_line(colour = "gray"),
-        legend.text = ggplot2::element_text(size =
+        legend.text = ggplot2::element_text(linewidth =
                                               11),
         legend.position = c(0, 1),
         legend.justification = c(0, 0),
         legend.direction = "horizontal",
         legend.title = ggplot2::element_blank(),
-        plot.title = ggplot2::element_text(size = 11, face = "bold"),
-        axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
-        axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
-        axis.text.x = ggplot2::element_text(size = 11)
+        plot.title = ggplot2::element_text(linewidth = 11, face = "bold"),
+        axis.title.x = ggplot2::element_text(linewidth = 11, face = "bold"),
+        axis.title.y = ggplot2::element_text(linewidth = 11, face = "bold"),
+        axis.text.x = ggplot2::element_text(linewidth = 11)
       ) +
       ggplot2::labs (
         y = "Jaccard",
@@ -302,42 +302,42 @@ createJaccardPlotMeSHFive <-
         title = "Jaccard Similarity between DrugBank vectors of Epilepsy ontologies versus MeSH derived DrugBank vector",
         subtitle = ""
       ) +
-      ggplot2::geom_step(size = 1) +
+      ggplot2::geom_step(linewidth = 1) +
       ggplot2::geom_step(
         data = djmesh,
-        ggplot2::aes_string(
+        ggplot2::aes(
           x = "Elements",
           y = "ESSO",
           colour = shQuote("ESSO")
         ),
-        size = 1
+        linewidth = 1
       ) +
       ggplot2::geom_step(
         data = djmesh,
-        ggplot2::aes_string(
+        ggplot2::aes(
           x = "Elements",
           y = "EPILONT",
           colour = shQuote("EPILONT")
         ),
-        size = 1
+        linewidth = 1
       ) +
       ggplot2::geom_step(
         data = djmesh,
-        ggplot2::aes_string(
+        ggplot2::aes(
           x = "Elements",
           y = "EPAND",
           colour = shQuote("EPAND")
         ),
-        size = 1
+        linewidth = 1
       ) +
       ggplot2::geom_step(
         data = djmesh,
-        ggplot2::aes_string(
+        ggplot2::aes(
           x = "Elements",
           y = "EPOR",
           colour = shQuote("EPOR")
         ),
-        size = 1
+        linewidth = 1
       ) +
       ggplot2::coord_trans(xlim = c(0, 100), ylim = c(0, 1)) +
       ggplot2::scale_x_continuous(breaks = c(0, 25, 50, 75, 100)) +
@@ -358,7 +358,7 @@ tanimotoPlot <- function(neurospace, neuromesh, k) {
     )
   
   tanimoto <- ggplot2::ggplot(data = dj,
-                                   ggplot2::aes_string(
+                                   ggplot2::aes(
                                      x = "Elements",
                                      y = "TopKSpace",
                                      colour = shQuote("TopKSpace")
@@ -369,15 +369,15 @@ tanimotoPlot <- function(neurospace, neuromesh, k) {
       panel.grid.major.x = ggplot2::element_line(colour = "grey"),
       panel.grid.minor.x = ggplot2::element_line(colour = "black"),
       panel.grid.minor.y = ggplot2::element_line(colour = "grey"),
-      legend.text = ggplot2::element_text(size = 11),
+      legend.text = ggplot2::element_text(linewidth = 11),
       legend.position = c(0, 1),
       legend.justification = c(0, 0),
       legend.direction = "horizontal",
       legend.title = ggplot2::element_blank(),
-      plot.title = ggplot2::element_text(size = 11, face = "bold"),
-      axis.title.x = ggplot2::element_text(size = 11, face = "bold"),
-      axis.title.y = ggplot2::element_text(size = 11, face = "bold"),
-      axis.text.x = ggplot2::element_text(size = 11)
+      plot.title = ggplot2::element_text(linewidth = 11, face = "bold"),
+      axis.title.x = ggplot2::element_text(linewidth = 11, face = "bold"),
+      axis.title.y = ggplot2::element_text(linewidth = 11, face = "bold"),
+      axis.text.x = ggplot2::element_text(linewidth = 11)
     ) +
     ggplot2::labs (
       y = "Tanimoto",
@@ -385,7 +385,7 @@ tanimotoPlot <- function(neurospace, neuromesh, k) {
       title = "Tanimoto Similarity between the TopKSpace of Epilepsy Ontologies and the MeSH-derived Vector",
       subtitle = ""
     ) +
-    ggplot2::geom_step(size = 2) +
+    ggplot2::geom_step(linewidth = 2) +
     ggplot2::coord_trans(xlim = c(1, k), ylim = c(0, 0.5)) +
     ggplot2::scale_x_continuous(breaks = c(1, 5, 10, 15, 20, 25, 30, 35, k)) +
     ggplot2::scale_y_continuous(breaks = c(0.1, 0.2, 0.3, 0.4, 0.5)) +
