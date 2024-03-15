@@ -1,4 +1,4 @@
-[![DOI](https://zenodo.org/badge/150077421.svg)](https://zenodo.org/badge/latestdoi/150077421)[![Build Status](https://api.travis-ci.org/bernd-mueller/epos.svg?branch=master)](https://travis-ci.org/bernd-mueller/epos)[![](https://cranlogs.r-pkg.org/badges/grand-total/epos)](https://cran.r-project.org/package=epos)
+[![DOI](https://zenodo.org/badge/150077421.svg)](https://zenodo.org/badge/latestdoi/150077421)[![](https://cranlogs.r-pkg.org/badges/grand-total/epos)](https://cran.r-project.org/package=epos)
 
 
 # epos
