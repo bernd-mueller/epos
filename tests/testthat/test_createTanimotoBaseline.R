@@ -44,5 +44,5 @@ test_that("Test function createTanimotoBaseline()", {
   suppressWarnings({dneuromaxk <- TopKLists::calculate.maxK(dneuro, 5, 5, 5)})
   tanimotobaseline <- createTanimotoBaseline(neuroepso, neuroesso, neuroepi, 
                                              dneuromaxk)
-  expect_that(length(tanimotobaseline), equals(11))
+  expect_true(ggplot2::is_ggplot(tanimotobaseline))
 })
