@@ -471,7 +471,7 @@ drawVenn4 <- function () {
       "EPILONT" = "#FFA501",
       "EPISEM" = "#E80908")
   
-  dv <- customQuad (
+  dv <- VennDiagram::draw.quad.venn (
     area1 = 1357,
     area2 = 2694,
     area3 = 137,
